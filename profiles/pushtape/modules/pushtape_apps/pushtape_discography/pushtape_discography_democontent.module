@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Pushtape Discography Demo Content feature.
+ */
+
+include_once 'pushtape_discography_democontent.features.inc';

@@ -1,0 +1,27 @@
+
+/* This file will hold the main styles for your website. */
+
+#region-menu{font-family:LeagueGothicRegular,Impact,sans-serif;font-size:150%;}#region-menu ul{height:60px;overflow:hidden;margin-bottom:0;border-top:1px solid #282828;border-bottom:1px solid #282828;background:url(/sites/all/themes/omega_pushtape/i/dg-menu-bg.png) repeat-x top left;}#region-menu ul li{display:inline;}#region-menu ul li a{height:60px;line-height:60px;padding:0 1em;text-decoration:none;text-transform:uppercase;font-weight:normal;display:inline-block;color:#9a9a9a;border-right:1px solid #282828;}#region-menu ul li a.active,#region-menu ul li a.active-trail,#region-menu ul li a:hover{color:#FFF;background:url(/sites/all/themes/omega_pushtape/i/dg-menu-active.png) repeat-x top left;}#region-menu .secondary-menu{font-family:"Trebuchet MS",Arial,Verdana,Helvetica;font-size:14px;}#region-menu .secondary-menu ul{height:30px;border-top:0;background:url(/sites/all/themes/omega_pushtape/i/dg-secondary-menu-bg.png) repeat-x top left;}#region-menu .secondary-menu ul li a{height:30px;line-height:30px;border-top:0;text-transform:lowercase;background:none;}
+#zone-content {
+background: -webkit-radial-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3) 35%, rgba(0, 0, 0, 0.7));
+background: -moz-radial-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3) 35%, rgba(0, 0, 0, 0.7));
+background: -ms-radial-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3) 35%, rgba(0, 0, 0, 0.7));
+background: radial-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3) 35%, rgba(0, 0, 0, 0.7));
+}
+
+body{font-size:100%;font-family:"Trebuchet MS",Arial,Verdana,Helvetica,sans-serif;}
+
+h1,h2,h3,h4,h5,h6{font-weight:normal;font-family:LeagueGothicRegular,Impact,sans-serif;text-transform:uppercase;line-height:1.2em;color:#a7ddff;letter-spacing:normal;}
+h1{font-size:3em;}h2{font-size:3em;}h3{font-size:2em;}h4{font-size:1.5em;}h5{font-size:1em;}h6{font-size:1em;}
+
+
+h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{text-decoration:none;}
+p,ul,ol{margin-bottom:1em;line-height:1.5em;}img{border:0;}
+ul ul,ol ul,ol ol,ul ol{padding-left:1em;}
+a,a:visited{color:#a7ddff}a:hover{text-decoration:none;color:#d9ffa7;}
+.clearfix:after{content:"";display:block;height:0;clear:both;visibility:hidden;font-size:0;}
+#skip-link a:link,#skip-link a:visited{font-weight:bold;background:#fff;padding:0px 5px;text-decoration:none;font-size:80%;text-align:right;top:-99em;left:auto;position:absolute;}
+
+#skip-link a:hover,#skip-link a:focus,#skip-link a:active{height:auto;width:auto;overflow:visible;top:0;left:0;position:fixed;z-index:1000;}
+
+@font-face{font-family:'LeagueGothicRegular';src:url(/sites/all/themes/omega_pushtape/fonts/League_Gothic-webfont.eot);src:local(' '),url(/sites/all/themes/omega_pushtape/fonts/League_Gothic-webfont.woff) format('woff'),url(/sites/all/themes/omega_pushtape/fonts/League_Gothic-webfont.ttf) format('truetype'),url(/sites/all/themes/omega_pushtape/fonts/League_Gothic-webfont.svg#webfontFHzvtkso) format('svg');font-weight:normal;font-style:normal;}

@@ -1,0 +1,12 @@
+name = Media Playlist
+description = A pop-up media playlist with queuing functionality.
+package = Media
+core = 7.x
+files[] = mediaplaylist.module
+
+; Information added by drupal.org packaging script on 2012-04-10
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "mediaplaylist"
+datestamp = "1334017736"
+

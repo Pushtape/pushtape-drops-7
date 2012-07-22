@@ -1,0 +1,17 @@
+name = Pushtape Discography Demo Content
+description = The magic that allows for demo content for Discography.
+core = 7.x
+package = Pushtape Demo Content
+version = 7.x-1.0-beta5
+project = pushtape_discography_democontent
+dependencies[] = defaultcontent
+dependencies[] = pushtape_discography
+dependencies[] = strongarm
+dependencies[] = uuid
+features[content][] = pushtape-discography-defaultcontent-1
+features[content][] = pushtape-discography-defaultcontent-2
+features[content][] = pushtape-discography-defaultcontent-3
+features[content][] = pushtape-discography-defaultcontent-4
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:1
+features[variable][] = node_content_enabled
