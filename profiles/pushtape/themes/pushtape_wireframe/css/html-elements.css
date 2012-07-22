@@ -1,0 +1,112 @@
+/** 
+ * HTML Block Styles
+ */
+
+h1 {
+}
+
+h2 {
+  margin-bottom: .5em;
+}
+
+h3 {
+}
+
+h4 {
+}
+
+h5 {
+}
+
+h6 {
+}
+
+/**
+ * Fieldsets
+ */
+fieldset {
+  border: 1px solid #ccc;
+  padding: 2.5em 0 0 0; /* LTR */
+  position: relative;
+  margin: 1em 0;
+  border: 1px solid #EDEDEE;
+  background: #EDEDEE;
+}
+
+legend {
+  border: 0 none;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+fieldset .fieldset-legend {
+  margin-top: 0.5em;
+  padding-left: 15px; /* LTR */
+  position: absolute;
+  font-size: 1.154em; /* 13 -> 15px */
+  font-family: Georgia, "Times New Roman", "DejaVu Serif", serif;
+}
+
+  html.js fieldset.collapsible .fieldset-legend {
+    background: transparent url(../images/fieldset-expanded.png) no-repeat 10px 65%;
+    padding-left: 35px;
+  }
+
+  html.js fieldset.collapsed .fieldset-legend {
+    background-image: url(../images/fieldset-collapsed.png);
+    background-position: 10px 50%;
+  }
+
+  fieldset .fieldset-legend a {
+    text-decoration: none;
+  }
+
+fieldset .fieldset-wrapper {
+  padding: 13px 13px 13px 15px; /* LTR */
+  background: #FBFBFB;
+}
+
+html.js fieldset.collapsed {
+  border-width: 1px;
+  height: auto;
+}
+
+fieldset fieldset {
+  background-color: #fff;
+}
+
+fieldset fieldset fieldset {
+  background-color: #f8f8f8;
+}
+
+/**
+ * Blockquote
+ */
+blockquote {
+  border-left: 1px dotted black;
+  margin-left: 2em;
+  padding-left: 1em;
+}
+
+/** 
+ * Links
+ */
+a {
+  color: #0033FF;
+  text-decoration: none;
+}
+
+a:hover, a:active {
+  text-decoration: underline;
+}
+
+/** 
+ * Images
+ */
+img {
+  border: 0;
+  vertical-align: bottom; /* Suppress the space beneath the baseline */
+  max-width: 100%;
+  height: auto;
+}

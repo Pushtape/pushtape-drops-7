@@ -1,0 +1,143 @@
+/**
+ * This is for the mini calendar
+ */
+.view-display-id-monthly_mini_calendar {
+  background: #333;
+  padding: 3px;
+}
+
+/** mini cal header **/
+.view .view-header .date-nav-wrapper {
+  margin: 17px 0;
+}
+
+.view .date-nav-wrapper .date-nav {
+  margin: 0;
+  padding: 0;
+}
+
+  .view .date-nav-wrapper .date-heading {
+    float: none;
+  }
+  
+  .view .date-nav-wrapper ul.pager {
+    margin: 17px 0;
+  }
+  
+  .item-list .date-heading .pager li {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .view .date-nav-wrapper li.date-prev,
+  .view .date-nav-wrapper li.date-next {
+    float: left;
+    position: relative;
+    margin: 10px 20px 0;
+    right: 0;
+    top: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    background: 0;
+    width: 10px;
+    height: 11px;
+    background: url(../images/mini-calendar-navigation.png) no-repeat left top;
+  }
+  
+    .view .date-nav-wrapper li.date-next {
+      background-position: right top;
+    }
+  
+    .view .date-nav-wrapper li.date-prev a,
+    .view .date-nav-wrapper li.date-next a {
+      text-align: left;
+      text-indent: -9999em;
+      overflow: hidden;
+      display: block;
+      height: 11px;
+      width: 10px;
+      margin: 0;
+      position: absolute;
+      top: 0;
+    }
+    
+  .view .date-nav-wrapper li.date-title {
+    width: 100%;
+  }
+  
+  .view .date-nav-wrapper .date-heading li.date-title h3 {
+    font-size: 1em;
+    line-height: 1em;
+    font-weight: bold;
+  }
+  
+    .view .date-nav-wrapper li.date-title a {
+      color: #fff;
+      font: bold 1.429em/1.35em 'Open Sans', 'Lucida Sans', 'Lucida Grande', verdana sans-serif; /* 14->20px / 27px */
+    }
+  
+  .view .date-nav-wrapper li.date-next {
+    float: right;
+  }
+  
+/** mini cal table header **/
+.calendar-calendar th.days {
+  background: #333;
+  border: none;
+  color: #fff;
+}
+
+table.mini td.mini,
+table.mini th.mini,
+table.mini td.week {
+  padding: 0;
+}
+
+.calendar-calendar .month-view table.mini {
+  border-collapse: collapse;
+  color: #333;
+}
+
+.calendar-calendar table.mini td {
+  vertical-align: middle;
+  text-align: center;
+  border: 2px solid #333;
+  color: #333;
+  font: normal 1.429em/1.35em 'Open Sans', 'Lucida Sans', 'Lucida Grande', verdana sans-serif; /* 14->20px / 27px */
+  height: 39px;
+}
+
+.calendar-calendar table tr td.today,
+.calendar-calendar table tr.odd td.today,
+.calendar-calendar table tr.even td.today {
+  background: #fff;
+  font-weight: bold;
+}
+
+.calendar-calendar table.mini td.empty {
+  background: #858585;
+  border-color: #333;
+}
+
+.calendar-calendar table.mini td.has-events {
+  background: #0033FF;
+}
+
+  .calendar-calendar table.mini td.has-events a,
+  .calendar-calendar table.mini td.has-events a:hover,
+  .calendar-calendar table.mini td.has-events a:active {
+    color: #fff;
+    text-decoration: none;
+  }
+
+.calendar-calendar table.mini td.has-events:hover {
+  background-color: #0099FF;
+}
+
+/**
+ * This is for the full calendar
+ */
+
+/**
+ * This is for the office hours plugin
+ */

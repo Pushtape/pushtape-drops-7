@@ -1,0 +1,50 @@
+/**
+ * @file
+ * Panels styling
+ *
+ * This file is excusively used for styling panel layouts and panes as they
+ * appear in regions at large.  It should not be used for styling the content
+ * within a panel pane
+ */
+
+/**
+ * General Styling of Panel Pane
+ */
+.panel-pane {
+  margin-bottom: 1em;
+} 
+
+.panel-pane h2.pane-title {
+  padding-top: .5em;
+  border-top: 2px solid #000;
+}
+
+/**
+ * Background Callout
+ */
+.pane-background-callout {
+  background-color: #E6E6E6;
+  padding: 1em;
+}
+
+.region-background-callout {
+  background-color: #E6E6E6;
+  padding: 1em;
+}
+
+@media only screen and (max-width: 480px) {
+  .region-background-callout,
+  .pane-background-callout {
+    padding: 10px;
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+}
+
+/**
+ * Basic Panel Pane
+ */
+.pane-basic h2.pane-title {
+  padding-top: 0em;
+  border-top: 0;
+}

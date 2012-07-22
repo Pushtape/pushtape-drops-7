@@ -4,9 +4,9 @@ package = Media
 core = 7.x
 files[] = mediaplaylist.module
 
-; Information added by drupal.org packaging script on 2012-04-10
-version = "7.x-1.x-dev"
+; Information added by drupal.org packaging script on 2012-05-23
+version = "7.x-1.0-rc1"
 core = "7.x"
 project = "mediaplaylist"
-datestamp = "1334017736"
+datestamp = "1337787958"
 

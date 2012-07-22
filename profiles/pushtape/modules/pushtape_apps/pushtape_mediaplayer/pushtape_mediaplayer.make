@@ -1,17 +1,16 @@
 api = 2
 core = 7.x
 
-projects[media] = 2.x-dev
-
-projects[media_soundcloud] = 1.0-alpha1
+;projects[media_soundcloud] = 1.0-alpha1
 projects[media_colorbox] = 1.0-rc1
-projects[mediaplaylist] = 1.x-dev
+projects[mediaplaylist] = 1.0-rc1
 
 projects[soundmanager2][version] = "2.x-dev"
 
 projects[jplayer][subdir] = contrib
 projects[jplayer][type] = module
 projects[jplayer][version] = 2.0-beta1
+;projects[jplayer][patch][] = http://drupal.org/files/hide-direct-link-1046744-16.patch
 
 libraries[soundmanager2][download][type] = "get"
 libraries[soundmanager2][download][url] = "http://www.schillmania.com/projects/soundmanager2/download/soundmanagerv297a-20120318.zip"

@@ -1,0 +1,109 @@
+/** 
+ * Mini Pager
+ *
+ * The default is provided by Views
+ */
+
+/** 
+ * Full Pager
+ *
+ * The default is provied by Drupal core
+ */
+
+/**
+ * Breadcrumbs
+ *
+ * The default is provided by Drupal core
+ */
+
+/**
+ * Tabs
+ */
+.tabs {
+  width:100%;
+  margin:5px 0;
+}
+
+.tabs ul.primary,
+.tabs ul.secondary {
+  padding:0;
+  margin:0;
+  margin-bottom:0;
+  border-bottom:#DADADA solid 1px;
+  width:100%;
+  font-size:0.87em;
+}
+
+.tabs ul.primary li{
+  margin-left:0;
+}
+
+.tabs ul.primary li a {
+  background-color:#DDD;
+  line-height:2em;
+  position:relative;
+  bottom:-4px;
+  border-style:solid;
+  border-color:#DADADA;
+  font-weight:bold;
+  padding:0 25px;
+  text-align:center;
+}
+
+.tabs ul.primary li a.active {
+  background-color:#FFF;
+  border-color:#DADADA #DADADA #FFFFFF;
+}
+
+.tabs ul.primary li a:hover {
+  background-color:#FFF;
+  border-color:#DADADA #DADADA #FFFFFF;
+}
+
+.tabs ul.primary li.active a:hover {
+  background-color:transparent;
+}
+
+.tabs ul.secondary {
+  margin-left:0;
+  margin:0;
+  padding:0.5em 0 0.5em;
+}
+
+/**
+ * Messages 
+ */
+div.messages {
+  padding: 9px;
+  margin: 1em 0;
+  color: #003366;
+  background: #bbddff;
+  border: 1px solid #aaccee;
+}
+
+div.warning {
+  color: #884400;
+  background: #ffee66;
+  border-color: #eedd55;
+}
+
+div.error {
+  color: white;
+  background: #ee6633;
+  border-color: #dd5522;
+}
+
+div.status {
+  color: #336600;
+  background: #ccff88;
+  border-color: #bbee77;
+}
+
+/**
+ * Misc
+ */
+@media only screen and (max-width: 480px) {
+  .breadcrumb {
+    display: none;
+  }
+}

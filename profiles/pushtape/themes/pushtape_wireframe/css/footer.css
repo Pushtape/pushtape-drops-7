@@ -1,0 +1,119 @@
+/** 
+ * General layout
+ */
+
+#footer {
+  margin-top: 2em;
+  background-color: #000;
+  color: #fff;
+  padding: .5em;
+  clear: both;
+}
+
+#menu-and-social {
+  float: right;
+  margin-right: 1em;
+}
+
+#social-links {
+  float: right;
+  margin-left: 3em;
+}
+
+#seal-and-contact {
+  float: left;
+}
+
+#footer-seal {
+  margin: .5em 1em 1em 1em;
+  float: left;
+}
+
+.footer {
+  float: right;
+}
+
+#contact-information {
+  float: left;
+  font-size: .8em;
+  line-height: 1.3em;
+}
+
+#contact-information p {
+  margin: .5em 0em;
+} 
+
+#contact-information .site-name {
+  font-weight: bold;
+}
+
+/**
+ * General styles - Mobile
+ */
+@media only screen and (max-width: 480px) {
+  #footer {
+    margin-top: 0em;
+    padding-left: 2em;
+  }
+
+  #footer-seal {
+    display: none;
+  }
+
+  #seal-and-contact {
+    float: none;
+    clear: both;
+  }
+
+  #menu-and-social {
+    float: left;
+    clear: both;
+    margin-top: 1em;
+    border-top: 1px solid #FFF; 
+    margin-right: 0;
+    width: 100%;
+  }
+
+#social-links {
+  margin-left: 0em;
+  float: right;
+  width: 45%;
+}
+
+  .footer {
+    float: left;
+    width: 45%;
+  }
+
+}
+
+/**
+ * Footer menu styles
+ */
+
+#social-links ul,
+#footer-menu.links {
+  list-style-type: none;
+  float: right;
+  background: black;
+  padding: 3px 10px;
+  margin: 0;
+  font-size: .8em;
+}
+
+#social-links a,
+#footer-menu a {
+  color: white;
+  text-decoration: none;
+}
+
+#social-links ul {
+  list-style-type: square;
+}
+
+@media only screen and (max-width: 480px) {
+  #footer-menu.links,
+  #social-links ul {
+   float: none;
+  } 
+}

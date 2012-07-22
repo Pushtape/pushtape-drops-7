@@ -1,0 +1,13 @@
+/**
+ * Panopoly Images
+ */
+.panopoly-image-half {
+  float: left;
+  margin-right: 1em;
+}
+
+.panopoly-image-quarter {
+  float: left;
+  margin-right: .75em;
+  margin-top: .5em;
+}

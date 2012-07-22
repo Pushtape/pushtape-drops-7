@@ -1,0 +1,115 @@
+/**
+ * Item List
+ *
+ * The default style is provided by theme('item_list') in Drupal core
+ */
+
+/**
+ * File List
+ *
+ * The default style is provided by theme('file_link') in Drupal core
+ */
+
+/**
+ * Spotlight Styling
+ *
+ * The default style is provided by the panopoly_widgets module through
+ * the panopoly_widgets.css file.
+ */
+
+/**
+ * Table Styling
+ *
+ * The default style is provided by theme('table') in Drupal core
+ */
+
+/**
+ * Submenu Styling
+ */
+.pane-menu-tree ul {
+  margin: 0;
+  padding-left: 0;
+  font: 1.067em/1.2em 'Open Sans', 'Lucida Sans', 'Lucida Grande', verdana sans-serif; /* 15px/18px */
+}
+
+  .pane-menu-tree ul li {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+  }
+  
+  
+    .pane-menu-tree a {
+      display: block;
+      background-color: #f3f3f3;
+      border-bottom: 1px solid #CCC;
+      padding: 5px 7px 6px;
+      color: #0033FF;
+      text-decoration: none;
+    }
+    
+      .pane-menu-tree ul li.expanded a,
+      .pane-menu-tree ul li.collapsed a {
+        background-image: url(../images/menu-expanded.png);
+        background-repeat: no-repeat;
+        background-position: 97% 50%;
+      }
+      
+      .pane-menu-tree ul li.expanded a {
+        border-bottom: none;
+      }
+      
+      .pane-menu-tree ul li.collapsed a {
+        background-image: url(../images/menu-collapsed.png);
+      }
+    
+      .pane-menu-tree ul li.expanded ul li a {
+        padding-left: 30px;
+        background: #CCCCCC;
+        border-bottom: 1px solid #999;
+      }
+      
+        .pane-menu-tree ul li ul li ul li a {
+          padding-left: 50px;
+        }
+    
+.pane-menu-tree a:hover,
+.pane-menu-tree a:active,
+.pane-menu-tree ul li.active a,
+.pane-menu-tree ul li.expanded a,
+.pane-menu-tree ul li a.active-trail,
+.pane-menu-tree ul li.expanded ul li.active a,
+.pane-menu-tree ul li.expanded ul li a:hover,
+.pane-menu-tree ul li.expanded ul li a:active {
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+}
+
+  .pane-menu-tree ul li.active a:hover,
+  .pane-menu-tree ul li.active a:active {
+    background-color: #111;
+  }
+  
+  .pane-menu-tree ul li.expanded ul li a {
+    color: #0033FF;
+  }
+  
+  .pane-menu-tree ul li.expanded ul li a:hover,
+  .pane-menu-tree ul li.expanded ul li a:active {
+    color: #fff;
+  }
+
+.pane-menu-tree ul li.first a {
+  border-top: 1px solid #CCC;
+}
+
+  .pane-menu-tree ul li ul li.first a {
+    border-top: 1px solid #999;
+  }
+
+/**
+ * Other Styling
+ *
+ * Go forth and make color
+ */

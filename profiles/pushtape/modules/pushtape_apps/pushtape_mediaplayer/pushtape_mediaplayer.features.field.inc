@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * pushtape_mediaplayer.features.field.inc
+ * pushtape_music.features.field.inc
  */
 
 /**
@@ -10,7 +10,7 @@
 function pushtape_mediaplayer_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-track-field_audio'.
+  // Exported field: 'node-track-field_audio'
   $fields['node-track-field_audio'] = array(
     'field_config' => array(
       'active' => '1',
@@ -31,7 +31,6 @@ function pushtape_mediaplayer_field_default_fields() {
           0 => 'fid',
         ),
       ),
-      'locked' => '0',
       'module' => 'file',
       'settings' => array(
         'display_default' => 0,
@@ -54,12 +53,6 @@ function pushtape_mediaplayer_field_default_fields() {
           'weight' => 10,
         ),
         'featured' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'mediaplaylist' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
@@ -110,9 +103,9 @@ function pushtape_mediaplayer_field_default_fields() {
     ),
   );
 
+
   // Translatables
   // Included for use with string extractors like potx.
-  t('Audio');
   t('Upload or add audio from the media library.');
 
   return $fields;

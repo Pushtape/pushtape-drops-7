@@ -1,0 +1,452 @@
+/**
+ * General styles
+ */
+#header {
+  margin-top: 20px;
+  position: relative;
+  height: 120px;
+  margin-bottom: 1.5em;
+  clear: both;
+}
+
+#name-and-slogan {
+  margin-right: 300px; /* Leave a gutter for #secondary and #search */
+}
+
+#logo {
+  float: left;
+  margin-right: 10px;
+}
+  
+#site-name {
+  font-size: 2em; /* 14 -> 28px */
+  line-height: 2em;
+  font-weight: bold;
+  padding: 0;
+  margin: 0 0 .75em;
+}
+
+#site-name a {
+  color: #000;
+}
+  
+#header .site-name-image-wrapper {
+  margin: 0;
+}
+
+#header #menu-and-search-mobile {
+  display: none;
+}
+
+#menu-and-search #navigation {
+  display: block;
+}
+
+/**
+ * General styles - Mobile
+ */
+@media only screen and (max-width: 480px) {
+  #header {
+    height: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  #header #menu-and-search-mobile {
+    position: relative;
+    display: block;
+    color: #FFF;
+    border-bottom: 1px solid #000;
+    height: 50px;
+    text-transform: uppercase;
+  }
+  
+    #header #menu-mobile-controller {
+      background: #404040;
+      background-image: linear-gradient(bottom, #343434 0%, #4C4C4C 100%);
+      background-image: -o-linear-gradient(bottom, #343434 0%, #4C4C4C 100%);
+      background-image: -moz-linear-gradient(bottom, #343434 0%, #4C4C4C 100%);
+      background-image: -webkit-linear-gradient(bottom, #343434 0%, #4C4C4C 100%);
+      background-image: -ms-linear-gradient(bottom, #343434 0%, #4C4C4C 100%);
+      background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, #343434),
+        color-stop(1, #4C4C4C)
+      );
+    }
+    
+      #header #menu-mobile-controller:active,
+      #header #menu-mobile-controller.active {
+        background: #282828;
+        background-image: linear-gradient(bottom, #1A1A1A 0%, #333333 100%);
+        background-image: -o-linear-gradient(bottom, #1A1A1A 0%, #333333 100%);
+        background-image: -moz-linear-gradient(bottom, #1A1A1A 0%, #333333 100%);
+        background-image: -webkit-linear-gradient(bottom, #1A1A1A 0%, #333333 100%);
+        background-image: -ms-linear-gradient(bottom, #1A1A1A 0%, #333333 100%);
+        background-image: -webkit-gradient(
+          linear,
+          left bottom,
+          left top,
+          color-stop(0, #1A1A1A),
+          color-stop(1, #333333)
+        );
+      }
+      
+      #header #menu-mobile-controller:active,
+      #header #menu-mobile-controller.active,
+      #header .mobile-show-border {
+        border-bottom: 1px solid #999;
+      }
+
+  #header #menu-mobile-controller {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    width: 100%;
+    font: bold 18px/50px 'Open Sans', 'Lucida Sans', 'Lucida Grande', verdana sans-serif;
+  }
+  
+    #header #menu-mobile-controller-inner {
+      padding: 0 20px;
+    }
+
+  #header #search-mobile-controller {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 3;
+    padding: 0;
+    text-align: left;
+    text-indent: -9999em;
+    overflow: hidden;
+    width: 50px;
+    max-width: 50px;
+    height: 50px;
+    border-left: 1px solid #999;
+    
+    background: #6d6d6d url(../images/icon-search-mobile.png) no-repeat center center;
+    background-image: url(../images/icon-search-mobile.png), linear-gradient(bottom, rgb(90,90,90) 0%, rgb(128,128,128) 100%);
+    background-image: url(../images/icon-search-mobile.png), -o-linear-gradient(bottom, rgb(90,90,90) 0%, rgb(128,128,128) 100%);
+    background-image: url(../images/icon-search-mobile.png), -moz-linear-gradient(bottom, rgb(90,90,90) 0%, rgb(128,128,128) 100%);
+    background-image: url(../images/icon-search-mobile.png), -webkit-linear-gradient(bottom, rgb(90,90,90) 0%, rgb(128,128,128) 100%);
+    background-image: url(../images/icon-search-mobile.png), -ms-linear-gradient(bottom, rgb(90,90,90) 0%, rgb(128,128,128) 100%);
+    background-image: url(../images/icon-search-mobile.png), -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0, rgb(90,90,90)),
+      color-stop(1, rgb(128,128,128))
+    );
+  }
+  
+    #header #search-mobile-controller.active {
+      background: #6d6d6d url(../images/icon-mobile-search-expanded.png) no-repeat center center;
+      background-image: url(../images/icon-mobile-search-expanded.png), linear-gradient(bottom, rgb(90,90,90) 0%, rgb(128,128,128) 100%);
+      background-image: url(../images/icon-mobile-search-expanded.png), -o-linear-gradient(bottom, rgb(90,90,90) 0%, rgb(128,128,128) 100%);
+      background-image: url(../images/icon-mobile-search-expanded.png), -moz-linear-gradient(bottom, rgb(90,90,90) 0%, rgb(128,128,128) 100%);
+      background-image: url(../images/icon-mobile-search-expanded.png), -webkit-linear-gradient(bottom, rgb(90,90,90) 0%, rgb(128,128,128) 100%);
+      background-image: url(../images/icon-mobile-search-expanded.png), -ms-linear-gradient(bottom, rgb(90,90,90) 0%, rgb(128,128,128) 100%);
+      background-image: url(../images/icon-mobile-search-expanded.png), -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(90,90,90)),
+        color-stop(1, rgb(128,128,128))
+      );
+    }
+
+  #menu-and-search {
+    width: 100%;
+  }
+
+  #menu-and-search #search {
+    display: none;
+  }
+  
+    #menu-and-search .mobile-show-search,
+    #menu-and-search .mobile-show-menu {
+      display: block !important;
+    }
+
+  #menu-and-search #navigation {
+    display: none;
+  }
+
+
+  #name-and-slogan {
+    padding: .5em;
+    margin-right: 0px;
+  }
+
+  #site-name {
+    font-size: 1.5em;
+    line-height: 1.4em;
+    margin-top: .5em;
+    margin-bottom: .5em;
+  }
+}
+
+/**
+ * Main menu styles
+ */
+#primary {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #000;
+  padding: 7px 0;
+  margin: 0;
+}
+
+#primary li {
+  margin-right: 30px; 
+  display: inline;
+  list-style-type: none;
+}
+  
+#primary li.first {
+  margin-left: 25px;
+}
+  
+#primary li.last {
+  margin-right: 0;
+}
+
+#primary a {
+  color: #fff;
+  text-decoration: none;
+}
+    
+#primary a:hover {
+  color: red;
+}
+
+/**
+ * Main menu styles - Mobile
+ */
+@media only screen and (max-width: 480px) {
+  #primary {
+    position: relative;
+    padding: 0;
+  }
+  
+    #primary li {
+      border-top: 1px solid #000;
+      border-bottom: 1px solid #999;
+      display: block;
+      margin: 0;
+      padding: 0;
+    }
+    
+    #primary li.first {
+      margin-left: 0;
+    }
+
+      #primary li a {
+        display: block;
+        padding: 0 20px;
+        font: bold 18px/57px 'Open Sans', 'Lucida Sans', 'Lucida Grande', verdana sans-serif;
+        background: #404040;
+        background-image: linear-gradient(bottom, #343434 0%, #4C4C4C 100%);
+        background-image: -o-linear-gradient(bottom, #343434 0%, #4C4C4C 100%);
+        background-image: -moz-linear-gradient(bottom, #343434 0%, #4C4C4C 100%);
+        background-image: -webkit-linear-gradient(bottom, #343434 0%, #4C4C4C 100%);
+        background-image: -ms-linear-gradient(bottom, #343434 0%, #4C4C4C 100%);
+        background-image: -webkit-gradient(
+          linear,
+          left bottom,
+          left top,
+          color-stop(0, #343434),
+          color-stop(1, #4C4C4C)
+        );
+        
+
+      }
+    
+      #primary li a:hover,
+      #primary li a:active,
+      #primary li a.active {
+        background: #282828;
+        background-image: linear-gradient(bottom, #1A1A1A 0%, #333333 100%);
+        background-image: -o-linear-gradient(bottom, #1A1A1A 0%, #333333 100%);
+        background-image: -moz-linear-gradient(bottom, #1A1A1A 0%, #333333 100%);
+        background-image: -webkit-linear-gradient(bottom, #1A1A1A 0%, #333333 100%);
+        background-image: -ms-linear-gradient(bottom, #1A1A1A 0%, #333333 100%);
+        background-image: -webkit-gradient(
+          linear,
+          left bottom,
+          left top,
+          color-stop(0, #1A1A1A),
+          color-stop(1, #333333)
+        );
+      }
+}
+
+
+/**
+ * Secondary menu styles 
+ */
+#secondary {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: #000;
+  padding: 3px 10px;
+  margin: 0;
+  min-width: 200px;
+  text-align: center;
+}
+
+#secondary li {
+  display: inline;
+  list-style-type: none;
+  margin-right: 15px;
+}
+
+#secondary li.last {
+  margin-right: 0px;
+}
+
+#secondary a {
+  color: #fff;
+  text-decoration: none;
+}
+
+#secondary a:hover {
+  color: #red;
+}
+
+/**
+ * Secondary menu styles - Mobile
+ */
+@media only screen and (max-width: 480px) {
+  #secondary {
+    display: none;
+  }
+}
+
+/**
+ * Search styles 
+ */
+#search {
+  position: absolute;
+  right: 0;
+  top: 45px;
+  display: block;
+}
+  
+#search #search-form {
+  margin-bottom: 0;
+}
+  
+form.search-form .form-item-keys {
+  margin: 0;
+}
+
+form.search-form .form-text,
+form.search-form .form-submit {
+  width: 172px;
+  border: 1px solid #000;
+  padding: .25em;
+  background-color: #fff;
+  font-size: .857em; /* 14 -> 12px */
+}
+
+form.search-form .form-submit {
+  background-color: #000;
+  color: #fff;
+  padding-left: .5em;
+  padding-right: .5em;
+  width: auto;
+}
+  
+/*
+ * A bug in FireFox causes submit buttons to be 2px taller than an input
+ * text field with the same properities. Sadly, there is no good solution to
+ * this issue, but this is a hacky fix that solves the problem
+ * @see http://christophzillgens.com/en/articles/equal-height-input-and-button-elements-in-firefox-and-safari
+ */
+@-moz-document url-prefix() {
+  #search .form-submit {
+    border: 0px;
+  }
+}
+
+/**
+ * Search styles - Mobile
+ */
+@media only screen and (max-width: 480px) {
+  #search {
+    position: inherit;
+    width: 100%;
+    border: 1px solid #000;
+    border-width: 1px 0;
+  }
+  
+    #search form {
+      position: relative;
+    }
+  
+  #search div.form-item {
+    margin-right: 51px;
+    display: block;
+  }
+  
+  #search input.form-text {
+    width: 100%;
+    border: 0;
+    font: normal 18px/18px 'Open Sans', 'Lucida Sans', 'Lucida Grande', verdana sans-serif;
+    height: 50px;
+    max-height: 50px;
+    padding: 2px 20px 0 20px;
+    box-sizing: border-box; /* @see http://stackoverflow.com/questions/628500/can-i-stop-100-width-text-boxes-from-extending-beyond-their-containers/628912#628912 */
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background: #EEE;
+    background-image: linear-gradient(bottom, #DADADA 0%, #FEFEFE 100%);
+    background-image: -o-linear-gradient(bottom, #DADADA 0%, #FEFEFE 100%);
+    background-image: -moz-linear-gradient(bottom, #DADADA 0%, #FEFEFE 100%);
+    background-image: -webkit-linear-gradient(bottom, #DADADA 0%, #FEFEFE 100%);
+    background-image: -ms-linear-gradient(bottom, #DADADA 0%, #FEFEFE 100%);
+    
+    background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0, #DADADA),
+    color-stop(1, #FEFEFE)
+    );
+  }
+
+  #search .form-submit {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: 0;
+    z-index: 3;
+    padding: 0;
+    text-align: left;
+    text-indent: -9999em;
+    overflow: hidden;
+    width: 51px;
+    max-width: 51px;
+    height: 51px;
+    background: #6d6d6d url(../images/icon-search-mobile.png) no-repeat center center;
+    background-image: url(../images/icon-search-mobile.png), linear-gradient(bottom, rgb(90,90,90) 0%, rgb(128,128,128) 100%);
+    background-image: url(../images/icon-search-mobile.png), -o-linear-gradient(bottom, rgb(90,90,90) 0%, rgb(128,128,128) 100%);
+    background-image: url(../images/icon-search-mobile.png), -moz-linear-gradient(bottom, rgb(90,90,90) 0%, rgb(128,128,128) 100%);
+    background-image: url(../images/icon-search-mobile.png), -webkit-linear-gradient(bottom, rgb(90,90,90) 0%, rgb(128,128,128) 100%);
+    background-image: url(../images/icon-search-mobile.png), -ms-linear-gradient(bottom, rgb(90,90,90) 0%, rgb(128,128,128) 100%);
+    background-image: url(../images/icon-search-mobile.png), -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0, rgb(90,90,90)),
+      color-stop(1, rgb(128,128,128))
+    );
+  }
+}
