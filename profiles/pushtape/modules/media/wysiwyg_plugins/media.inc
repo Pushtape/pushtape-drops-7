@@ -29,7 +29,6 @@ function media_media_plugin() {
     'css path' => NULL,
     'settings' => array(
       'global' => array(
-        'enabledPlugins' => media_variable_get('wysiwyg_browser_plugins'),
         'types' => media_variable_get('wysiwyg_allowed_types'),
         'id' => 'media_wysiwyg',
       ),
