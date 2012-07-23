@@ -1,55 +1,31 @@
-; This is a comment. Anything starting with a semicolon is a comment
-; and will be ignored by the parser. Blanks lines are also ignored.
-;
-; The file uses standard info file format:
-; attribute = value
-
-; REQUIRED ATTRIBUTES
-
-; The version of Drupal the profile is built for. You must include both a
-; major and a minor release - just specifying 6.x won't work
 core = 7.14
 api = 2
-
-; OPTIONAL ATTRIBUTES
-
-; Here you see the format of an array in a .make file. Text enclosed
-; in brackets are array keys, and each set to the right of the last is
-; a layer deeper in the array. Note that the root array element is
-; not enclosed in brackets:
-; root_element[first_key][next_key] = value
-
-; The projects attribute is where you define the modules/themes that
-; are to be packaged with the profile. The first key is the short name
-; of the project (as seen in the drupal.org/project/{projectshortname}
-; URI). Note that you *must* specify an exact version of a module or
-; theme (one that points to an 'official' release node) -- you cannot
-; use development releases!
-
-; These projects are defined using the short form definition. You can
-; use this form if you only want to declare the version of the project.
-; The version is the value to the right of the core Drupal version in a full
-; version string. For example, if you wanted to specify Views 6.x-2.7,
-; you would use:
-
 
 ; Devel Tools
 projects[admin][version] = 2.0-beta3
 projects[admin][subdir] = contrib
+
 projects[diff][version] = 2.0
 projects[diff][subdir] = contrib
+
 projects[context][version] = 3.0-beta3
 projects[context][subdir] = contrib
-projects[libraries][version] = 2.x-dev
+
+projects[libraries][version] = 1.0
 projects[libraries][subdir] = contrib
+
 projects[strongarm][version] = 2.0
 projects[strongarm][subdir] = contrib
+
 projects[devel][version] = 1.3
 projects[devel][subdir] = contrib
+
 projects[coder][version] = 1.x-dev
 projects[coder][subdir] = contrib
+
 projects[omega_tools][version] = 3.0-rc4
 projects[omega_tools][subdir] = contrib
+
 projects[delta][version] = 3.0-beta10
 projects[delta][subdir] = contrib
 
