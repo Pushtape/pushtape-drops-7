@@ -2,12 +2,22 @@ api = 2
 core = 7.x
 
 projects[media] = 1.2
+projects[media][subdir] = contrib
 
-projects[media_soundcloud] = 1.0-alpha1
-projects[media_colorbox] = 1.0-rc1
-projects[mediaplaylist] = 1.x-dev
+projects[libraries][version] = 1.0
+projects[libraries][subdir] = contrib
+
+projects[media_soundcloud][version] = 1.0-alpha1
+projects[media_soundcloud][subdir] = contrib
+
+projects[media_colorbox][version] = 1.0-rc1
+projects[media_colorbox][subdir] = contrib
+
+projects[mediaplaylist][version] = 1.x-dev
+projects[mediaplaylist][subdir] = contrib
 
 projects[soundmanager2][version] = "2.x-dev"
+projects[soundmanager2][subdir] = contrib
 
 projects[jplayer][subdir] = contrib
 projects[jplayer][type] = module
