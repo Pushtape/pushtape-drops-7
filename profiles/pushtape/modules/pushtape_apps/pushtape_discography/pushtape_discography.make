@@ -1,6 +1,12 @@
 core = 7.x
 api = 2
 
+projects[token] = 1.1
+projects[token][subdir] = contrib
+
+projects[entity] = 1.0-rc3
+projects[entity][subdir] = contrib
+
 projects[entityreference][version] = 1.0-rc3
 projects[entityreference][subdir] = contrib
 
