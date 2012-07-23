@@ -1,24 +1,6 @@
 api = 2
 core=7.x
 
-projects[link][version] = 1.0
-projects[link][subdir] = contrib
-
-projects[field_group][version] = 1.1
-projects[field_group][subdir] = contrib
-
-projects[date][version] = 2.5
-projects[date][subdir] = contrib
-
-projects[defaultcontent][version] = 1.x-dev
-projects[defaultcontent][subdir] = contrib
-
-projects[uuid][version] = 1.x-dev
-projects[uuid][subdir] = contrib
-
-projects[entityreference][version] = 1.0-rc3
-projects[entityreference][subdir] = contrib
-
 projects[ctools][version] = 1.0
 projects[ctools][subdir] = contrib
 projects[ctools][type] = module
@@ -40,3 +22,9 @@ projects[strongarm][subdir] = contrib
 projects[views][version] = 3.3
 projects[views][type] = module
 projects[views][subdir] = contrib
+
+projects[token][version] = 1.1
+projects[token][subdir] = contrib
+
+projects[entity][version] = 1.0-rc3
+projects[entity][subdir] = contrib
