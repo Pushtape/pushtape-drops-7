@@ -11,7 +11,7 @@
 function soundmanager2_library() {
   $sm2_module_path = drupal_get_path('module', 'soundmanager2');
   $sm2_library_path = variable_get('sm2_path', 'sites/all/libraries/soundmanager2');
-  
+
   return array(
     // SoundManager 2 library
     'soundmanager2' => array(
@@ -164,7 +164,7 @@ function soundmanager2_block_view($delta = '') {
       }
       break;
   }
-  
+
   return $block;
 }
 
@@ -235,11 +235,11 @@ function soundmanager2_field_formatter_info() {
   return array(
     'soundmanager2_page_player' => array(
       'label' => t('SoundManager 2 Page Player'),
-      'field types' => array('file'),
+      'field types' => array('file', 'media'),
     ),
     'soundmanager2_ui360' => array(
       'label' => t('SoundManager 2 UI 360'),
-      'field types' => array('file'),
+      'field types' => array('file', 'media'),
       'settings' => array(
         'inline' => FALSE,
         'visualization' => TRUE,
@@ -251,7 +251,7 @@ function soundmanager2_field_formatter_info() {
     ),
     'soundmanager2_inline_player' => array(
       'label' => t('SoundManager 2 Inline Player'),
-      'field types' => array('file'),
+      'field types' => array('file', 'media'),
     ),
   );
 }
@@ -262,12 +262,12 @@ function soundmanager2_field_formatter_info() {
 function soundmanager2_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
   $display = $instance['display'][$view_mode];
   $settings = $display['settings'];
-  
+
   $element = array();
 
   if ($display['type'] == 'soundmanager2_ui360') {
     $element['inline'] = array(
-      '#title' => t('Display inline'), 
+      '#title' => t('Display inline'),
       '#type' => 'checkbox',
       '#default_value' => $settings['inline'],
     );
@@ -334,8 +334,15 @@ function soundmanager2_field_formatter_view($entity_type, $entity, $field, $inst
 
   $tracks = array();
   foreach ($items as $delta => $item) {
-    $tracks[$delta] = l(empty($item['description']) ? $item['filename'] : $item['description'], file_create_url($item['uri']));
-  }   
+    if (isset($item['file'])) {
+      // A Media file type.
+      $file = $item['file'];
+      $tracks[$delta] = l(empty($file->description) ? $file->filename : $file->description, file_create_url($file->uri));
+    } else {
+      // A File file type.
+      $tracks[$delta] = l(empty($item['description']) ? $item['filename'] : $item['description'], file_create_url($item['uri']));
+    }
+  }
   switch ($display['type']) {
     case 'soundmanager2_page_player':
       $element[0] = array(
@@ -370,10 +377,10 @@ function soundmanager2_field_formatter_view($entity_type, $entity, $field, $inst
         'eq' => $settings['eq'],
         'amplifier' => $settings['amplifier'],
       )), 'setting');
-      
+
       // Add CSS
       drupal_add_css('.ui360-vis, .ui360-vis .sm2-360ui, .sm2-inline-list .ui360-vis { width: ' . $settings['diameter'] . 'px; height: ' . $settings['diameter'] . 'px; } .ui360-vis .sm2-timing { line-height: ' . $settings['diameter'] . 'px; } .sm2-inline-list .ui360, .sm2-inline-block .ui360 { margin-bottom: 0; }', 'inline');
-      
+
       // Add in the config files
       theme('soundmanager2_config');
       theme('soundmanager2_config_ui360');
@@ -389,7 +396,7 @@ function soundmanager2_field_formatter_view($entity_type, $entity, $field, $inst
           ),
         ),
       );
-      
+
       // Add in the config files
       theme('soundmanager2_config');
       break;
@@ -419,7 +426,7 @@ function theme_soundmanager2_config_ui360() {
  */
 function _soundmanager2_get_version($sm2_script = 'sites/all/libraries/soundmanager2/script/soundmanager2.js') {
   $version_str = '';
-  
+
   if (file_exists($sm2_script) ) {
     $lines = file($sm2_script);
     foreach ($lines as $line) {
@@ -429,7 +436,7 @@ function _soundmanager2_get_version($sm2_script = 'sites/all/libraries/soundmana
       }
     }
   }
-  
+
   return $version_str;
 }
 
