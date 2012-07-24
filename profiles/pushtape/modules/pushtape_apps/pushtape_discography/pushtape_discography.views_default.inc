@@ -437,7 +437,7 @@ function pushtape_discography_views_default_views() {
   $handler->display->display_options['fields']['title']['hide_empty'] = 0;
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
-  /* Sort criterion: Content: Release date (field_release_date) */
+  /* Sort criterion: Broken/missing handler */
   $handler->display->display_options['sorts']['field_release_date_value']['id'] = 'field_release_date_value';
   $handler->display->display_options['sorts']['field_release_date_value']['table'] = 'field_data_field_release_date';
   $handler->display->display_options['sorts']['field_release_date_value']['field'] = 'field_release_date_value';
