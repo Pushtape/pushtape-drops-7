@@ -12,6 +12,9 @@ projects[media][download][branch] = 7.x-2.x
 
 ;projects[media_soundcloud][version] = 1.0-alpha1
 
+projects[html5_media][version] = 1.0
+projects[html5_media][subdir] = contrib
+
 projects[media_colorbox][version] = 1.0-rc1
 projects[media_colorbox][subdir] = contrib
 
