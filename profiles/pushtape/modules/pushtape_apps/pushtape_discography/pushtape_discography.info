@@ -18,6 +18,7 @@ dependencies[] = pathauto
 dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = views
+dependencies[] = pushtape_ui
 apps[server] = http://apps.rosenstrauch.com/apps/query/pushtape
 features[ctools][] = page_manager:pages_default:1
 features[ctools][] = panelizer:panelizer:1
