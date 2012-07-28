@@ -195,10 +195,10 @@ projects[apps][patch][1482684] = http://drupal.org/files/apps-single-item-style.
 projects[apps][patch][1558280] = http://drupal.org/files/apps-screen-design-css-p0.patch
 projects[apps][patch][1561652] = http://drupal.org/files/apps-allow-drush-site-install.patch
 
-projects[features][version] = 1.0-rc3
+projects[features][version] = 1.0
 projects[features][subdir] = contrib
 projects[features][type] = module
-projects[features][patch][1647894] = http://drupal.org/files/features-1647894-1.patch
+;projects[features][patch][1647894] = http://drupal.org/files/features-1647894-1.patch
 
 projects[entity][version] = 1.0-rc3
 projects[entity][type] = module
@@ -300,6 +300,12 @@ projects[pushtape_galleries][download][type] = "git"
 projects[pushtape_galleries][download][url] = "git://github.com/Pushtape/pushtape_galleries.git"
 projects[pushtape_galleries][download][branch] = "7.x-1.x-panels"
 projects[pushtape_galleries][subdir] = pushtape_apps
+
+projects[pushtape_front][type] = "module"
+projects[pushtape_front][download][type] = "git"
+projects[pushtape_front][download][url] = "git://github.com/Pushtape/pushtape_front.git"
+projects[pushtape_front][download][branch] = "7.x-1.x-panels"
+projects[pushtape_front][subdir] = pushtape_apps
 
 ; Defining a theme is no different.
 
