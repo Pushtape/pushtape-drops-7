@@ -192,15 +192,7 @@ function panelizer_entity_view_alter(&$build, $entity_type) {
   }
 
   // Love this hack, eh?
-  if ($entity_type == 'user') {
-    $element = '#account';
-  }
-  elseif ($entity_type == 'taxonomy_term') {
-    $element = '#term';
-  }
-  else {
-    $element = '#' . $entity_type;
-  }
+  $element = ($entity_type == 'user') ? '#account' : '#' . $entity_type;
   $entity = $build[$element];
 
   list($entity_id, $revision_id, $bundle) = entity_extract_ids($entity_type, $entity);
@@ -1098,11 +1090,6 @@ function panelizer_features_export_alter(&$export, $module_name) {
       );
 
       if (module_exists('strongarm')) {
-        foreach ($variables as $ctr => $variable) {
-          if (variable_get($variable) === NULL) {
-            unset($variables[$ctr]);
-          }
-        }
         $variables = array_diff($variables, array_keys(strongarm_vars_load()));
       }
 

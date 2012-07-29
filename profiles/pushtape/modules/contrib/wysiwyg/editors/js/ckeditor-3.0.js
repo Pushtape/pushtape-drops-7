@@ -1,6 +1,10 @@
 (function($) {
 
 Drupal.wysiwyg.editor.init.ckeditor = function(settings) {
+  window.CKEDITOR_BASEPATH = settings.global.editorBasePath + '/';
+  CKEDITOR.basePath = window.CKEDITOR_BASEPATH;
+//  Drupal.wysiwyg.editor['initialized']['ckeditor'] = true;
+
   // Plugins must only be loaded once. Only the settings from the first format
   // will be used but they're identical anyway.
   var registeredPlugins = {};
@@ -23,10 +27,6 @@ Drupal.wysiwyg.editor.init.ckeditor = function(settings) {
         }
       }
     }
-    // Register Font styles (versions 3.2.1 and above).
-    if (Drupal.settings.wysiwyg.configs.ckeditor[format].stylesSet) {
-      CKEDITOR.stylesSet.add(format, Drupal.settings.wysiwyg.configs.ckeditor[format].stylesSet);
-    }
   }
 };
 
@@ -35,6 +35,10 @@ Drupal.wysiwyg.editor.init.ckeditor = function(settings) {
  * Attach this editor to a target element.
  */
 Drupal.wysiwyg.editor.attach.ckeditor = function(context, params, settings) {
+//  if (typeof Drupal.wysiwyg.editor.initialized.ckeditor == 'undefined') {
+//    Drupal.wysiwyg.editor.init.ckeditor(settings);
+//  }
+
   // Apply editor instance settings.
   CKEDITOR.config.customConfig = '';
 
@@ -158,19 +162,16 @@ Drupal.wysiwyg.editor.attach.ckeditor = function(context, params, settings) {
  *   containing all instances or the passed in params.field instance, but
  *   always return an array to simplify all detach functions.
  */
-Drupal.wysiwyg.editor.detach.ckeditor = function (context, params, trigger) {
-  var method = (trigger == 'serialize') ? 'updateElement' : 'destroy';
+Drupal.wysiwyg.editor.detach.ckeditor = function(context, params) {
   if (typeof params != 'undefined') {
     var instance = CKEDITOR.instances[params.field];
     if (instance) {
-      instance[method]();
+      instance.destroy();
     }
   }
   else {
     for (var instanceName in CKEDITOR.instances) {
-      if (CKEDITOR.instances.hasOwnProperty(instanceName)) {
-        CKEDITOR.instances[instanceName][method]();
-      }
+      CKEDITOR.instances[instanceName].destroy();
     }
   }
 };
@@ -230,18 +231,9 @@ Drupal.wysiwyg.editor.instance.ckeditor = {
     // @todo Don't know if we need this yet.
     return content;
   },
-
   insert: function(content) {
     content = this.prepareContent(content);
     CKEDITOR.instances[this.field].insertHtml(content);
-  },
-
-  setContent: function (content) {
-    CKEDITOR.instances[this.field].setData(content);
-  },
-
-  getContent: function () {
-    return CKEDITOR.instances[this.field].getData();
   }
 };
 

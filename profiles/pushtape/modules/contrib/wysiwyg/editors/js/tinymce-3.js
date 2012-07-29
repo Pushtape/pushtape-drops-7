@@ -63,6 +63,8 @@ Drupal.wysiwyg.editor.attach.tinymce = function(context, params, settings) {
   ed.onEvent.add(function(ed, e) {
     Drupal.wysiwyg.activeId = ed.id;
   });
+  // Tell TinyMCE DOM has been loaded for AJAX
+  tinymce.dom.Event.domLoaded = true;
   // Make toolbar buttons wrappable (required for IE).
   ed.onPostRender.add(function (ed) {
     // var $toolbar = $('<div class="wysiwygToolbar"></div>');
@@ -92,24 +94,20 @@ Drupal.wysiwyg.editor.attach.tinymce = function(context, params, settings) {
  *
  * See Drupal.wysiwyg.editor.detach.none() for a full desciption of this hook.
  */
-Drupal.wysiwyg.editor.detach.tinymce = function (context, params, trigger) {
+Drupal.wysiwyg.editor.detach.tinymce = function(context, params) {
   if (typeof params != 'undefined') {
     var instance = tinyMCE.get(params.field);
     if (instance) {
       instance.save();
-      if (trigger != 'serialize') {
-        instance.remove();
-      }
+      instance.remove();
     }
   }
   else {
     // Save contents of all editors back into textareas.
     tinyMCE.triggerSave();
-    if (trigger != 'serialize') {
-      // Remove all editor instances.
-      for (var instance in tinyMCE.editors) {
-        tinyMCE.editors[instance].remove();
-      }
+    // Remove all editor instances.
+    for (var instance in tinyMCE.editors) {
+      tinyMCE.editors[instance].remove();
     }
   }
 };
@@ -194,7 +192,7 @@ Drupal.wysiwyg.editor.instance.tinymce = {
   },
 
   openDialog: function(dialog, params) {
-    var instanceId = this.getInstanceId();
+    var instanceId = this.isFullscreen() ? 'mce_fullscreen' : this.field;
     var editor = tinyMCE.get(instanceId);
     editor.windowManager.open({
       file: dialog.url + '/' + instanceId,
@@ -205,7 +203,8 @@ Drupal.wysiwyg.editor.instance.tinymce = {
   },
 
   closeDialog: function(dialog) {
-    var editor = tinyMCE.get(this.getInstanceId());
+    var instanceId = this.isFullscreen() ? 'mce_fullscreen' : this.field;
+    var editor = tinyMCE.get(instanceId);
     editor.windowManager.close(dialog);
   },
 
@@ -240,25 +239,13 @@ Drupal.wysiwyg.editor.instance.tinymce = {
 
   insert: function(content) {
     content = this.prepareContent(content);
-    tinyMCE.execInstanceCommand(this.getInstanceId(), 'mceInsertContent', false, content);
-  },
-
-  setContent: function (content) {
-    content = this.prepareContent(content);
-    tinyMCE.execInstanceCommand(this.getInstanceId(), 'mceSetContent', false, content);
-  },
-
-  getContent: function () {
-    return tinyMCE.get(this.getInstanceId()).getContent();
+    var instanceId = this.isFullscreen() ? 'mce_fullscreen' : this.field;
+    tinyMCE.execInstanceCommand(instanceId, 'mceInsertContent', false, content);
   },
 
   isFullscreen: function() {
     // TinyMCE creates a completely new instance for fullscreen mode.
     return tinyMCE.activeEditor.id == 'mce_fullscreen' && tinyMCE.activeEditor.getParam('fullscreen_editor_id') == this.field;
-  },
-
-  getInstanceId: function () {
-    return this.isFullscreen() ? 'mce_fullscreen' : this.field;
   }
 };
 
