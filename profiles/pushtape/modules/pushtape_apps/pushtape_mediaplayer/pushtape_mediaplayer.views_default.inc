@@ -11,18 +11,18 @@ function pushtape_mediaplayer_views_default_views() {
   $export = array();
 
   $view = new view;
-  $view->name = 'pushtape_player_track_views';
+  $view->name = 'pushtape_player';
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'Pushtape Player Track Views';
+  $view->human_name = 'Pushtape Player';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Tracks';
+  $handler->display->display_options['title'] = 'Pushtape Player';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -33,19 +33,66 @@ function pushtape_mediaplayer_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
-  $handler->display->display_options['style_plugin'] = 'grid';
-  $handler->display->display_options['style_options']['fill_single_line'] = 1;
+  $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Relationship: Content: Audio (field_audio:fid) */
-  $handler->display->display_options['relationships']['field_audio_fid']['id'] = 'field_audio_fid';
-  $handler->display->display_options['relationships']['field_audio_fid']['table'] = 'field_data_field_audio';
-  $handler->display->display_options['relationships']['field_audio_fid']['field'] = 'field_audio_fid';
-  $handler->display->display_options['relationships']['field_audio_fid']['required'] = 0;
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['label'] = 'No releases yet';
+  $handler->display->display_options['empty']['area']['empty'] = FALSE;
+  $handler->display->display_options['empty']['area']['content'] = 'No releases yet. Add a <a href="/node/add/track">new track!</a>';
+  $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
+  $handler->display->display_options['empty']['area']['tokenize'] = 0;
+  /* Field: Content: Artwork */
+  $handler->display->display_options['fields']['field_artwork']['id'] = 'field_artwork';
+  $handler->display->display_options['fields']['field_artwork']['table'] = 'field_data_field_artwork';
+  $handler->display->display_options['fields']['field_artwork']['field'] = 'field_artwork';
+  $handler->display->display_options['fields']['field_artwork']['label'] = '';
+  $handler->display->display_options['fields']['field_artwork']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_artwork']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_artwork']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_artwork']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_artwork']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_artwork']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_artwork']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_artwork']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_artwork']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_artwork']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_artwork']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_artwork']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_artwork']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_artwork']['element_label_colon'] = 0;
+  $handler->display->display_options['fields']['field_artwork']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_artwork']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_artwork']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_artwork']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_artwork']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_artwork']['settings'] = array(
+    'image_style' => 'artwork_small',
+    'image_link' => 'content',
+  );
+  $handler->display->display_options['fields']['field_artwork']['field_api_classes'] = 0;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
   /* Field: Content: Audio */
   $handler->display->display_options['fields']['field_audio']['id'] = 'field_audio';
   $handler->display->display_options['fields']['field_audio']['table'] = 'field_data_field_audio';
   $handler->display->display_options['fields']['field_audio']['field'] = 'field_audio';
-  $handler->display->display_options['fields']['field_audio']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_audio']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_audio']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_audio']['alter']['absolute'] = 0;
@@ -65,185 +112,50 @@ function pushtape_mediaplayer_views_default_views() {
   $handler->display->display_options['fields']['field_audio']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_audio']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_audio']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_audio']['type'] = 'file_url_plain';
+  $handler->display->display_options['fields']['field_audio']['type'] = 'file_rendered';
+  $handler->display->display_options['fields']['field_audio']['settings'] = array(
+    'file_view_mode' => 'default',
+  );
   $handler->display->display_options['fields']['field_audio']['field_api_classes'] = 0;
-  /* Field: Content: Artwork */
-  $handler->display->display_options['fields']['field_artwork']['id'] = 'field_artwork';
-  $handler->display->display_options['fields']['field_artwork']['table'] = 'field_data_field_artwork';
-  $handler->display->display_options['fields']['field_artwork']['field'] = 'field_artwork';
-  $handler->display->display_options['fields']['field_artwork']['label'] = '';
-  $handler->display->display_options['fields']['field_artwork']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_artwork']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_artwork']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_artwork']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_artwork']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_artwork']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_artwork']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_artwork']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_artwork']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_artwork']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_artwork']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_artwork']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_artwork']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_artwork']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_artwork']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_artwork']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_artwork']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['field_artwork']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_artwork']['settings'] = array(
-    'image_style' => 'artwork_small',
-    'image_link' => 'content',
-  );
-  $handler->display->display_options['fields']['field_artwork']['field_api_classes'] = 0;
-  /* Field: Content: Album */
-  $handler->display->display_options['fields']['field_album']['id'] = 'field_album';
-  $handler->display->display_options['fields']['field_album']['table'] = 'field_data_field_album';
-  $handler->display->display_options['fields']['field_album']['field'] = 'field_album';
-  $handler->display->display_options['fields']['field_album']['label'] = '';
-  $handler->display->display_options['fields']['field_album']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_album']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_album']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_album']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_album']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_album']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_album']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_album']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_album']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_album']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_album']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_album']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_album']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_album']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_album']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_album']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_album']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_album']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['field_album']['field_api_classes'] = 0;
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
-  /* Field: File: Path */
-  $handler->display->display_options['fields']['uri']['id'] = 'uri';
-  $handler->display->display_options['fields']['uri']['table'] = 'file_managed';
-  $handler->display->display_options['fields']['uri']['field'] = 'uri';
-  $handler->display->display_options['fields']['uri']['relationship'] = 'field_audio_fid';
-  $handler->display->display_options['fields']['uri']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['uri']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['uri']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['uri']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['uri']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['uri']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['uri']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['uri']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['uri']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['uri']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['uri']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['uri']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['uri']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['uri']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['uri']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['uri']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['uri']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['uri']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['uri']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['uri']['link_to_file'] = 0;
-  $handler->display->display_options['fields']['uri']['file_download_path'] = 0;
-  /* Field: Content: Audio */
-  $handler->display->display_options['fields']['field_audio_1']['id'] = 'field_audio_1';
-  $handler->display->display_options['fields']['field_audio_1']['table'] = 'field_data_field_audio';
-  $handler->display->display_options['fields']['field_audio_1']['field'] = 'field_audio';
-  $handler->display->display_options['fields']['field_audio_1']['label'] = '';
-  $handler->display->display_options['fields']['field_audio_1']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_audio_1']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_audio_1']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_audio_1']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_audio_1']['type'] = 'mediaplaylist_links';
-  $handler->display->display_options['fields']['field_audio_1']['settings'] = array(
-    'controls' => 1,
-    'width' => '300',
-    'height' => '30',
-    'download_link' => 0,
-    'download_text' => 'Download',
-  );
-  $handler->display->display_options['fields']['field_audio_1']['field_api_classes'] = 0;
+  /* Sort criterion: Content: Release date (field_release_date) */
+  $handler->display->display_options['sorts']['field_release_date_value']['id'] = 'field_release_date_value';
+  $handler->display->display_options['sorts']['field_release_date_value']['table'] = 'field_data_field_release_date';
+  $handler->display->display_options['sorts']['field_release_date_value']['field'] = 'field_release_date_value';
+  $handler->display->display_options['sorts']['field_release_date_value']['order'] = 'DESC';
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'AND',
+  );
   /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 0;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  $handler->display->display_options['filters']['status_1']['id'] = 'status_1';
+  $handler->display->display_options['filters']['status_1']['table'] = 'node';
+  $handler->display->display_options['filters']['status_1']['field'] = 'status';
+  $handler->display->display_options['filters']['status_1']['value'] = '1';
+  $handler->display->display_options['filters']['status_1']['group'] = 2;
   /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
+  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
+  $handler->display->display_options['filters']['type_1']['table'] = 'node';
+  $handler->display->display_options['filters']['type_1']['field'] = 'type';
+  $handler->display->display_options['filters']['type_1']['value'] = array(
     'track' => 'track',
   );
+  $handler->display->display_options['filters']['type_1']['group'] = 2;
 
-  /* Display: All Tracks Player Grid */
-  $handler = $view->new_display('panel_pane', 'All Tracks Player Grid', 'tracks_all_pane');
-  $handler->display->display_options['display_description'] = 'lists all tracks';
+  /* Display: Block */
+  $handler = $view->new_display('block', 'Block', 'block_1');
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'mini';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Audio */
-  $handler->display->display_options['fields']['field_audio']['id'] = 'field_audio';
-  $handler->display->display_options['fields']['field_audio']['table'] = 'field_data_field_audio';
-  $handler->display->display_options['fields']['field_audio']['field'] = 'field_audio';
-  $handler->display->display_options['fields']['field_audio']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_audio']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_audio']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_audio']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_audio']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_audio']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_audio']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_audio']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_audio']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_audio']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_audio']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['field_audio']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_audio']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_audio']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_audio']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['field_audio']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_audio']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_audio']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_audio']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_audio']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_audio']['type'] = 'file_url_plain';
-  $handler->display->display_options['fields']['field_audio']['field_api_classes'] = 0;
   /* Field: Content: Artwork */
   $handler->display->display_options['fields']['field_artwork']['id'] = 'field_artwork';
   $handler->display->display_options['fields']['field_artwork']['table'] = 'field_data_field_artwork';
@@ -268,34 +180,10 @@ function pushtape_mediaplayer_views_default_views() {
   $handler->display->display_options['fields']['field_artwork']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['field_artwork']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_artwork']['settings'] = array(
-    'image_style' => 'artwork_small',
+    'image_style' => 'artwork_thumbnail',
     'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_artwork']['field_api_classes'] = 0;
-  /* Field: Content: Album */
-  $handler->display->display_options['fields']['field_album']['id'] = 'field_album';
-  $handler->display->display_options['fields']['field_album']['table'] = 'field_data_field_album';
-  $handler->display->display_options['fields']['field_album']['field'] = 'field_album';
-  $handler->display->display_options['fields']['field_album']['label'] = '';
-  $handler->display->display_options['fields']['field_album']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_album']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_album']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_album']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_album']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_album']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_album']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_album']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_album']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_album']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_album']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_album']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_album']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_album']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_album']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_album']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_album']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_album']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['field_album']['field_api_classes'] = 0;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -312,94 +200,22 @@ function pushtape_mediaplayer_views_default_views() {
   $handler->display->display_options['fields']['title']['hide_empty'] = 0;
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
-  /* Field: File: Path */
-  $handler->display->display_options['fields']['uri']['id'] = 'uri';
-  $handler->display->display_options['fields']['uri']['table'] = 'file_managed';
-  $handler->display->display_options['fields']['uri']['field'] = 'uri';
-  $handler->display->display_options['fields']['uri']['relationship'] = 'field_audio_fid';
-  $handler->display->display_options['fields']['uri']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['uri']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['uri']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['uri']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['uri']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['uri']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['uri']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['uri']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['uri']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['uri']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['uri']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['uri']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['uri']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['uri']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['uri']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['uri']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['uri']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['uri']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['uri']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['uri']['link_to_file'] = 0;
-  $handler->display->display_options['fields']['uri']['file_download_path'] = 0;
-  /* Field: Content: Audio */
-  $handler->display->display_options['fields']['field_audio_1']['id'] = 'field_audio_1';
-  $handler->display->display_options['fields']['field_audio_1']['table'] = 'field_data_field_audio';
-  $handler->display->display_options['fields']['field_audio_1']['field'] = 'field_audio';
-  $handler->display->display_options['fields']['field_audio_1']['label'] = '';
-  $handler->display->display_options['fields']['field_audio_1']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_audio_1']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_audio_1']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_audio_1']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_audio_1']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_audio_1']['type'] = 'soundmanager2_inline_player';
-  $handler->display->display_options['fields']['field_audio_1']['settings'] = array(
-    'controls' => 1,
-    'width' => '300',
-    'height' => '30',
-    'download_link' => 0,
-    'download_text' => 'Download',
-  );
-  $handler->display->display_options['fields']['field_audio_1']['field_api_classes'] = 0;
-  $handler->display->display_options['pane_category']['name'] = 'Pushtape';
-  $handler->display->display_options['pane_category']['weight'] = '0';
 
-  /* Display: All Tracks Jplayer */
-  $handler = $view->new_display('panel_pane', 'All Tracks Jplayer', 'panel_pane_1');
-  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'jplayer';
-  $handler->display->display_options['style_options']['path_field'] = array(
-    'uri' => 'uri',
-  );
-  $handler->display->display_options['style_options']['autoplay'] = '0';
-  $handler->display->display_options['style_options']['volume'] = '80';
-  $handler->display->display_options['style_options']['muted'] = '0';
-  $handler->display->display_options['defaults']['style_options'] = FALSE;
-  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['row_plugin'] = 'fields';
-  $handler->display->display_options['defaults']['row_options'] = FALSE;
-  $handler->display->display_options['pane_category']['name'] = 'Pushtape';
-  $handler->display->display_options['pane_category']['weight'] = '0';
+  /* Display: Releases pane */
+  $handler = $view->new_display('panel_pane', 'Releases pane', 'releases_all');
+
+  /* Display: Releases Slideshow */
+  $handler = $view->new_display('panel_pane', 'Releases Slideshow', 'releases_slideshow');
 
   /* Display: Player Page */
-  $handler = $view->new_display('page', 'Player Page', 'page_1');
+  $handler = $view->new_display('page', 'Player Page', 'playerpage');
   $handler->display->display_options['path'] = 'discography/player';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Player';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['name'] = 'main-menu';
   $handler->display->display_options['menu']['context'] = 0;
-  $export['pushtape_player_track_views'] = $view;
+  $export['pushtape_player'] = $view;
 
   return $export;
 }

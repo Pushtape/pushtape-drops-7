@@ -22,7 +22,7 @@ function pushtape_discography_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Tracks';
+  $handler->display->display_options['title'] = 'Releases';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -204,11 +204,6 @@ function pushtape_discography_views_default_views() {
 
   /* Display: Releases Page */
   $handler = $view->new_display('page', 'Releases Page', 'page_1');
-  $handler->display->display_options['filter_groups']['operator'] = 'OR';
-  $handler->display->display_options['filter_groups']['groups'] = array(
-    1 => 'AND',
-    2 => 'AND',
-  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status_1']['id'] = 'status_1';
@@ -235,44 +230,27 @@ function pushtape_discography_views_default_views() {
   $handler->display->display_options['filters']['status_extra']['id'] = 'status_extra';
   $handler->display->display_options['filters']['status_extra']['table'] = 'node';
   $handler->display->display_options['filters']['status_extra']['field'] = 'status_extra';
-  $handler->display->display_options['path'] = 'releases/all';
+  $handler->display->display_options['path'] = 'discography/list';
   $handler->display->display_options['menu']['type'] = 'default tab';
   $handler->display->display_options['menu']['title'] = 'Releases';
+  $handler->display->display_options['menu']['description'] = 'albums and tracks';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['name'] = 'main-menu';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['tab_options']['type'] = 'normal';
-  $handler->display->display_options['tab_options']['title'] = 'Releases';
+  $handler->display->display_options['tab_options']['title'] = 'Discography';
+  $handler->display->display_options['tab_options']['description'] = 'all releases';
   $handler->display->display_options['tab_options']['weight'] = '0';
   $handler->display->display_options['tab_options']['name'] = 'main-menu';
 
   /* Display: Tracks */
   $handler = $view->new_display('page', 'Tracks', 'page_2');
-  $handler->display->display_options['path'] = 'releases/tracks';
+  $handler->display->display_options['path'] = 'discography/tracks';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Tracks';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['name'] = 'main-menu';
   $handler->display->display_options['menu']['context'] = 0;
-  $translatables['releases'] = array(
-    t('Master'),
-    t('Tracks'),
-    t('more'),
-    t('Apply'),
-    t('Reset'),
-    t('Sort by'),
-    t('Asc'),
-    t('Desc'),
-    t('Items per page'),
-    t('- All -'),
-    t('Offset'),
-    t('No releases yet'),
-    t('No releases yet. Add a <a href="/node/add/track">new track!</a>'),
-    t('Block'),
-    t('Releases pane'),
-    t('Releases Slideshow'),
-    t('Releases Page'),
-  );
   $export['releases'] = $view;
 
   return $export;
