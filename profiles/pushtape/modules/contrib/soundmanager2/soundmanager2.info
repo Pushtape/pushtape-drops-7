@@ -9,9 +9,9 @@ files[] = soundmanager2.install
 configure = admin/config/media/soundmanager2
 
 
-; Information added by drupal.org packaging script on 2012-07-24
+; Information added by drupal.org packaging script on 2012-08-08
 version = "7.x-2.x-dev"
 core = "7.x"
 project = "soundmanager2"
-datestamp = "1343093518"
+datestamp = "1344387035"
 

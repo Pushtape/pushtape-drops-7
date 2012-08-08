@@ -340,12 +340,18 @@ function pushtape_discography_panelizer_defaults() {
     $pane->access = array();
     $pane->configuration = array(
       'label' => 'hidden',
-      'formatter' => 'file_rendered',
+      'formatter' => 'soundmanager2_inline_player',
       'delta_limit' => 0,
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
       'formatter_settings' => array(
-        'file_view_mode' => 'media_large',
+        'file_view_mode' => 'default',
+        'inline' => 0,
+        'visualization' => 1,
+        'waveform' => 1,
+        'eq' => 1,
+        'amplifier' => 1,
+        'diameter' => '256',
       ),
       'context' => 'panelizer',
       'override_title' => 0,

@@ -5,13 +5,42 @@ body {
   font:75% "helvetica neue",helvetica,arial,verdana,tahoma,"sans serif";
   /* wacky IE 6 horizontal scrollbar hack */
   _width:99.5%;
+  /* a little fun: transition font size with @media shift. */
+  -moz-transition: font-size 0.1s;
+  -webkit-transition: font-size 0.1s;
+}
+
+@media all and (min-width: 1600px) {
+  /* holy CSS3 media queries, Batman! (in this case, larger screen widths get this rule.) */
+  body {
+    font-size: 90%;
+  }
+  body.home .sm2-speaker {
+    max-width: 226px !important;
+  }
+  /* nav vertical align tweak */
+  #nav > ul > li > strong > a {
+    padding-bottom: 0.5em !important;
+  }
+}
+
+@media all and (min-width: 1800px) {
+  /* holy CSS3 media queries, Batman! (in this case, larger screen widths get this rule.) */
+  body {
+    font-size: 118%;
+  }
+  body.home .sm2-speaker {
+    left: -2.5% !important;
+    margin-left: -15% !important;
+    margin-top: 20px !important;
+  }
 }
 
 body.home {
   min-width: 80em;
 }
 
-body.home,
+body,
 #nav ul li strong a {
   background: #fff url(../demo/_image/noise.png);
 }
@@ -45,6 +74,7 @@ h2.special {
   font-family:"ChunkFive","ChunkFiveRegular","helvetica neue",helvetica,arial,verdana,tahoma,"sans serif";
   letter-spacing:0px;
   font-weight:normal;
+  display:inline;
 }
 
 h1, h2, h3, h4 {
@@ -112,14 +142,20 @@ body.home #about-header {
   position: relative;
   margin-left: 18%;
   min-height: 175px;
+  padding-top: 1.75em;
+}
+
+body.home #about-header .feature {
+ /* special alignment tweak */
+ position: relative;
+ top: -0.25em;
+ vertical-align: middle;
 }
 
 body.home .sm2-speaker {
   position: absolute;
   left: -1.5%;
   top: 0px;
-  margin-top: -20px;
-  *margin-top: 0px; /* IE 7 buggery */
   margin-right: 2em;
   margin-bottom: 8px;
   max-width: 192px;
@@ -130,7 +166,7 @@ body.home .sm2-speaker {
 
 body.home .sm2-speaker img {
   width:100%;
-  max-width:192px;
+  max-width:226px;
   min-width:32px;
 }
 
@@ -156,6 +192,11 @@ body.home #about-sm2 h3 {
 
 body.home #about-sm2 h3 {
   font-size: 2.25em;
+}
+
+body.home #about-sm2 strong {
+ color: #333;
+ font-weight: 500;
 }
 
 #col3 a.button, /* "newer version available" */
@@ -243,7 +284,7 @@ body.home #about-sm2 h3 + h4 {
 body.home .demo-more,
 body.home .demo-more-abs {
   text-align:right;
-  font-size:x-small;
+  font-size:85%;
   margin-right:0.25em;
   white-space:nowrap;
 }
@@ -296,7 +337,7 @@ code,
 .code,
 dt,
 #soundmanager-debug {
-  font-size:12px;
+  font-size: 100%;
   font-weight:normal;
   line-height:auto;
   color:#006699;
@@ -304,7 +345,7 @@ dt,
 }
 
 pre {
-  font-size:12px; /* small or x-small */
+  font-size: 85%; /* small or x-small */
   line-height:1.75em;
 }
 
@@ -313,7 +354,7 @@ pre.specialcommentblock span span {
 }
 
 pre.small {
-  font-size:90%;
+  font-size:92%;
 }
 
 p pre,
@@ -325,7 +366,7 @@ p.in pre {
   background:#fff;
   padding-left:0.75em;
   border:2px solid #ddeeff;
-  font-size:12px;
+  font-size: 85%;
   line-height:1.7em;
 }
 
@@ -345,7 +386,7 @@ body.home #soundmanager-debug {
   border-radius:3px;
   background:#f3f9ff;
   z-index:10;
-  font-size:small;
+  font-size: 85%;
   line-height:1.2em;
 }
 
@@ -356,7 +397,7 @@ body.home #soundmanager-debug div {
 #soundmanager-debug div {
   margin:0px;
   padding:0.25em 0px;
-  font-size:12px;
+  font-size: 100%;
   color:#333;
 }
 
@@ -431,7 +472,7 @@ pre.block code,
   background:#fff;
   border:1px solid #ccddee;
   padding:0.5em;
-  font-size:12px;
+  font-size: 110%;
   line-height:1.75em;
 }
 
@@ -583,7 +624,7 @@ body.home #main {
 }
 
 .columnar .c1 p code {
-  font-size:x-small;
+  font-size:85%;
   color:#336699;
 }
 
@@ -784,7 +825,7 @@ ul {
   float:right;
   display:inline;
   margin-left:1em;
-  font-size:x-small;
+  font-size:85%;
   margin-bottom:0px;
   margin-top:0.45em;
   color:#999;
@@ -861,6 +902,7 @@ ul.standard ul {
   display: block;
   text-decoration:none;
   color:#000;
+  line-height: 21px;
 }
 
 .c3 ul li a:hover {
@@ -1023,7 +1065,7 @@ ul.standard ul {
 
 .c3 ul li ul li {
   font-family:monaco,"Andale Mono","VT-100","Lucida Console","Courier New",monospace,courier,system,sans-serif;
-  font-size:12px;
+  font-size: 100%;
   line-height:1.5em;
   text-indent:0.5em;
   padding:0.25em 0.25em 0.25em 0.25em;
@@ -1166,7 +1208,7 @@ dd.deprecation-note {
 
 .c1 pre code {
   margin-top:0px;
-  font-size:x-small;
+  font-size:85%;
   color:#336699;
   margin-left:0px;
 }
@@ -1186,7 +1228,7 @@ dd.deprecation-note {
 }
 
 .c2 .option {
-  font-size:small;
+  font-size:85%;
   float:right;
   display:inline;
   margin-left:1em;
@@ -1261,7 +1303,7 @@ div#gsfn_list_widget .powered_by {
   margin:-0.25em 1em 0px 1em;
   padding:0.25em 0px 0.5em 0px;
   border-top: 1px dotted #ddd;
-  font-size:xx-small;
+  font-size:75%;
 }
 
 body.home div#gsfn_list_widget .powered_by {
@@ -1278,7 +1320,7 @@ div#gsfn_list_widget .powered_by a:hover {
 }
 
 div#gsfn_list_widget div#gsfn_content {
-  font-size:x-small;
+  font-size:85%;
   font-size:0.9em;
   padding-left:0.5em;
   padding-right:0.5em;
@@ -1309,7 +1351,7 @@ div#gsfn_list_widget div#gsfn_content a.gsfn_link:hover {
 }
 
 div#gsfn_list_widget div#gsfn_content span.time {
-  font-size: xx-small;
+  font-size: 85%;
   color:#999;
   padding-left:3px;
   padding-right:3px;
@@ -1334,7 +1376,12 @@ div#gsfn_list_widget div#gsfn_content p.gsfn_summary {
 }
 
 .compact {
-  margin-bottom:0.25em;
+  margin-bottom:0.25em !important;
+}
+
+.smaller {
+ margin-top: 0px !important;
+ margin-bottom: 0.25em !important;
 }
 
 .c2 a,
@@ -1391,6 +1438,10 @@ a.cta:hover,
 .c2 a.sm2_button:hover {
   /* arg. not specific enough, redefine here. */
   background-color:#cc3333;
+}
+
+dt a:hover span {
+	color: #fff;
 }
 
 a.cta-more {
@@ -1465,11 +1516,10 @@ a.feature,
   border:3px solid #cce6ff;
   border:3px solid rgba(255,255,255,0.66);
   border-radius:8px;
+  font-size: 1.1em;
   line-height:1em;
   *line-height:1.1em;
   text-decoration:none;
-  font-size:small;
-  /* would use vertical-align: middle here, but it screws up display inside <h2> for IE 9+ */
 }
 
 a.feature {
@@ -1497,7 +1547,7 @@ a.feature:hover {
   border-color:#ff6666;
   color:#fff;
 }
-
+#
 a.warning,
 span.warning {
   font-weight:bold;
@@ -1607,14 +1657,8 @@ ul.inthewild a span {
 #audiogalaxy {
   width: 100px;
   height: 22px;
-  background-position: 0 -24px;
+  background-position: 0 -37px;
   margin: -11px 0px 0px -50px;
-}
-
-div.inthewild.active #audiogalaxy,
-div.inthewild:hover #audiogalaxy,
-#audiogalaxy:hover {
-  background-position: 0 -46px;
 }
 
 #discogs {
@@ -1625,109 +1669,67 @@ div.inthewild:hover #audiogalaxy,
 }
 
 #hypem {
-  background-position: 0 -96px;
+  background-position: 0 -111px;
   width: 80px;
   height: 38px;
   margin: -19px 0px 0px -40px;
 }
 
-div.inthewild.active #hypem,
-div.inthewild:hover #hypem,
-#hypem:hover {
-  background-position: 0 -134px;
-}
-
 #lastfm {
-  background-position: 0 -204px;
+  background-position: 0 -176px;
   width: 80px;
   height: 28px;
   margin: -14px 0px 0px -40px;
 }
 
-div.inthewild.active #lastfm,
-div.inthewild:hover #lastfm,
-#lastfm:hover {
-  background-position: 0 -176px;
-}
-
-#nyancat {
-  background-position: 0 -272px;
-  width: 64px;
-  height: 40px;
-  margin: -20px 0px 0px -32px;
-}
-
-div.inthewild.active #nyancat,
-div.inthewild:hover #nyancat,
-#nyancat:hover {
-  background-position: 0 -312px;
-}
-
-#opera {
-  background-position: 0 -356px;
-  width: 79px;
-  height: 32px;
-  margin: -16px 0px 0px -40px;
-}
-
-div.inthewild.active #opera,
-div.inthewild:hover #opera,
-#opera:hover {
-  background-position: 0 -388px;
-}
-
-#soundcloud {
-  background-position: 0 -483px;
-  width: 83px;
-  height: 58px;
-  margin: -29px 0px 0px -42px;
-}
-
-div.inthewild.active #soundcloud,
-div.inthewild:hover #soundcloud,
-#soundcloud:hover {
-  background-position: 0 -424px;
-}
-
-#turntable-dot-fm {
-  background-position: 0 -232px;
+#pitchfork {
+  background-position: 0 -688px;
   width: 100px;
   height: 20px;
   margin: -10px 0px 0px -50px;
 }
 
-div.inthewild.active #turntable-dot-fm,
-div.inthewild:hover #turntable-dot-fm,
-#turntable-dot-fm:hover {
+#nyancat {
+  background-position: 0 -312px;
+  width: 64px;
+  height: 40px;
+  margin: -20px 0px 0px -32px;
+}
+
+#opera {
+  background-position: 0 -373px;
+  width: 79px;
+  height: 32px;
+  margin: -16px 0px 0px -40px;
+}
+
+#soundcloud {
+  background-position: 0 -424px;
+  width: 83px;
+  height: 58px;
+  margin: -29px 0px 0px -42px;
+}
+
+#turntable-dot-fm {
   background-position: 0 -252px;
+  width: 100px;
+  height: 20px;
+  margin: -10px 0px 0px -50px;
 }
 
 #baroque-me {
-  background-position: 0 -588px;
+  background-position: 0 -541px;
   width: 88px;
   height: 47px;
   margin: -23px 0px 0px -42px;
 }
 
-div.inthewild.active #baroque-me,
-div.inthewild:hover #baroque-me,
-#baroque-me:hover {
-  background-position: 0 -541px;
-}
-
 #freesound {
-  background-position: 0 -662px;
+  background-position: 0 -635px;
   width: 100px;
   height: 27px;
   margin: -15px 0px 0px -50px;
 }
-
-div.inthewild.active #freesound,
-div.inthewild:hover #freesound,
-#freesound:hover {
-  background-position: 0 -635px;
-}
-
 
 div.inthewild.active li:hover {
   background-color: rgba(255,255,255,0.9);
@@ -1738,12 +1740,12 @@ div.inthewild.active li:hover {
 /* homepage-specific demo shiz */
 
 .sidenote {
-  font-size:x-small;
+  font-size:85%;
   opacity:0.75;
 }
 
 ul.playlist {
-  font-size:xx-small;
+  font-size:85%;
 }
 
 ul.playlist li {
@@ -1764,7 +1766,7 @@ ul.playlist li a:hover {
 
 ul.playlist li .timing {
   margin-right: 0.1em;
-  font-size: xx-small;
+  font-size: 50%;
   top: 0.5em;
 }
 
@@ -2267,12 +2269,12 @@ ul.file-structure li span {
 }
 
 #sm2-options .options-divider {
-  font-size: xx-small;
+  font-size: 85%;
   color: #ccc;
 }
 
 #sm2-options p {
-  font-size: x-small;
+  font-size: 85%;
   padding-left: 0px;
   padding-bottom: 0px;
   margin-bottom: 0.75em;
@@ -2321,8 +2323,8 @@ ul.code-block li {
   position: relative;
   margin: 0px;
   padding: 0px;
-  font-size: 11px;
-  line-height: 16px;
+  font-size: 85%;
+  line-height: 1.5em;
 }
 
 ul.code-block li {
@@ -2348,7 +2350,7 @@ ul.code-block li div {
 ul.code-block li span {
   position: relative;
   display: block;
-  padding-left: 29em; /* room for left gutter */
+  padding-left: 24em; /* room for left gutter */
   text-indent: -2em;
 }
 
@@ -2435,7 +2437,7 @@ body.home #main .threeup p {
 
 body.home #main p.sidenote {
   /* disclaimer */
-  font-size: x-small;
+  font-size: 92%;
   color: #666;
 }
 
@@ -2471,7 +2473,7 @@ body.home .sm2-inline-list .ui360-vis {
 }
 
 body.home ul.playlist {
-  font-size: x-small;
+  font-size: 85%;
 }
 
 body.home ul.playlist li {
@@ -2480,7 +2482,7 @@ body.home ul.playlist li {
 }
 
 body.home ul.playlist .sidenote {
-  font-size: x-small;
+  font-size: 85%;
   letter-spacing: 0px;
 }
 
@@ -2757,16 +2759,20 @@ div.icons ul li.package {
 .bonus-demos li {
  float: left;
  display: inline;
- width: 48%;
- margin-right: 2%;
+ width: 32%;
+ margin-right: 1%;
  text-align: center;
 }
 
 .bonus-demo a,
 .bonus-demos li a {
  opacity: 0.85;
- -moz-transition: 0.2s opacity ease-in-out;
- -webkit-transition: 0.2s opacity ease-in-out;
+ -moz-transition: 0.1s opacity ease-in-out;
+ -webkit-transition: 0.1s opacity ease-in-out;
+}
+
+.bonus-demos li img {
+ border-radius: 4px;
 }
 
 .bonus-demo a:hover,

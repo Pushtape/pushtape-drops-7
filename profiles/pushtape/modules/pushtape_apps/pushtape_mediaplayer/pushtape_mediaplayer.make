@@ -30,7 +30,7 @@ projects[jplayer][version] = 2.0-beta1
 ;projects[jplayer][patch][] = http://drupal.org/files/hide-direct-link-1046744-16.patch
 
 libraries[soundmanager2][download][type] = "get"
-libraries[soundmanager2][download][url] = "http://www.schillmania.com/projects/soundmanager2/download/soundmanagerv297a-20120318.zip"
+libraries[soundmanager2][download][url] = "http://www.schillmania.com/projects/soundmanager2/download/soundmanagerv297a-20120624.zip"
 libraries[soundmanager2][directory_name] = "soundmanager2"
 libraries[soundmanager2][type] = "library"
 
