@@ -48,10 +48,10 @@ function pushtape_mediaplayer_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'file',
+          'module' => 'mediaplaylist',
           'settings' => array(),
-          'type' => 'file_default',
-          'weight' => 10,
+          'type' => 'mediaplaylist_links',
+          'weight' => '10',
         ),
         'featured' => array(
           'label' => 'above',
@@ -61,9 +61,19 @@ function pushtape_mediaplayer_field_default_fields() {
         ),
         'mediaplaylist' => array(
           'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
+          'module' => 'jplayer',
+          'settings' => array(
+            'autoplay' => 0,
+            'backgroundColor' => '000000',
+            'mode' => 'playlist',
+            'muted' => FALSE,
+            'preload' => 'metadata',
+            'repeat' => 'none',
+            'solution' => 'html, flash',
+            'volume' => 80,
+          ),
+          'type' => 'jplayer_player',
+          'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'above',

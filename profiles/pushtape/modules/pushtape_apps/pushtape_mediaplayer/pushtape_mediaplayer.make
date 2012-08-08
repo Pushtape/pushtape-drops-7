@@ -1,8 +1,15 @@
 api = 2
 core = 7.x
 
+projects[features][version] = 1.0
+projects[features][subdir] = contrib
+projects[features][type] = module
+
 projects[media] = 1.2
 projects[media][subdir] = contrib
+
+projects[html5_media][version] = 1.0
+projects[html5_media][subdir] = contrib
 
 projects[libraries][version] = 1.0
 projects[libraries][subdir] = contrib

@@ -14,6 +14,7 @@ if (typeof soundManager != 'undefined' && settings.soundmanager2) {
     animDuration: 500,
     animTransition: Animator.tx.bouncy,
     showHMSTime: true,
+    scaleArcWidth: 1,
 
     useWaveformData: settings.soundmanager2.waveform,
     waveformDataColor: '#0099ff',
