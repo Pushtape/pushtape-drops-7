@@ -390,6 +390,15 @@ function pushtape_mediaplayer_views_default_views() {
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['pane_category']['name'] = 'Pushtape';
   $handler->display->display_options['pane_category']['weight'] = '0';
+
+  /* Display: Player Page */
+  $handler = $view->new_display('page', 'Player Page', 'page_1');
+  $handler->display->display_options['path'] = 'discography/player';
+  $handler->display->display_options['menu']['type'] = 'tab';
+  $handler->display->display_options['menu']['title'] = 'Player';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'main-menu';
+  $handler->display->display_options['menu']['context'] = 0;
   $export['pushtape_player_track_views'] = $view;
 
   return $export;
