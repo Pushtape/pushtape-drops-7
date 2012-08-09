@@ -75,3 +75,4 @@ features[views_view][] = albums
 features[views_view][] = releases
 features[views_view][] = tracks
 project status url = http://apps.rosenstrauch.com/fserver
+files[] = test/pushtape_discograhy.test

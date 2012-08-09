@@ -29,3 +29,4 @@ features[variable][] = jplayer_directory
 features[variable][] = sm2_path
 features[views_view][] = pushtape_player_track_views
 project status url = http://apps.rosenstrauch.com/fserver
+files[] = test/pushtape_mediaplayer.test
