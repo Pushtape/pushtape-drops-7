@@ -36,6 +36,9 @@ Drupal.behaviors.PanelsIPE = {
         .each(function() {
           Drupal.PanelsIPE.editors[key] = new DrupalPanelsIPE(key);
           Drupal.PanelsIPE.editors[key].showContainer();
+          $('.panels-ipe-hide-bar').once('panels-ipe-hide-bar-processed').click(function() {
+            Drupal.PanelsIPE.editors[key].hideContainer();
+          });
         });
     }
     Drupal.PanelsIPE.bindClickDelete(context);
@@ -80,6 +83,12 @@ function DrupalPanelsIPE(cache_key, cfg) {
     if (!$('.panels-ipe-form-container', ipe.control).html() && !ipe.container.is(':visible')) {
       ipe.showContainer();
       ipe.cancelLock();
+    }
+
+    // If the IPE is on and we've hidden the bar for a modal, we need to
+    // re-display it.
+    if (ipe.topParent && ipe.topParent.hasClass('panels-ipe-editing') && ipe.container.is(':not(visible)')) {
+      ipe.showContainer();
     }
   });
 

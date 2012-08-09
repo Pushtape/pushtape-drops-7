@@ -1,0 +1,33 @@
+<?php
+// $Id$
+
+/**
+* Unit tests for Pushtape Discography module.
+*/
+class PushtapeDiscographyTest extends DrupalTestCase {
+
+  /**
+   * Drupal SimpleTest method: return metadata about the test.
+   */
+  function get_info() {
+    return array(
+      'name'  => t('Pushtape Discography'),
+      'desc'  => t('Executes test suite for Pushtape Discography module.'),
+      'group' => t('Pushtape Discography'),
+    );
+  }
+}
+
+/**
+ * Test that we can create tracks
+ */
+function testTracks() {
+    // TODO: Put some code here.
+}
+
+/**
+ * Test that we can create Albums
+ */
+function testAlbums() {
+    // TODO: Put some code here.
+}

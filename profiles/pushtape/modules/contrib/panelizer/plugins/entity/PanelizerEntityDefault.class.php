@@ -1116,6 +1116,10 @@ abstract class PanelizerEntityDefault implements PanelizerEntityInterface {
         ),
         '#weight' => -10,
         '#tree' => TRUE,
+        // Put these here because submit does not get a real entity with
+        // the actual *(&)ing panelizer.
+        '#revision_id' => isset($entity->panelizer->revision_id) ? $entity->panelizer->revision_id : NULL,
+        '#entity_id' => isset($entity->panelizer->entity_id) ? $entity->panelizer->entity_id : NULL,
       ) + $widgets;
     }
   }

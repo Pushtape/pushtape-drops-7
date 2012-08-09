@@ -1,0 +1,34 @@
+<?php
+// $Id$
+
+/**
+* Unit tests for Pushtape Mediaplayer module.
+*/
+class PushtapeMediaplayerTest extends DrupalTestCase {
+
+  /**
+   * Drupal SimpleTest method: return metadata about the test.
+   */
+  function get_info() {
+    return array(
+      'name'  => t('Pushtape Mediaplayer'),
+      'desc'  => t('Executes test suite for Pushtape Mediaplayer module.'),
+      'group' => t('Pushtape Mediaplayer'),
+    );
+  }
+}
+
+
+/**
+ * Test that we can create tracks
+ */
+function testFiles() {
+    // TODO: Put some code here.
+}
+
+/**
+ * Test that we can create Albums
+ */
+function testPlayer() {
+    // TODO: Put some code here.
+}

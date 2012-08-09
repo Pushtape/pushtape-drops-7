@@ -10,7 +10,7 @@ projects[entity][subdir] = contrib
 projects[entityreference][version] = 1.0-rc3
 projects[entityreference][subdir] = contrib
 
-projects[ctools][version] = 1.0
+projects[ctools][version] = 1.1
 projects[ctools][subdir] = contrib
 projects[ctools][type] = module
 
@@ -39,3 +39,4 @@ projects[panelizer][download][type] = git
 projects[panelizer][download][revision] = c7942f3
 projects[panelizer][download][branch] = 7.x-3.x
 projects[panelizer][patch][1648040] = http://drupal.org/files/panelizer-no-notice-view-modes-updated.patch
+projects[panelizer][patch][1412022] = http://drupal.org/files/panelizer-duplicates-1412022-10_1.patch

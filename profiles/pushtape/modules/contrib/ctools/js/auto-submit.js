@@ -30,8 +30,9 @@ Drupal.behaviors.CToolsAutoSubmit = {
   attach: function(context) {
     // 'this' references the form element
     function triggerSubmit (e) {
-      if (!$(this).hasClass('ctools-ajaxing')) {
-        $(this).find('.ctools-auto-submit-click').click();
+      var $this = $(this);
+      if (!$this.hasClass('ctools-ajaxing')) {
+        $this.find('.ctools-auto-submit-click').click();
       }
     }
 
@@ -46,6 +47,10 @@ Drupal.behaviors.CToolsAutoSubmit = {
           triggerSubmit.call(e.target.form);
         }
       });
+
+    $('.form-autocomplete').blur(function (e) {
+        triggerSubmit.call(e.target.form);
+    });
 
     // e.keyCode: key
     var discardKeyCode = [
@@ -67,6 +72,7 @@ Drupal.behaviors.CToolsAutoSubmit = {
     ];
     // Don't wait for change event on textfields
     $('.ctools-auto-submit-full-form input:text, input:text.ctools-auto-submit', context)
+      .filter(':not(.form-autocomplete)')
       .once('ctools-auto-submit', function () {
         // each textinput element has his own timeout
         var timeoutID = 0;

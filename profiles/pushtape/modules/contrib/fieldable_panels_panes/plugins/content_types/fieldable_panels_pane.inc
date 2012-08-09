@@ -83,7 +83,7 @@ function fieldable_panels_panes_fieldable_panels_pane_content_type_render($subty
       $block->admin_links[] = array(
         'title' => t('Edit pane'),
         'alt' => t("Edit the values in this pane"),
-        'href' => "admin/structure/panels/entity/view/$entity->fpid/edit",
+        'href' => "admin/structure/fieldable-panels-panes/view/$entity->fpid/edit",
         'query' => drupal_get_destination(),
       );
     }
@@ -297,6 +297,10 @@ function _fieldable_panels_panes_load_entity($subtype_name) {
     if ($content = entity_uuid_load('fieldable_panels_pane', array($id))) {
       $content = reset($content);
     }
+  }
+  elseif ($type == 'vid') {
+    $fpid = db_query('SELECT fpid FROM {fieldable_panels_panes_revision} WHERE vid = :vid', array(':vid' => $id))->fetchField();
+    $content = fieldable_panels_panes_load($fpid, $id);
   }
   else {
     $content = fieldable_panels_panes_load($id);
