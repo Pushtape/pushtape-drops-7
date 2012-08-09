@@ -1,5 +1,5 @@
 name = Pushtape Mediaplayer
-description = better implementation
+description = play media
 core = 7.x
 package = Pushtape
 php = 5.2.4
