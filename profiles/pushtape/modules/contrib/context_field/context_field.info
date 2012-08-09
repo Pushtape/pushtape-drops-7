@@ -1,0 +1,7 @@
+name = Context Field
+description = "Provides a Field which manages a Context per entity"
+core = 7.x
+dependencies[] = "context"
+dependencies[] = "context_ui"
+dependencies[] = "boxes"
+file[] = "plugins/context_field_context_condition.inc"
