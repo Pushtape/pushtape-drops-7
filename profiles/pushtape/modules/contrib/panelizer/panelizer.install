@@ -82,7 +82,6 @@ function panelizer_schema_1() {
       'type' => 'int',
       'not null' => TRUE,
       'description' => 'The display ID of the panel.',
-      'no export' => TRUE,
     ),
   );
 
