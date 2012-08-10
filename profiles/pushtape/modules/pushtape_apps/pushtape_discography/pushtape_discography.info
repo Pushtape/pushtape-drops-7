@@ -67,4 +67,5 @@ files[] = pushtape_discography.features.taxonomy.inc
 files[] = pushtape_discography.module
 files[] = pushtape_discography.strongarm
 files[] = pushtape_discography.views_default.inc
+files[] = test/pushtape_discography.test
 project status url = http://updates.drupal.org/release-history/pushtape_discography/7.x
