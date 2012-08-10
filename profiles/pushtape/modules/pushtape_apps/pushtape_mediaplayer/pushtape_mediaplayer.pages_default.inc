@@ -21,9 +21,9 @@ function pushtape_mediaplayer_default_page_manager_pages() {
   );
   $page->menu = array(
     'type' => 'tab',
-    'title' => 'Player',
+    'title' => 'Tracks',
     'name' => 'navigation',
-    'weight' => '0',
+    'weight' => '6',
     'parent' => array(
       'type' => 'none',
       'title' => '',
@@ -57,9 +57,13 @@ function pushtape_mediaplayer_default_page_manager_pages() {
     'access' => array(
       'logic' => 'and',
     ),
+    'panels_breadcrumbs_state' => 1,
+    'panels_breadcrumbs_titles' => '',
+    'panels_breadcrumbs_paths' => '',
+    'panels_breadcrumbs_home' => 0,
   );
   $display = new panels_display();
-  $display->layout = 'phelan';
+  $display->layout = 'boxton';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
@@ -74,7 +78,7 @@ function pushtape_mediaplayer_default_page_manager_pages() {
   $display->panels = array();
     $pane = new stdClass();
     $pane->pid = 'new-1';
-    $pane->panel = 'column1';
+    $pane->panel = 'contentmain';
     $pane->type = 'views_panes';
     $pane->subtype = 'pushtape_player_track_views-tracks_all_pane';
     $pane->shown = TRUE;
@@ -87,15 +91,16 @@ function pushtape_mediaplayer_default_page_manager_pages() {
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
+      'style' => 'basic',
     );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
     $display->content['new-1'] = $pane;
-    $display->panels['column1'][0] = 'new-1';
+    $display->panels['contentmain'][0] = 'new-1';
   $display->hide_title = PANELS_TITLE_PANE;
-  $display->title_pane = 'new-1';
+  $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['pushtape_tracks_player'] = $page;
