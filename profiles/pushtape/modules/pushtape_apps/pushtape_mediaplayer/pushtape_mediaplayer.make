@@ -20,7 +20,7 @@ projects[media_soundcloud][subdir] = contrib
 projects[media_colorbox][version] = 1.0-rc1
 projects[media_colorbox][subdir] = contrib
 
-projects[mediaplaylist][version] = 1.x-dev
+projects[mediaplaylist][version] = 1.0-rc1
 projects[mediaplaylist][subdir] = contrib
 
 projects[soundmanager2][version] = "2.x-dev"
