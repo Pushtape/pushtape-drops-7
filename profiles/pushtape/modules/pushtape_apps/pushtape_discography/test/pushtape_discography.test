@@ -11,7 +11,9 @@
  * Functionality tests for node Discography track.
  */
 class TrackTestCase extends DrupalWebTestCase {
-
+  protected $privileged_user;
+  protected $profile = 'pushtape';
+  
   public static function getInfo() {
     return array(
       'name' => 'Track',
@@ -23,6 +25,12 @@ class TrackTestCase extends DrupalWebTestCase {
   function setUp() {
     // Enable the module.
     parent::setUp('pushtape_discography');
+
+
+    // Create and log in our privileged user.
+    $this->privileged_user = $this->drupalCreateUser(array('access content', 'create track content', 'create album content',
+      ));
+    $this->drupalLogin($this->privileged_user);
   }
 
   /**
@@ -30,25 +38,25 @@ class TrackTestCase extends DrupalWebTestCase {
    */
   function testTrackCreation() {
     // Create and login user.
-    $account = $this->drupalCreateUser(array('access content'));
+    $account = $privileged_user;
     $this->drupalLogin($account);
 
-    // Create a new node. The image makes it more complicated, so skip it.
+    // Create a new node. with random name and certain fields
     $edit = array(
       'title' => $this->randomName(),
-      'track_color[und][0][value]' => 'red',
-      'track_color[und][1][value]' => 'green',
-      'track_color[und][2][value]' => 'blue',
-      'track_quantity[und][0][value]' => 100,
+      //'track_color[und][0][value]' => 'red',
+      //'track_color[und][1][value]' => 'green',
+      //'track_color[und][2][value]' => 'blue',
+      //'track_quantity[und][0][value]' => 100,
     );
     $this->drupalPost('node/add/track', $edit, t('Save'));
     $this->assertText("Track " . $edit['title'] . " has been created", "Found Track creation message");
-    $this->assertPattern("/The colors available.*red.*green.*blue/", "Correct 'colors available' on node page");
+    //$this->assertPattern("/The colors available.*red.*green.*blue/", "Correct 'colors available' on node page");
 
-    // Look on the examples page to make sure it shows up there also.
-    $this->drupalGet('examples/track');
+    // Look on the releases page to make sure it shows up there also.
+    $this->drupalGet('discography');
     $this->assertText($edit['title'], "Found random title string");
-    $this->assertPattern("/red.*green.*blue/", "Correct 'colors available' on node example page");
+    //$this->assertPattern("/red.*green.*blue/", "Correct 'colors available' on node example page");
 
   }
 
@@ -60,7 +68,7 @@ class TrackTestCase extends DrupalWebTestCase {
 
   function testBodyLabel() {
     // Create and login user.
-    $account = $this->drupalCreateUser(array('access content'));
+    $account = $privileged_user;
     $this->drupalLogin($account);
 
     // Request a node add track page.
