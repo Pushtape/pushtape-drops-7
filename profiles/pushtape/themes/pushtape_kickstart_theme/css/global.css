@@ -176,7 +176,7 @@ select[multiple] {
 * 2.1. Zone user
 **********************************************/
 .zone-user-wrapper {
-  background-color: #8e8e8e;
+  background-color: red;
   height: 34px;
   width: 100%;
 }
