@@ -354,7 +354,7 @@ function pushtape_kickstart_menus_init() {
   drupal_set_title(t('pushtape Guys Dashboard by Jirafe'));
 
   */
-  drupal_flush_all_caches();
+  
 }
 
 /**
