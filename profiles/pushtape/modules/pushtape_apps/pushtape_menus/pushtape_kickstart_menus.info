@@ -2,11 +2,15 @@ name = Pushtape Kickstart Menus
 description = Custom administrative Toolbar.
 core = 7.x
 package = Pushtape
-
 dependencies[] = advanced_help
 dependencies[] = toolbar_megamenu
 dependencies[] = features
 dependencies[] = menu
 features[features_api][] = api:1
 features[menu_links][] = management:node/add
+features[menu_links][] = management:node/add/album
+features[menu_links][] = management:node/add/page
+features[menu_links][] = management:node/add/pushtape-event
+features[menu_links][] = management:node/add/pushtape-news
+features[menu_links][] = management:node/add/track
 stylesheets[all][] = pushtape_kickstart_menus.css
