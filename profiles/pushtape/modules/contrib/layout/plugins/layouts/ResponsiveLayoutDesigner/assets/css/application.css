@@ -1,0 +1,195 @@
+.clearfix::after {
+  clear: both;
+  content: ' ';
+  display: block;
+  height: 0;
+  visibility: hidden;
+  width: 100%;
+}
+.rld-screen {
+  margin: 0 auto;
+  max-width: 1024px;
+  text-align: center;
+}
+.rld-iframe {
+  margin: 0 auto;
+}
+
+/* @group Layout */
+
+/* @group StepManager */
+
+.rld-steps {
+  list-style: none;
+  text-align: center;
+}
+.rld-steps li {
+  display: inline-block;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+.rld-steps .rld-tab .rld-link {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 0.1667em 0.5em;
+}
+.rld-steps .rld-active {
+  background-color: #59A;
+  color: white;
+  text-shadow: 0 1px 0px #828383
+}
+.rld-layouts {
+  margin-top: 0.5em;
+  padding: 1em;
+}
+
+/* @end */
+
+/* @end */
+
+/* @group Region and row styles */
+
+.rld-layouts {
+  position: relative;
+}
+.rld-layout {
+  position: relative;
+}
+.rld-row {
+  -webkit-user-select: none;
+  cursor: move;
+}
+.rld-placeholder,
+.rld-region {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  margin-bottom: 15px;
+  position: relative;
+}
+.rld-region {
+  width: 100%; /* splitter def: 960px */
+}
+.rld-region > .rld-inner {
+  background-color: #555;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  color: white;
+  height: 4em;
+  margin: 0 2px;
+  padding: 0 1em;
+}
+.rld-placeholder {
+  background-color: white;
+  color: #ccc;
+  height: 4em;
+  outline: 1px dashed #31cbff;
+  outline-offset: -5px;
+  overflow: hidden;
+  width: 0;
+}
+.rld-region .rld-region-close {
+  position: absolute;
+  right: 14px;
+  top: 7px;
+  background-color: #cdcdcd;
+  border-radius: 10px;
+  color: #484848;
+  padding: 4px;
+  cursor: default;
+  font-size: 0.8em;
+  line-height: 0.8em;
+  text-decoration: none;
+}
+.rld-col.rld-region {
+  padding: 0;
+}
+.rld-grid-overlay {
+  margin: 0.25em 0;
+  min-height: 20px;
+  position: absolute;
+  top: 24px;
+  width: 100%;
+}
+.rld-grid-overlay + * {
+  margin-top: 24px;
+}
+.rld-grid-col {
+  background-color: #59A;
+  border-color: white;
+  border-style: solid;
+  border-width: 0 2px;
+  height: 100%;
+  min-height: 1em;
+}
+.rld-layoutstep-controls {
+  margin-bottom: 5px;
+}
+.rld-splitter {
+  background-attachment: scroll;
+  background-image: url('../images/grippie.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  bottom: 0;
+	cursor: e-resize;	/* in case col-resize isn't supported */
+	cursor: col-resize;
+	height: 100%;
+  position: absolute;
+  top: 0;
+  width: 12px;
+  z-index: 1;
+}
+.rld-splitter:hover {
+  background-color: rgba(0, 0, 0, 0.3333);
+}
+.rld-splitter-left {
+  background-position: left center;
+  left: 3px;
+  -moz-border-radius: 5px 0 0 5px;
+  -webkit-border-radius: 5px 0 0 5px;
+  border-radius: 5px 0 0 5px;
+}
+.rld-splitter-right {
+  background-position: right center;
+  right: 3px;
+  -moz-border-radius: 0 5px 5px 0;
+  -webkit-border-radius: 0 5px 5px 0;
+  border-radius: 0 5px 5px 0;
+}
+.rld-splitter-active {
+  background: url('../images/grippie-active.png') 0 -3px;
+}
+
+/* @end */
+
+/* @grid */
+
+/* @group Sortable */
+
+.ui-sortable .ui-state-highlight {
+  height: 50px;
+  padding: 10px;
+  margin: 1em 0;
+}
+.ui-sortable .region .drag-icon {
+  font-size: 2em;
+  margin-right: 1em;
+}
+.ui-sortable .region .remove-icon {
+  position: absolute;
+  right: 5px;
+  top: 20px;
+  background-color: #cdcdcd;
+  border-radius: 10px;
+  color: #484848;
+  padding: 4px;
+  cursor: default;
+}
+
+/* @end */
+
+/* @end */

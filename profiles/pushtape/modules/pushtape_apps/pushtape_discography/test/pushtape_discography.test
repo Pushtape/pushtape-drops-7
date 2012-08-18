@@ -2,148 +2,89 @@
 
 /**
  * @file
- * Tests for pushtape_discography module.
+ * Simpletest case for track module.
  *
- * Verify discography module functionality.
+ * Verify pushtape discography functionality.
  */
 
 /**
- * Functionality tests for pushtape discography module.
+ * Functionality tests for node pushtape discography.
  */
-class PushtapeDiscographyTestCase extends DrupalWebTestCase {
+class TrackTestCase extends DrupalWebTestCase {
 
   public static function getInfo() {
     return array(
-      'name' => 'Pushtape discography',
-      'description' => 'track Pushtape discography tests',
+      'name' => 'Track',
+      'description' => 'Verify the track creation.',
       'group' => 'Pushtape',
     );
   }
 
-  function setUp() {
-    // Enable the module.
-    parent::setUp('pushtape_discography');
+  /**
+   * Set up test.
+   */
+  public function setUp() {
+    parent::setUp(array(
+      'field',
+      'filter',
+      'image',
+      'taxonomy',
+      'views',
+      'features',
+      'features_test',
+      'pushtape_discography'
+    ));
 
-    // Create and login user with access.
-    $permissions = array(
-      'access content',
-      'view any pushtape_discography_track track',
-      'edit any pushtape_discography_track track',
-      'create pushtape_discography_track Tracks',
-      'administer pushtape_discography_track Tracks',
-      'administer site configuration',
-    );
-    $account = $this->drupalCreateUser($permissions);
-    $this->drupalLogin($account);
+    // Run a features rebuild to ensure our feature is fully installed.
+    features_rebuild();
 
-    // Attach a field
-    $field = array(
-      'field_name' => 'pushtape_discography_test_text' ,
-      'type' => 'text'
-    );
-    field_create_field($field);
-    $instance = array(
-      'label' => 'Subject',
-      'field_name' => 'pushtape_discography_test_text',
-      'track_type' => 'pushtape_track',
-      'bundle' => 'pushtape_track'
-    );
-    field_create_instance($instance);
+    $admin_user = $this->drupalCreateUser(array('administer features', 'access content'));
+    $this->drupalLogin($admin_user);
   }
 
   /**
-   * Test Pushtape discography features.
-   *
-   * CRUD
-   * Table display
-   * User access
-   * Field management
-   * Display management
+   * Verify the functionality of the pushtape discography.
    */
-  function testPushtapeDiscographytrack() {
-    // Create 10 Tracks.
-    for ($i = 1; $i <= 10; $i++) {
-      $edit[$i]['item_description'] = $this->randomName();
-      $edit[$i]['pushtape_discography_test_text[und][0][value]'] = $this->randomName(32);
-
-      $this->drupalPost('Pushtape/pushtape_discography/track/add' , $edit[$i], 'Save');
-      $this->assertText('item_description=' . $edit[$i]['item_description']);
-
-      $this->drupalGet('Pushtape/pushtape_discography/track/' . $i);
-      $this->assertText('item_description=' . $edit[$i]['item_description']);
-      $this->assertText($edit[$i]['pushtape_discography_test_text[und][0][value]']);
-    }
-
-    // delete track 5
-    $this->drupalPost('Pushtape/pushtape_discography/track/5/edit' , $edit[5], 'Delete');
-    $this->drupalGet('Pushtape/pushtape_discography/track/5');
-    $this->assertResponse(404, t('Deleted track 5 no longer exists'));
-    unset($edit[5]);
-
-    // Update track 2 and verify the update.
-    $edit[2] = array(
-      'item_description' => 'updated track 2 ',
-      'pushtape_discography_test_text[und][0][value]' => 'updated track 2 test text',
-    );
-    $this->drupalPost('Pushtape/pushtape_discography/track/2/edit' , $edit[2], 'Save');
-    $this->assertText('item_description=' . $edit[2]['item_description']);
-    $this->assertText('updated track 2 test text');
-
-    // View the track list page  and verify that the items which still exist
-    // are there, and that the deleted #5 no longer is there.
-    $this->drupalGet('admin/structure/pushtape_discography_track/manage');
-    foreach ($edit as $id => $item) {
-      $this->assertRaw('Pushtape/pushtape_discography/track/' . $id . '">' . $item['item_description'] . '</a>');
-    }
-    $this->assertNoRaw('Pushtape/pushtape_discography/track/5">');
-
-    // Add a field through the field UI and verify that it behaves correctly.
-    $field_edit = array(
-      'fields[_add_new_field][label]' => 'New junk field',
-      'fields[_add_new_field][field_name]' => 'new_junk_field',
-      'fields[_add_new_field][type]' => 'text',
-      'fields[_add_new_field][widget_type]' => 'text_textfield',
-    );
-    $this->drupalPost('admin/structure/pushtape_discography_track/manage/fields', $field_edit, t('Save'));
-    $this->drupalPost(NULL, array(), t('Save field settings'));
-    $this->drupalPost(NULL, array(), t('Save settings'));
-    $this->assertResponse(200);
-
-    // Now verify that we can edit and view this track with fields.
-    $edit[10]['field_new_junk_field[und][0][value]'] = $this->randomName();
-    $this->drupalPost('Pushtape/pushtape_discography/track/10/edit' , $edit[10], 'Save');
-    $this->assertResponse(200);
-    $this->assertText('item_description=' . $edit[10]['item_description']);
-    $this->assertText($edit[10]['field_new_junk_field[und][0][value]'], t('Custom field updated successfully'));
-
-    // Create and login user without view access.
+  function testTrackCreation() {
+    // Create and login user.
     $account = $this->drupalCreateUser(array('access content'));
     $this->drupalLogin($account);
-    $this->drupalGet('admin/structure/pushtape_discography_track/manage');
-    $this->assertResponse(403);
-    $this->drupalGet('Pushtape/pushtape_discography/track/2');
-    $this->assertResponse(403, t('User does not have permission to view track'));
 
-    // Create and login user with view access but no edit access.
-    $account = $this->drupalCreateUser(array('access content', 'view any pushtape_discography_track track'));
+    // Create a new node. The image makes it more complicated, so skip it.
+    $edit = array(
+      'title' => $this->randomName(),
+      'track_color[und][0][value]' => 'red',
+      'track_color[und][1][value]' => 'green',
+      'track_color[und][2][value]' => 'blue',
+      'track_quantity[und][0][value]' => 100,
+    );
+    $this->drupalPost('node/add/track', $edit, t('Save'));
+    $this->assertText("Example Track " . $edit['title'] . " has been created", "Found node creation message");
+    $this->assertPattern("/The colors available.*red.*green.*blue/", "Correct 'colors available' on node page");
+
+    // Look on the examples page to make sure it shows up there also.
+    $this->drupalGet('examples/track');
+    $this->assertText($edit['title'], "Found random title string");
+    $this->assertPattern("/red.*green.*blue/", "Correct 'colors available' on Track example page");
+
+  }
+
+  /**
+   * Check the value of body label.
+   *
+   * Checks whether body label has a value of "Notes"
+   */
+
+  function testBodyLabel() {
+    // Create and login user.
+    $account = $this->drupalCreateUser(array('access content'));
     $this->drupalLogin($account);
-    $this->drupalGet('admin/structure/pushtape_discography_track/manage');
-    $this->assertResponse(403, t('Denied access to admin manage page'));
-    $this->drupalGet('Pushtape/pushtape_discography/track/2');
-    $this->assertResponse(200, t('User has permission to view track'));
-    $this->drupalGet('Pushtape/pushtape_discography/track/2/edit');
-    $this->assertResponse(403, t('User is denied edit privileges'));
 
-    // Create and login user with view and edit but no manage privs.
-    $account = $this->drupalCreateUser(array('access content', 'view any pushtape_discography_track track', 'edit any pushtape_discography_track track'));
-    $this->drupalLogin($account);
-    $this->drupalGet('admin/structure/pushtape_discography_track/manage');
-    $this->assertResponse(403, t('Denied access to admin manage page'));
-    $this->drupalGet('Pushtape/pushtape_discography/track/2');
-    $this->assertResponse(200, t('User has permission to view track'));
-    $this->drupalGet('Pushtape/pushtape_discography/track/2/edit');
-    $this->assertResponse(200, t('User has edit privileges'));
-
-
+    // Request a node add track page.
+    // Test whether the body label equals 'Example Description'.
+    // Use '$this->assertRaw' to make certain to test the body label and not some other text.
+    $this->drupalGet('node/add/track');
+    $this->assertResponse(200, 'node/add/track page found');
+    $this->assertRaw('<label for="edit-body-und-0-value">Notes </label>', 'Body label equals \'Notes\'');
   }
 }

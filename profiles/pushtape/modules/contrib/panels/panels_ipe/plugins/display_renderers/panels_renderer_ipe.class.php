@@ -329,6 +329,11 @@ class panels_renderer_ipe extends panels_renderer_editor {
       'no_redirect' => TRUE,
     );
 
+    // Reset the $_POST['ajax_html_ids'] values to preserve
+    // proper IDs on form elements when they are rebuilt
+    // by the Panels IPE without refreshing the page
+    $_POST['ajax_html_ids'] = array();
+
     $output = drupal_build_form('panels_change_layout', $form_state);
     $output = drupal_render($output);
     if (!empty($form_state['executed'])) {
@@ -386,7 +391,7 @@ class panels_renderer_ipe extends panels_renderer_editor {
       $pane = $this->display->content[$pid];
     }
 
-    $this->commands[] = ajax_command_append("#panels-ipe-regionid-{$pane->panel} div.panels-ipe-sort-container", $this->render_pane($pane));
+    $this->commands[] = ajax_command_prepend("#panels-ipe-regionid-{$pane->panel} div.panels-ipe-sort-container", $this->render_pane($pane));
     $this->commands[] = ajax_command_changed("#panels-ipe-display-{$this->clean_key}");
   }
 }

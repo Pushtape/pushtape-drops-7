@@ -36,11 +36,11 @@ Drupal.behaviors.PanelsIPE = {
         .each(function() {
           Drupal.PanelsIPE.editors[key] = new DrupalPanelsIPE(key);
           Drupal.PanelsIPE.editors[key].showContainer();
-          $('.panels-ipe-hide-bar').once('panels-ipe-hide-bar-processed').click(function() {
-            Drupal.PanelsIPE.editors[key].hideContainer();
-          });
         });
     }
+    $('.panels-ipe-hide-bar').once('panels-ipe-hide-bar-processed').click(function() {
+      Drupal.PanelsIPE.editors[key].hideContainer();
+    });
     Drupal.PanelsIPE.bindClickDelete(context);
   }
 };

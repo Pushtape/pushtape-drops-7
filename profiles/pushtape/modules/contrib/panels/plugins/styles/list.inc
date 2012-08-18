@@ -29,14 +29,16 @@ function theme_panels_list_style_render_region($vars) {
   $items = array();
 
   foreach ($panes as $pane_id => $item) {
-    $items[] = $item;
+    if ($pane_id != 'empty_placeholder') {
+      $items[] = $item;
+    }
   }
 
   if (empty($settings['list_type'])) {
     $settings['list_type'] = 'ul';
   }
 
-  return theme('item_list', array('items' => $items, 'type' => $settings['list_type']));
+  return (empty($panes['empty_placeholder'])) ? theme('item_list', array('items' => $items, 'type' => $settings['list_type'])) : theme('item_list', array('items' => $items, 'type' => $settings['list_type'])) . $panes['empty_placeholder'];
 }
 
 /**

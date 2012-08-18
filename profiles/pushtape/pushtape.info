@@ -19,7 +19,13 @@ dependencies[] = block
 dependencies[] = dblog
 dependencies[] = update
 
-; Panopoly - Contrib - Foundation 
+; Panopoly - Contrib - Foundation ;Contrib
+
+dependencies[] = features
+dependencies[] = pathauto
+dependencies[] = references
+dependencies[] = entityreference
+
 dependencies[] = ctools
 dependencies[] = panels
 dependencies[] = panels_ipe
