@@ -26,10 +26,22 @@ function pushtape_kickstart_menus_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'system-navigation' => array(
-          'module' => 'system',
-          'delta' => 'navigation',
+        'admin-create' => array(
+          'module' => 'admin',
+          'delta' => 'create',
           'region' => 'user_first',
+          'weight' => '-10',
+        ),
+        'system-user-menu' => array(
+          'module' => 'system',
+          'delta' => 'user-menu',
+          'region' => 'user_second',
+          'weight' => '-10',
+        ),
+        'delta_blocks-action-links' => array(
+          'module' => 'delta_blocks',
+          'delta' => 'action-links',
+          'region' => 'menu',
           'weight' => '-10',
         ),
       ),

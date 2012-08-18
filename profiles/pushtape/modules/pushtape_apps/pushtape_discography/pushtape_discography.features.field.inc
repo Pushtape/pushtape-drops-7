@@ -510,7 +510,7 @@ function pushtape_discography_field_default_fields() {
       'translatable' => '0',
       'type' => 'entityreference',
     ),
-    'field_instance' => array(
+'field_instance' => array(
       'bundle' => 'album',
       'default_value' => NULL,
       'deleted' => '0',
@@ -518,18 +518,10 @@ function pushtape_discography_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'entityreference',
-          'settings' => array(
-            'view_mode' => 'default',
-          ),
-          'type' => 'entityreference_entity_view',
-          'weight' => '7',
-        ),
-        'featured' => array(
-          'label' => 'above',
+          'module' => 'pushtape_core',
           'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
+          'type' => 'pushtape_core_ol_view',
+          'weight' => '7',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -547,17 +539,13 @@ function pushtape_discography_field_default_fields() {
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'options',
+        'module' => 'entityreference',
         'settings' => array(
           'match_operator' => 'CONTAINS',
           'path' => '',
-          'references_dialog_add' => 1,
-          'references_dialog_edit' => 1,
-          'references_dialog_search' => 1,
-          'references_dialog_search_view' => '',
           'size' => '60',
         ),
-        'type' => 'options_buttons',
+        'type' => 'entityreference_autocomplete',
         'weight' => '1',
       ),
     ),

@@ -1,5 +1,5 @@
 name = Pushtape Discography Demo Content
-description = The magic that allows for demo content for Discography.
+description = Create a demo album
 core = 7.x
 package = Pushtape Demo Content
 php = 5.2.4

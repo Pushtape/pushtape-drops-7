@@ -11,9 +11,19 @@
  * Functionality tests for node Discography track.
  */
 class TrackTestCase extends DrupalWebTestCase {
-  protected $privileged_user;
   protected $profile = 'pushtape';
-  
+  protected $admin_user;
+  protected $web_user;
+  protected $node;
+
+  function setUp() {
+    parent::setUp('pushtape_discography', 'features', 'entityreference');
+    // Create users and test node.
+    $this->admin_user = $this->drupalCreateUser(array('administer content types'));
+    $this->web_user = $this->drupalCreateUser(array('access content', 'create track content', 'create album content'));
+ //   $this->node = $this->drupalCreateNode(array('type' => 'article', 'promote' => 1, 'uid' => $this->web_user->uid));
+  }
+
   public static function getInfo() {
     return array(
       'name' => 'Track',
@@ -22,23 +32,12 @@ class TrackTestCase extends DrupalWebTestCase {
     );
   }
 
-  function setUp() {
-    // Enable the module.
-    parent::setUp('pushtape_discography');
-
-
-    // Create and log in our privileged user.
-    $this->privileged_user = $this->drupalCreateUser(array('access content', 'create track content', 'create album content',
-      ));
-    $this->drupalLogin($this->privileged_user);
-  }
-
   /**
    * Verify the functionality of the Discography track.
    */
   function testTrackCreation() {
     // Create and login user.
-    $account = $privileged_user;
+    $account = $this->admin_user;
     $this->drupalLogin($account);
 
     // Create a new node. with random name and certain fields
@@ -68,7 +67,7 @@ class TrackTestCase extends DrupalWebTestCase {
 
   function testBodyLabel() {
     // Create and login user.
-    $account = $privileged_user;
+    $account = $this->admin_user;
     $this->drupalLogin($account);
 
     // Request a node add track page.
