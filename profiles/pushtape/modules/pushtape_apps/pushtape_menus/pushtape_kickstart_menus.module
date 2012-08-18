@@ -33,7 +33,7 @@ function pushtape_kickstart_menus_menu() {
       'toolbar_break' => TRUE,
     ),
   );
-
+/*
   $items['node/add'] = array(
     'title' => 'add',
     'description' => 'add.',
@@ -47,7 +47,7 @@ function pushtape_kickstart_menus_menu() {
       'toolbar_break' => TRUE,
     ),
   );
-
+*/
     // @todo Remove this loop when we have a 'description callback' property.
   // Reset internal static cache of _node_types_build(), forces to rebuild the
   // node type information.
@@ -186,7 +186,7 @@ function pushtape_kickstart_menus_menu() {
     'title' => 'Content types',
     'description' => 'Manage content types for your Site.',
     'page callback' => 'drupal_goto',
-    'page arguments' => array('admin/pushtape/config/types/content'),
+    'page arguments' => array('admin/structure/types'),
     'access callback' => TRUE,
   );
   // Site settings > Advanced Site settings
@@ -249,7 +249,31 @@ function pushtape_kickstart_menus_menu_alter(&$items) {
       }
     }
   }
+//Changing titles
+// Content > Manage content
+  if (isset($items['admin/content'])) {
+    $items['admin/content']['parent'] = 'admin/pushtape/manage-content/actions';
+    $items['admin/content']['title'] = 'Manage content';
+    $items['admin/content']['weight'] = -15;
+    $items['admin/content']['type'] = MENU_NORMAL_ITEM;
+  }
+  // Content > Manage comments
+  if (isset($items['admin/content/comment'])) {
+    $items['admin/content/comment']['parent'] = 'admin/pushtape/manage-content/actions';
+    $items['admin/content/comment']['title'] = 'Manage comments';
+    $items['admin/content/comment']['weight'] = -14;
+    $items['admin/content/comment']['type'] = MENU_NORMAL_ITEM;
+  }
+
+
 /*
+  // Content > Add content
+  if (isset($items['node/add/add-content'])) {
+    $items['node/add/add-content']['parent'] = 'admin/pushtape/manage-content/actions';
+    $items['node/add/add-content']['title'] = 'Add content';
+    $items['node/add/add-content']['type'] |= MENU_NORMAL_ITEM;
+  }
+
   // tracks > Manage tracks
   if (isset($items['admin/pushtape/tracks'])) {
     $items['admin/pushtape/tracks']['parent'] = 'admin/pushtape/manage-tracks/actions';
@@ -274,26 +298,6 @@ function pushtape_kickstart_menus_menu_alter(&$items) {
     $items['admin/pushtape/albums/add']['parent'] = 'admin/pushtape/manage-albums/actions';
     $items['admin/pushtape/albums/add']['title'] = 'Add an album';
     $items['admin/pushtape/albums/add']['weight'] = -24;
-  }
-  // Content > Manage content
-  if (isset($items['admin/content'])) {
-    $items['admin/content']['parent'] = 'admin/pushtape/manage-content/actions';
-    $items['admin/content']['title'] = 'Manage content';
-    $items['admin/content']['weight'] = -15;
-    $items['admin/content']['type'] = MENU_NORMAL_ITEM;
-  }
-  // Content > Manage comments
-  if (isset($items['admin/content/comment'])) {
-    $items['admin/content/comment']['parent'] = 'admin/pushtape/manage-content/actions';
-    $items['admin/content/comment']['title'] = 'Manage comments';
-    $items['admin/content/comment']['weight'] = -14;
-    $items['admin/content/comment']['type'] = MENU_NORMAL_ITEM;
-  }
-  // Content > Add content
-  if (isset($items['node/add/add-content'])) {
-    $items['node/add/add-content']['parent'] = 'admin/pushtape/manage-content/actions';
-    $items['node/add/add-content']['title'] = 'Add content';
-    $items['node/add/add-content']['type'] |= MENU_NORMAL_ITEM;
   }
 
   // Disable a menu
@@ -350,6 +354,7 @@ function pushtape_kickstart_menus_init() {
   drupal_set_title(t('pushtape Guys Dashboard by Jirafe'));
 
   */
+  drupal_flush_all_caches();
 }
 
 /**
@@ -378,6 +383,7 @@ function pushtape_kickstart_menus_menu_link_alter(&$link) {
       $link['plid'] = $plid;
     }
   }
+
 }
 
 function _pushtape_kickstart_menu_find_router($link_path) {
@@ -393,7 +399,6 @@ function _pushtape_kickstart_menu_find_router($link_path) {
       break;
     }
   }
-
   return isset($router[$router_path]) ? $router[$router_path] : NULL;
 }
 

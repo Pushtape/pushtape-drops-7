@@ -1,15 +1,12 @@
-name = pushtape Kickstart Menus
-description = Demonstrate how to customize the administrative menus.
+name = Pushtape Kickstart Menus
+description = Custom administrative Toolbar.
 core = 7.x
-package = pushtape Kickstart
+package = Pushtape
 
+dependencies[] = advanced_help
 dependencies[] = toolbar_megamenu
-
+dependencies[] = features
+dependencies[] = menu
+features[features_api][] = api:1
+features[menu_links][] = management:node/add
 stylesheets[all][] = pushtape_kickstart_menus.css
-
-; Information added by drupal.org packaging script on 2012-08-09
-version = "7.x-2.0-beta1"
-core = "7.x"
-project = "pushtape_kickstart"
-datestamp = "1344530516"
-
