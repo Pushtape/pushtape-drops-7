@@ -1,0 +1,5 @@
+name = pushtape Kickstart inline help
+description = Injects inline help into various parts of pushtape Kickstart.
+core = 7.x
+dependencies[] = advanced_help
+dependencies[] = pushtape_kickstart_help

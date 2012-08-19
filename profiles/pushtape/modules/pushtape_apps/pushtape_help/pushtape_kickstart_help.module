@@ -1,0 +1,323 @@
+<?php
+
+/**
+ * @file
+ * Provides a "Getting Started" screen, with main help topics for Kickstart.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function pushtape_kickstart_help_menu() {
+  $items = array();
+
+  // View help topic.
+  $items['admin/help'] = array(
+    'title' => 'First Steps',
+    'description' => 'Your first steps in Pushtape Kickstart.',
+    'page callback' => 'advanced_help_topic_page',
+    'page arguments' => array('pushtape_kickstart_help', 'first-steps'),
+    'access arguments' => array('view advanced help topic'),
+    'file path' => drupal_get_path('module', 'advanced_help'),
+    'weight' => -200,
+  );
+  $items['admin/help/first-steps'] = array(
+    'title' => 'Introduction',
+    'description' => 'Your first steps in Pushtape Kickstart.',
+    'page callback' => 'advanced_help_topic_page',
+    'page arguments' => array('pushtape_kickstart_help', 'first-steps'),
+    'access arguments' => array('view advanced help topic'),
+    'file path' => drupal_get_path('module', 'advanced_help'),
+    'weight' => -200,
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+  // View help topic.
+  $items['admin/help/getting-started'] = array(
+    'title' => 'Help',
+    'description' => 'Find all the help you need to start using your site.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('_getting_started'),
+    'access arguments' => array('view advanced help topic'),
+    'weight' => -199,
+    'type' => MENU_LOCAL_TASK,
+);
+
+  return $items;
+}
+
+/**
+ * Implements hook_menu_alter().
+ */
+function pushtape_kickstart_help_menu_alter(&$items) {
+  $items['admin/tasks']['type'] =  MENU_CALLBACK;
+  $items['admin/index']['type'] = MENU_CALLBACK;
+}
+
+/**
+ * Page callback.
+ */
+function pushtape_kickstart_help_ajax_callback($type = 'ajax', $var) {
+  if ($type == 'ajax') {
+    $commands = array();
+    $help = variable_get('kickstart_help', array());
+    $help[$var] == TRUE ? $help[$var] = FALSE : $help[$var] = TRUE;
+    $help[$var] == TRUE ? $value = 'uncheck' : $value = 'check';
+    variable_set('kickstart_help', $help);
+  }
+}
+
+/**
+ * Implements hook_advanced_help_topic_alter().
+ */
+function pushtape_kickstart_help_advanced_help_topic_alter(&$output, $popup) {
+  preg_match_all('#\#\#(.*)\#\##', $output, $matches);
+  array_shift($matches);
+  foreach ($matches[0] as $match) {
+    $form = drupal_get_form('pushtape_kickstart_help_form_ajax', $match);
+    $output = str_replace('##' . $match . '##', render($form), $output);
+  }
+}
+
+/**
+ * Form callback.
+ */
+function pushtape_kickstart_help_form_ajax($form, &$form_state, $id) {
+  $values = variable_get('kickstart_help', array());
+  $form['changed_command_example'] = array(
+    '#title' => t(''),
+    '#type' => 'checkbox',
+    '#default_value' => isset($values[$id]) ? $values[$id] : FALSE,
+    '#ajax' => array(
+      'callback' => 'pushtape_kickstart_ajax_help_checked_callback',
+    ),
+  );
+  return $form;
+}
+
+/**
+ * Ajax callback.
+ */
+function pushtape_kickstart_ajax_help_checked_callback($form, $form_state) {
+  $id = $form_state['build_info']['args'][0];
+
+  $help = variable_get('kickstart_help', array());
+  $help[$id] == TRUE ? $help[$id] = FALSE : $help[$id] = TRUE;
+  $help[$id] == TRUE ? $value = 'uncheck' : $value = 'check';
+  variable_set('kickstart_help', $help);
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function pushtape_kickstart_help_block_info() {
+  $blocks['pushtape_kickstart_ressources'] = array(
+    'info' => t('Kickstart Help'),
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => implode("\n", array(
+      'help/pushtape_kickstart_help/getting-started',
+      'admin/getting-started'
+    )),
+    'region' => 'content',
+    'status' => TRUE,
+    'weight' => 50,
+  );
+  $blocks['pushtape_kickstart_community'] = array(
+    'info' => t('Kickstart community'),
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => implode("\n", array(
+      'help/pushtape_kickstart_help/getting-started',
+      'admin/getting-started'
+    )),
+    'region' => 'content',
+    'status' => TRUE,
+    'weight' => 51,
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ *
+ * This hook generates the contents of the blocks themselves.
+ */
+function pushtape_kickstart_help_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'pushtape_kickstart_ressources':
+      $block['subject'] = t('Additional Site Builder Resources');
+      $block['content'] = pushtape_kickstart_help_contents($delta);
+      break;
+    case 'pushtape_kickstart_community':
+      $block['subject'] = t('Connect with the Community');
+      $block['content'] = pushtape_kickstart_help_contents($delta);
+      break;
+  }
+  return $block;
+}
+
+/**
+ * A module-defined block content function.
+ */
+function pushtape_kickstart_help_contents($which_block) {
+  switch ($which_block) {
+    case 'pushtape_kickstart_ressources':
+      $links = array(
+        l(t('Drupal Pushtape Site Builder Guide'), 'http://drupal.org/project/pushtape/user-guide'),
+        l(t('Pushtape Kickstart User Guide (Link TBD)'), ''),
+        l(t('Pushtape Videos'), 'https://vimeo.com/channels/pushtape'),
+        l(t('Books about Drupal'), 'http://drupal.org/books'),
+      );
+      break;
+
+    case 'pushtape_kickstart_community':
+      $links = array(
+        t('IRC, freenode.net: #pushtape (<a href="@url">Setting up and using IRC</a>)', array('@url' => 'http://drupal.org/irc/setting-up')),
+        l(t('Pushtape.com'), 'http://pushtape.com'),
+        l(t('drupal.org'), 'http://drupal.org'),
+        l(t('Drupal Pushtape Discussions'), 'http://www.community.pushtape.com/'),
+        l(t('Drupal Pushtape Q&A'), 'http://www.community.pushtape.com'),
+      );
+      break;
+  }
+  return array('#markup' => implode('<br />', $links) . '<br />');
+}
+
+function _getting_started() {
+  drupal_set_breadcrumb(array(l(t('Home'), '<front>'), l(t('Help'), 'admin/advanced_help'), l(t('Getting Started'), 'admin/getting-started')));
+
+  $form = array();
+  $form['#attached']['css'] = array(drupal_get_path('module', 'pushtape_kickstart_help') . '/help/pushtape_kickstart_help.css');
+  $form['#attached']['js'] = array(drupal_get_path('module', 'pushtape_kickstart_help') . '/pushtape_kickstart_help.js');
+  $form['help_text'] = array(
+    '#weight' => -12,
+    '#markup' => "<div id='pushtape-kickstart-help'><p>Find all the help you need to start using your site.</p></div>",
+  );
+
+  // Search
+  $form['search']['#prefix'] = '<div class="search clearfix">';
+  $form['search']['text'] = array(
+    '#type' => 'textfield',
+    '#weight' => -10,
+    '#attributes' => array('placeholder' => t("Can't find what you are looking for? Search Pushtape.com")),
+  );
+  $form['search']['submit'] = array(
+    '#type' => 'link',
+    '#title' => t('Search'),
+    '#href' => '',
+    '#attributes' => array('class' => array('search-submit'), 'target' => array('_blank')),
+    '#states' => array(
+      'disabled' => array(
+        '#edit-text' => array('filled' => false),
+      ),
+    ),
+  );
+  $form['search']['#suffix'] = '</div>';
+
+  // Track management
+  $form['track_management'] = array(
+    '#type' => 'container',
+    '#attributes' => array('class' => array('track-management')),
+  );
+  $form['track_management']['track_management_title'] = array(
+    '#type' => 'item',
+    '#title' => t('Track Management'),
+    '#attributes' => array('class' => array('track-management-title')),
+  );
+  // Create a track
+  $form['track_management']['create_track'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Create a Track') . '<span class="sub-title"> - ' . t('How to create a track, add variations and update attributes.') . '</span>',
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+  $form['track_management']['create_track']['content'] = array(
+    '#type' => 'item',
+    '#markup' => '<p>You can <a href="/admin/pushtape/tracks">create a track</a> by clicking on Tracks in the menu and then selecting Add Track. Variations of a track (for size, color, etc) that affect pricing can be added inline on the New Track page. <a href="http://www.Pushtape.com/faq">Learn More on DC.org</a></p><iframe width="420" height="315" src="http://www.youtube.com/embed/wTqk7V0dkPQ?rel=0" framebalbum="0" allowfullscreen></iframe>',
+  );
+  // Manage track
+  $form['track_management']['manage_track'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Manage Tracks') . '<span class="sub-title"> - ' . t('How to bulk update prices, enabled/disabled states and delete.') . '</span>',
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+  $form['track_management']['manage_track']['content'] = array(
+    '#type' => 'item',
+    '#markup' => '<p>The Pushtape Kickstart management screens includes a robust track listing creen that enables you to bulk update many different attributes and change variations (like color or price) right there in the list. The listing also includes advanced filtering for finding that one track in thousands. <a href="http://www.Pushtape.com/faq">Learn More on DC.org</a></p>',
+  );
+  // Track display
+  $form['track_management']['track_display'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Track Display') . '<span class="sub-title"> - ' . t('How to configure different displays for one track.') . '</span>',
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+  $form['track_management']['track_display']['content'] = array(
+    '#type' => 'item',
+    '#markup' => '<p>TBD</p>',
+  );
+  // Track images
+  $form['track_management']['track_images'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Track Images') . '<span class="sub-title"> - ' . t('Display and configure images that show up with tracks.') . '</span>',
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+  $form['track_management']['track_images']['content'] = array(
+    '#type' => 'item',
+    '#markup' => '<p>Track images can be :
+    <ul>
+      <li>1) part of the track variation, if the image changes based on an attribute like color or size</li>
+      <p>or</p>
+      <li>2) part of the track display if the image does not need to change when the user selects a different attribute. Additionally, track images use Drupal’s image style engine to make sure the images are fully optimized and the right size.</li>
+    </ul>
+    <a href="/admin/config/media/image-styles">Go to Image Styles</a>
+    <a href="http://www.Pushtape.com/faq">Learn More on DC.org</a></p>',
+  );
+
+  // Order management
+  $form['album_management'] = array(
+    '#type' => 'container',
+    '#attributes' => array('class' => array('album-management')),
+  );
+  $form['album_management']['album_management_title'] = array(
+    '#type' => 'item',
+    '#title' => t('Order Management'),
+    '#attributes' => array('class' => array('album-management-title')),
+  );
+  // Edit an album
+  $form['album_management']['edit_album'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Edit an Order') . '<span class="sub-title"> - ' . t('How to change an album status and view the album history.') . '</span>',
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+  $form['album_management']['edit_album']['content'] = array(
+    '#type' => 'item',
+    '#markup' => '<p>Quick editing an album gives you access to update a status and viewing the album history. But Drupal Pushtape also gives you the ability to fully edit the album by changing the quantity, adding other tracks, changing shipping or billing information, and we even allow you to modify or add a payment. <a href="/admin/pushtape/albums">Go to Order Screen</a></p><iframe width="420" height="315" src="http://www.youtube.com/embed/D4rfkoTaOeI?rel=0" framebalbum="0" allowfullscreen></iframe>',
+  );
+  // Manage albums
+  $form['album_management']['manage_albums'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Manage Orders') . '<span class="sub-title"> - ' . t('How to bulk update statuses and delete albums.') . '</span>',
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+  $form['album_management']['manage_albums']['content'] = array(
+    '#type' => 'item',
+    '#markup' => '<p>The bulk update and filtering of the album management screen gives you tools to not only find the right album, but also to edit multiple albums at once. For example, you could find all abandoned shopping carts that are three days old and choose to delete them. <a href="/admin/pushtape/albums">Go to Order Screen</a></p>',
+  );
+
+  // site Settings
+  $form['site_settings'] = array(
+    '#type' => 'container',
+    '#attributes' => array('class' => array('site-settings')),
+  );
+  $form['site_settings']['site_settings_title'] = array(
+    '#type' => 'item',
+    '#title' => t('site Settings'),
+    '#attributes' => array('class' => array('site-settings-title')),
+  );
+
+  return $form;
+}
