@@ -23,7 +23,6 @@ function pushtape_discography_panelizer_defaults() {
   $panelizer->pipeline = 'ipe';
   $panelizer->contexts = array();
   $panelizer->relationships = array();
-  $panelizer->did = 1;
   $panelizer->access = array();
   $panelizer->view_mode = '';
   $panelizer->css_class = '';
@@ -227,7 +226,6 @@ function pushtape_discography_panelizer_defaults() {
   $panelizer->pipeline = 'ipe';
   $panelizer->contexts = array();
   $panelizer->relationships = array();
-  $panelizer->did = 3;
   $panelizer->access = array();
   $panelizer->view_mode = '';
   $panelizer->css_class = '';

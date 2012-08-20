@@ -408,7 +408,7 @@ function pushtape_discography_field_default_fields() {
       'translatable' => '0',
       'type' => 'entityreference',
     ),
-'field_instance' => array(
+    'field_instance' => array(
       'bundle' => 'album',
       'default_value' => NULL,
       'deleted' => '0',
