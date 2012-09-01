@@ -6,7 +6,7 @@
   RLD['LayoutManager'] = (function build() {
 
     var plugin = 'LayoutManager';
-    
+
     function LayoutManager() {
       // Ui components.
       this.options = {
@@ -108,8 +108,6 @@
      * A layout is a set of regions, in the context of a step, laid out on a grid.
      */
     LayoutManager.prototype.registerLayoutStep = function (step) {
-      // Add the Layout to the LayoutList.
-      var fn = $.proxy(this.eventBroadcaster, this);
       // Add the LayoutSteps to the LayoutList.
       this.layoutList.addItem({
         'step': step,
@@ -151,10 +149,11 @@
         .empty()
         .addClass('rld-container-' + gridColumns)
         .append(this.buildAddRegionButton('top'))
-        .append(this.buildGridOverlay(gridColumns))
+        .append(this.buildGridUnderlay(gridColumns))
         .append(layout.build())
         .append(this.buildAddRegionButton('bottom'))
       );
+
       this.topic('stepActivated').publish(step);
     };
     /**
@@ -173,9 +172,9 @@
     /**
      *
      */
-    LayoutManager.prototype.buildGridOverlay = function (columns) {
+    LayoutManager.prototype.buildGridUnderlay = function (columns, height) {
       var $overlay = $('<div>', {
-        'class': 'rld-grid-overlay clearfix'
+        'class': 'rld-grid-underlay clearfix'
       });
       var cols = Number(columns);
       var fn;
@@ -187,43 +186,7 @@
         );
         cols -= 1;
       }
-      fn = $.proxy(this.expandGridOverlay, $overlay);
-      $overlay
-      .bind('mousedown.ResponsiveLayoutDesigner', fn);
-      fn = $.proxy(this.contractGridOverlay, $overlay);
-      $overlay
-      .bind('mouseup.ResponsiveLayoutDesigner', fn);
-      
       return $overlay;
-    };
-    /**
-     *
-     */
-    LayoutManager.prototype.expandGridOverlay = function (event) {
-      var $overlay = this;
-      var height = $overlay.parent().innerHeight();
-      $overlay.animate({
-        height: height,
-        'opacity': 0.4545
-      })
-      .css({
-        'z-index': 100
-      });
-      
-    };
-    /**
-     *
-     */
-    LayoutManager.prototype.contractGridOverlay = function (event) {
-      var $overlay = this;
-      var height = $overlay.parent().innerHeight();
-      $overlay.animate({
-        height: 0,
-        'opacity': 1
-      })
-      .css({
-        'z-index': 0
-      });
     };
     /**
      *
@@ -235,7 +198,7 @@
       })
       .append(
         $('<button>', {
-          'text': 'Add new region'
+          'text': 'Add region to ' + location
         })
         .bind('click', {'location': location}, handler)
       );
@@ -250,23 +213,33 @@
       this.candidateRegionName = '';
       this.candidateRegionMachineName = '';
       // Dialog pieces.
-      var $input = $('<input>', { 
+      var $input = $('<input>', {
         'type': 'text'
       });
       var $machineName = $('<div>', {
-        'text': ''
+        'text': '',
+        'class': 'rld-description'
       });
-      // Create the dialog callbacks.
-      var saveCallback = $.Callbacks();
-      
-      var save = $.proxy(this.requestRegionAdd, this, event.data.location);
-      // This here is expected to be the div#dialog, which it will be
-      // when the cancel function is called by the dialog.
-      var cancel = function () {
-        $(this).dialog('destroy');
-      };
-      saveCallback.add(save);
-      saveCallback.add(cancel);
+      var $availableRegionSelectbox = $('<select>', {
+        'name': 'available-region-select'
+      })
+      .append(
+        $('<option>', {
+          'text': 'No selection',
+          'value': 'null',
+          'selected': 'selected'
+        })
+      );
+      // Populate the available regions select box with a list of regions.
+      var availableRegions = this.availableRegionList.info('items');
+      var i;
+      for (i = 0; i < availableRegions.length; i++) {
+        $('<option>', {
+          'text': availableRegions[i].label || 'No label',
+          'value': availableRegions[i].machine_name
+        })
+        .appendTo($availableRegionSelectbox);
+      }
       // Machine name checking callback.
       var machineNameCheck = $.proxy(this.regionList.guaranteeMachineName, this.regionList);
       // Machine name writing callback.
@@ -295,11 +268,19 @@
         }
       }, this, machineNameCheck, $input, $machineName);
       // Create and insert the dialog.
-      $('<div>', {
+      var $dialog = $('<div>', {
         'class': 'rld-dialog'
-      })
+      });
+      if (availableRegions.length > 0) {
+        $dialog
+        .append($('<label>', {
+          'text': 'Existing region'
+        }))
+        .append($availableRegionSelectbox);
+      };
+      $dialog
       .append($('<label>', {
-        'text': 'Region name'
+        'text': 'New region'
       }))
       .append($input)
       .append($machineName)
@@ -314,23 +295,45 @@
       })
       .dialog({
         'title': 'Add a region',
-        'resizable': false,
-        'modal': true,
-        'buttons': {
-          'Save': saveCallback.fire,
-          'Cancel': cancel
-        }
+        'resizable': true,
+        'modal': true
       });
-      /* this.regionList.insertItem({
-        'machine_name': 'some-new-region',
-        'label': 'My new region'
-      }, event.data.location); */
-      
+      // This is a touch circular, but we need the callback to have the context of the application,
+      // not the dialog box.
+      // Create the dialog callbacks.
+      var buttons = {};
+      var saveCallback = $.Callbacks();
+      var save = $.proxy(this.requestRegionAdd, this, event.data.location, $dialog);
+      // This here is expected to be the div#dialog, which it will be
+      // when the cancel function is called by the dialog.
+      var cancel = function () {
+        $(this).dialog('destroy');
+      };
+      saveCallback.add(save);
+      saveCallback.add(cancel);
+      buttons['Save'] = saveCallback.fire;
+      buttons['Cancel'] = cancel;
+      $dialog.dialog('option', 'buttons', buttons);
     };
     /**
      *
      */
-    LayoutManager.prototype.requestRegionAdd = function (location, event) {
+    LayoutManager.prototype.requestRegionAdd = function (location, $dialog, event) {
+      // If an available region is selected, add it.
+      var region;
+      var $selectedAvailableRegion = $dialog.find('[name="available-region-select"]').find('option').filter(':selected');
+      if ($selectedAvailableRegion.length > 0 && $selectedAvailableRegion.val() !== 'null') {
+        var region = this.availableRegionList.getItem($selectedAvailableRegion.val());
+        this.regionList.insertItem({
+          'machine_name': region.machine_name,
+          'label': region.label
+        }, location);
+        // Remove the region from the list of available regions.
+        this.availableRegionList.removeItem(region);
+        return; // This isn't the best interaction. It's just stub code for now.
+      }
+      // this.availableRegionList.removeItem(region.machine_name);
+      // If a new region is named, add it.
       this.regionList.insertItem({
         'machine_name': this.candidateRegionMachineName,
         'label': this.candidateRegionName
@@ -350,6 +353,8 @@
     LayoutManager.prototype.requestRegionRemove = function (event, layoutStep, region) {
       // Remove the item from the regionList.
       this.regionList.removeItem(region);
+      // Add the region to the list of available regions.
+      this.availableRegionList.addItem(region);
     };
     /**
      *
@@ -415,7 +420,7 @@
     };
 
     return LayoutManager;
-    
+
   }());
 
 }(ResponsiveLayoutDesigner, jQuery));

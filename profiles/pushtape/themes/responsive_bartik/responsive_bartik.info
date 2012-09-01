@@ -30,3 +30,10 @@ regions[footer_fourthcolumn] = Footer fourth column
 regions[footer] = Footer
 
 settings[shortcut_module_link] = 0
+
+
+; Information added by drush on 2012-09-01
+version = ""
+project = "responsive_bartik"
+datestamp = "1346501468"
+

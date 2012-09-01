@@ -1,0 +1,44 @@
+name = Panopoly Admin
+description = Administrative dashboard and related editing interfaces.
+core = 7.x
+package = Panopoly
+php = 5.2.4
+project = panopoly_admin
+dependencies[] = admin
+dependencies[] = apps
+dependencies[] = backports
+dependencies[] = ctools
+dependencies[] = date_popup_authored
+dependencies[] = features
+dependencies[] = module_filter
+dependencies[] = page_manager
+dependencies[] = simplified_menu_admin
+dependencies[] = strongarm
+dependencies[] = views
+dependencies[] = views_bulk_operations
+features[ctools][] = page_manager:pages_default:1
+features[ctools][] = strongarm:strongarm:1
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:1
+features[page_manager_handlers][] = node_edit_panel_context
+features[page_manager_pages][] = panopoly_admin_apps
+features[page_manager_pages][] = panopoly_admin_content
+features[page_manager_pages][] = panopoly_admin_dashboard
+features[page_manager_pages][] = panopoly_admin_media
+features[page_manager_pages][] = panopoly_admin_users
+features[user_role][] = administrative user
+features[user_role][] = editorial user
+features[variable][] = admin_toolbar
+features[variable][] = user_admin_role
+features[views_view][] = panopoly_admin_content
+features[views_view][] = panopoly_admin_media
+features[views_view][] = panopoly_admin_users
+scripts[] = panopoly_admin.js
+stylesheets[all][] = panopoly_admin.css
+
+
+; Information added by drush on 2012-09-01
+version = ""
+project = "panopoly_admin"
+datestamp = "1346501452"
+

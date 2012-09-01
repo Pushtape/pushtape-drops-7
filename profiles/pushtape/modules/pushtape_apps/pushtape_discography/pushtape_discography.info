@@ -77,3 +77,11 @@ features[views_view][] = releases
 features[views_view][] = tracks
 files[] = test/pushtape_discography.test
 project status url = http://apps.rosenstrauch.com/fserver
+
+
+; Information added by drush on 2012-09-01
+version = "7.x-1.x-panels-dev"
+core = "7.x"
+project = "pushtape_discography"
+datestamp = "1346501416"
+

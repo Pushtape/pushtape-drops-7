@@ -22,10 +22,7 @@
       var plugin = 'InitClass';
 
       function InitClass() {
-        this.$editor = $('<div>', {});
-        this.listeners = {};
-        this.topics = {};
-        this.items = [];
+        // Don't set anything in here, or all objects will inherit these values.
       }
       /**
        * Safe logging function.
@@ -42,6 +39,9 @@
        *
        */
       InitClass.prototype.init = function (opts) {
+        // Create a topics property for pub/sub event handling.
+        this.topics = {};
+        // Process the options for this instance.
         var prop;
         var options = ('options' in this) ? this.options : {};
         options = $.extend({}, options, opts);
@@ -193,7 +193,7 @@
      */
     ResponsiveLayoutDesigner.prototype.setup = function () {
       // Merge in user options.
-      var regionList,stepList, gridList;
+      var regionList, availableRegionList, stepList, gridList;
       // Create the application root node.
       this.$editor = $('<div>', {
         'class': 'rld-application'
@@ -201,10 +201,15 @@
       // Instansiate the LayoutManager.
       // this.regions is a simple object. The RegionList provides methods to
       // manipulate this simple set.
+      regionList = new RLD.RegionList();
+      availableRegionList = new RLD.RegionList();
       if ('regions' in this) {
-        regionList = new RLD.RegionList({
-          'regions': this.regions
-        });
+        if ('active' in this.regions) {
+          regionList.addItem(this.regions.active);
+        }
+        if ('available' in this.regions) {
+          availableRegionList.addItem(this.regions.available);
+        }
         delete this.regions;
       }
       else {
@@ -232,9 +237,17 @@
       this.layoutManager = new RLD.LayoutManager({
         'stepList': stepList,
         'regionList': regionList,
+        'availableRegionList': availableRegionList,
+        'gridList': gridList
+      });
+      // Create a layoutPreviewer.
+      this.layoutPreviewer = new RLD.LayoutPreviewer({
+        'stepList': stepList,
         'gridList': gridList
       });
       // Define topics that will pass-through.
+      this.topic('stepActivated');
+      this.transferSubscriptions(this.layoutPreviewer);
       this.topic('regionOrderUpdated');
       this.topic('layoutSaved');
       this.topic('regionAdded');
@@ -242,7 +255,6 @@
       this.topic('regionResized');
       this.topic('regionResizing');
       this.topic('regionResizeStarted');
-      this.topic('stepActivated');
       // Transfer pass-through subscriptions.
       this.transferSubscriptions(this.layoutManager);
     };

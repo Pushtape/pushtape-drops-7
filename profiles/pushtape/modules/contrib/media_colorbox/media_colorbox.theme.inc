@@ -21,6 +21,7 @@
  */
 function theme_media_colorbox($variables) {
   $entity_id = $variables['entity_id'];
+  $file_id = $variables['file_id'];
   $field = $variables['field'];
   $field_name = isset($field['field_name']) ? $field['field_name'] : '';
   $settings = $variables['display_settings'];
@@ -65,11 +66,20 @@ function theme_media_colorbox($variables) {
       $gallery_id = '';
   }
 
-  $dimensions = explode('x', $settings['dimensions']);
-  $initialWidth = $dimensions[0];
-  $initialHeight = $dimensions[1];
+  //load file and render for select view mode
+  if($file_id!=NULL){
+   $file = file_load($file_id);
+   $fview = file_view($file, $settings['file_view_mode'], $variables['langcode']);
+   $text = drupal_render($fview);
+  }elseif(isset($variables['item'])) {
+   $text=drupal_render($variables['item']);
+  }
+  //strip anchor tags as rendered output will be wrapped by another anchor tag
+  //fix for issue #1477662
+  $stripped_text = media_colorbox_strip_only($text, 'a');
   $output = theme('link', array(
-    'text' => drupal_render($variables['item']),
+    //'text' => drupal_render($variables['item']),
+    'text' => $stripped_text,
     'path' => $variables['path'],
     'options' => array(
       'html' => TRUE,
@@ -78,10 +88,21 @@ function theme_media_colorbox($variables) {
         'class' => 'media-colorbox ' . $variables['item_class'],
         'style' => $variables['item_style'],
         'rel' => $gallery_id,
-        'data-mediaColorboxInitialWidth' => $initialWidth,
-        'data-mediaColorboxInitialHeight' => $initialHeight,
+        'data-mediaColorboxFixedWidth' => $settings['fixed_width'],
+        'data-mediaColorboxFixedHeight' => $settings['fixed_height'],
+        'data-mediaColorboxAudioPlaylist' => $settings['audio_playlist'],
       ),
     ),
   ));
+
   return $output;
+}
+
+function media_colorbox_strip_only($str, $tags) {
+    if(!is_array($tags)) {
+        $tags = (strpos($str, '>') !== false ? explode('>', str_replace('<', '', $tags)) : array($tags));
+        if(end($tags) == '') array_pop($tags);
+    }
+    foreach($tags as $tag) $str = preg_replace('#</?'.$tag.'[^>]*>#is', '', $str);
+    return $str;
 }

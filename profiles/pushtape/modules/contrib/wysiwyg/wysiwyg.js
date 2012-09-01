@@ -59,7 +59,7 @@ Drupal.behaviors.attachWysiwyg = {
       // Directly attach this editor, if the input format is enabled or there is
       // only one input format at all.
       if ($this.is(':input')) {
-        Drupal.wysiwygAttach(context, params[format]);
+        Drupal.wysiwygAttach(context, params[format], settings);
       }
       // Attach onChange handlers to input format selector elements.
       if ($this.is('select')) {
@@ -67,17 +67,40 @@ Drupal.behaviors.attachWysiwyg = {
           // If not disabled, detach the current and attach a new editor.
           Drupal.wysiwygDetach(context, params[format]);
           format = 'format' + this.value;
-          Drupal.wysiwygAttach(context, params[format]);
+          Drupal.wysiwygAttach(context, params[format], settings);
         });
       }
-      // Detach any editor when the containing form is submitted.
-      $('#' + params.field).parents('form').submit(function (event) {
-        // Do not detach if the event was cancelled.
-        if (event.isDefaultPrevented()) {
-          return;
+
+      var form_instance = $('#' + params.field).parents('form');
+      var event_sources = [ {'instance' : form_instance, 'event' : 'submit'} ];
+
+      // CTools modal content support
+      var ctools_modal_content = $('#' + params.field).closest('div.ctools-modal-content');
+      if (ctools_modal_content.length > 0) {
+        event_sources[0].index = 0;
+        var ctools_close_instance = ctools_modal_content.find('a.close');
+        event_sources.push({'instance' : ctools_close_instance, 'event' : 'click', "index" : 0});
+      }
+
+      for (index = 0; index < event_sources.length; index++) {
+        var event_name = event_sources[index].event;
+
+        // Append handler
+        event_sources[index].instance.bind(event_name, function (event) {
+          // Do not detach if the event was cancelled.
+          if (event.isDefaultPrevented()) {
+            return;
+          }
+          Drupal.wysiwygDetach(context, params[format], 'serialize');
+        });
+
+        // Insert our handler at a specific position
+        var events_data = event_sources[index].instance.data('events');
+        var event_handlers = events_data[event_name];
+        if (typeof event_sources[index].index == 'number' && event_handlers.length > 1) {
+          event_handlers.splice(event_sources[index].index, 0, event_handlers.pop());
         }
-        Drupal.wysiwygDetach(context, params[format], 'serialize');
-      });
+      }
     });
   },
 
@@ -113,7 +136,7 @@ Drupal.behaviors.attachWysiwyg = {
  * @param params
  *   An object containing input format parameters.
  */
-Drupal.wysiwygAttach = function(context, params) {
+Drupal.wysiwygAttach = function(context, params, settings) {
   if (typeof Drupal.wysiwyg.editor.attach[params.editor] == 'function') {
     // (Re-)initialize field instance.
     Drupal.wysiwyg.instances[params.field] = {};
@@ -160,6 +183,9 @@ Drupal.wysiwygAttach = function(context, params) {
  * @see Drupal.detachBehaviors
  */
 Drupal.wysiwygDetach = function (context, params, trigger) {
+  if (typeof Drupal.wysiwyg.instances[params.field] == 'undefined') {
+    return;
+  }
   trigger = trigger || 'unload';
   var editor = Drupal.wysiwyg.instances[params.field].editor;
   if (jQuery.isFunction(Drupal.wysiwyg.editor.detach[editor])) {

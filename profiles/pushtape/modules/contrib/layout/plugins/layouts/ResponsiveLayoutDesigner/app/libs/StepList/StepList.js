@@ -65,7 +65,7 @@
         var i, k, step, breakMin, breakMax, size;
         for (i = 0; i < this.items.length; i++) {
           step = this.items[i];
-          breakMin = Number(step.info('breakpoint'));
+          breakMin = Number(step.info('breakpoint')) || 0;
           if (this.items[i + 1] !== undefined) {
             breakMax = Number(this.items[i + 1].info('breakpoint'));
             size = breakMax - breakMin;
@@ -77,7 +77,7 @@
           else {
             // The largest step should be at least 600. If it exceeds 600, it needs
             // an uppder bound, so we add 100 to its breakpoint size.
-            size = (breakMin < 600) ? 600 : breakMin + 100;
+            size = (breakMin < 600) ? 600 : breakMin + 250;
           }
           this.items[i].info('size', size);
         }

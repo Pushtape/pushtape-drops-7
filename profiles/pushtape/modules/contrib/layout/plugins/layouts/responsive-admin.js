@@ -27,12 +27,26 @@ Drupal.behaviors.responsiveLayoutAdmin = {
 Drupal.responsiveLayout.init = function() {
   // Initialize region list and per-breakpoint columns.
   var regionList = [];
+  var regionNames = {};
   var layoutConfig = JSON.parse($('#edit-layout-settings-layout-responsive-regions').val());
   for (var regionIndex in layoutConfig.regions) {
     regionList.push({
       'machine_name': layoutConfig.regions[regionIndex].name,
       'label': layoutConfig.regions[regionIndex].admin_title,
     });
+    regionNames[layoutConfig.regions[regionIndex].name] = '';
+  }
+
+  // More regions that are available for this layout to use (but not currently
+  // in use).
+  var availableRegionList = [];
+  for (var existingRegionName in Drupal.settings.responsiveLayout.defaultRegions) {
+    if (!(existingRegionName in regionNames)) {
+      availableRegionList.push({
+        'machine_name': existingRegionName,
+        'label': Drupal.settings.responsiveLayout.defaultRegions[existingRegionName].admin_title
+      });
+    }
   }
 
   // Build a list of grids for the editor.
@@ -68,7 +82,10 @@ Drupal.responsiveLayout.init = function() {
 
   // Instantiate a layout designer.
   this.editor = new ResponsiveLayoutDesigner({
-    'regions': regionList,
+    'regions': {
+      'active': regionList,
+      'available': availableRegionList
+    },
     'steps': breakpointList,
     'grids': gridList,
   });

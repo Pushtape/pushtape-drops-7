@@ -63,6 +63,8 @@ Drupal.wysiwyg.editor.attach.tinymce = function(context, params, settings) {
   ed.onEvent.add(function(ed, e) {
     Drupal.wysiwyg.activeId = ed.id;
   });
+  // Tell TinyMCE DOM has been loaded for AJAX
+  tinymce.dom.Event.domLoaded = true;
   // Make toolbar buttons wrappable (required for IE).
   ed.onPostRender.add(function (ed) {
     // var $toolbar = $('<div class="wysiwygToolbar"></div>');

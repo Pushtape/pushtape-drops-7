@@ -4,3 +4,10 @@ core = 7.x
 package = UUID
 configure = admin/config/system/uuid
 files[] = uuid.test
+
+
+; Information added by drush on 2012-09-01
+version = ""
+project = "uuid"
+datestamp = "1346501443"
+

@@ -3,3 +3,10 @@ description = "Provides a field type that stores media-specific data. <em>Deprec
 package = Media
 core = 7.x
 dependencies[] = media
+
+
+; Information added by drush on 2012-09-01
+version = ""
+project = "media"
+datestamp = "1346501465"
+

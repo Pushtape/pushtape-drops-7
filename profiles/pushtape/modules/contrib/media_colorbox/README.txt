@@ -11,14 +11,24 @@ CONFIGURATION
 -------------
 
 1. For your configured media field, go to "Manage display" for the content type 
-   with that field and choose the "Media Colorbox" format, and configure it. 
-   Choose the view mode of the file using "File view mode", and the view mode 
-   used within Colorbox using "Colorbox view mode".
+   with that field and choose the "Media Colorbox" formatter, and configure it. 
+   Choose the view mode of the file using "File view mode" for how the media file 
+   will be displayed on the page, and the view mode used within Colorbox using 
+   "Colorbox view mode".
 
 2. If you are using the Media module to display fields, configure the chosen
    view modes by navigating to:
 
    Administration » Configuration » Media » File types » Manage display
+   
+   Select the 'Colorbox Link' formatter for an image or text field, this will create 
+   a Colorbox link to the entity displaying the 'Colorbox view mode' inside the 
+   Colorbox.
+   
+   The 'Colorbox Link' formatter is only available for file entities (not node, user, 
+   taxonomy or any other type of entity).  Therefore, it is not very useful on any but 
+   'Default' view mode for the file type being configured - unless you use the 'Rendered file' 
+   formatter for a display setting and select a view mode that uses 'Colorbox Link'.
 
    If you are directly using a file field, configure the chosen view modes.
    You may want to create additional view modes using hook_entity_info_alter()

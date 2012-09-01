@@ -185,6 +185,7 @@ function wysiwyg_ckeditor_settings($editor, $config, $theme) {
     // @todo Check whether completely disabling ProcessHTMLEntities is an option.
     'entities_latin' => FALSE,
     'entities_greek' => FALSE,
+    'global_basepath_var' => 'CKEDITOR_BASEPATH',
   );
 
   // Add HTML block format settings; common block formats are already predefined

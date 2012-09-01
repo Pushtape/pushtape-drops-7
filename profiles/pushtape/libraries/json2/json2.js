@@ -19,16 +19,16 @@
     <link rel="icon" type="image/x-icon" href="/favicon.png" />
 
     <meta content="authenticity_token" name="csrf-param" />
-<meta content="322nz6fSWkY/984KPjO01qoYnj4dzIOLCMwLyz32wIw=" name="csrf-token" />
+<meta content="jvhsffprrdYFmj1oW2Uclox16vPwW8eTM2y4z4SIou0=" name="csrf-token" />
 
-    <link href="https://a248.e.akamai.net/assets.github.com/assets/github-aa74dacf5339666c7dda6ce74842247a83f06cc4.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="https://a248.e.akamai.net/assets.github.com/assets/github2-def06fa279d68b9344adf199366051353dd73b03.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="https://a248.e.akamai.net/assets.github.com/assets/github-76fdff95b63cf610ce8628f944301e049c50b361.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="https://a248.e.akamai.net/assets.github.com/assets/github2-a2d333a1fd790f13b3c38ae51111c0acdbca7b65.css" media="screen" rel="stylesheet" type="text/css" />
     
 
 
     <script src="https://a248.e.akamai.net/assets.github.com/assets/frameworks-cc8431500f70fcd18c6da029472b59d6c39d0d95.js" type="text/javascript"></script>
     
-    <script defer="defer" src="https://a248.e.akamai.net/assets.github.com/assets/github-126f71da99cf4f4e7bab67c56d7c3228c63be61b.js" type="text/javascript"></script>
+    <script defer="defer" src="https://a248.e.akamai.net/assets.github.com/assets/github-ed8d1f4d6dc4e181c0ed39d6e5288ab66f46509f.js" type="text/javascript"></script>
     
     
 
@@ -36,7 +36,7 @@
     <meta property="og:title" content="JSON-js"/>
     <meta property="og:type" content="githubog:gitrepository"/>
     <meta property="og:url" content="https://github.com/douglascrockford/JSON-js"/>
-    <meta property="og:image" content="https://a248.e.akamai.net/assets.github.com/images/gravatars/gravatar-140.png?1329920549"/>
+    <meta property="og:image" content="https://a248.e.akamai.net/assets.github.com/images/gravatars/gravatar-user-420.png?1345673561"/>
     <meta property="og:site_name" content="GitHub"/>
     <meta property="og:description" content="JSON in JavaScript. Contribute to JSON-js development by creating an account on GitHub."/>
 
@@ -56,8 +56,8 @@
       <div id="header" class="true clearfix">
         <div class="container clearfix">
           <a class="site-logo" href="https://github.com/">
-            <img alt="GitHub" class="github-logo-4x" height="30" src="https://a248.e.akamai.net/assets.github.com/images/modules/header/logov7@4x.png?1337118065" />
-            <img alt="GitHub" class="github-logo-4x-hover" height="30" src="https://a248.e.akamai.net/assets.github.com/images/modules/header/logov7@4x-hover.png?1337118065" />
+            <img alt="GitHub" class="github-logo-4x" height="30" src="https://a248.e.akamai.net/assets.github.com/images/modules/header/logov7@4x.png?1337118066" />
+            <img alt="GitHub" class="github-logo-4x-hover" height="30" src="https://a248.e.akamai.net/assets.github.com/images/modules/header/logov7@4x-hover.png?1337118066" />
           </a>
 
 
@@ -85,6 +85,7 @@
 
             <div class="site hfeed" itemscope itemtype="http://schema.org/WebPage">
       <div class="container hentry">
+        
         <div class="pagehead repohead instapaper_ignore readability-menu">
         <div class="title-actions-bar">
           
@@ -96,10 +97,10 @@
 
 
           <li>
-            <span class="star-button"><a href="/login?return_to=%2Fdouglascrockford%2FJSON-js" class="minibutton btn-star js-toggler-target entice tooltipped leftwards" title="You must be signed in to use this feature" rel="nofollow">Star</a><a class="social-count js-social-count" href="/douglascrockford/JSON-js/stargazers">2,356</a></span>
+            <span class="star-button"><a href="/login?return_to=%2Fdouglascrockford%2FJSON-js" class="minibutton btn-star js-toggler-target entice tooltipped leftwards" title="You must be signed in to use this feature" rel="nofollow">Star</a><a class="social-count js-social-count" href="/douglascrockford/JSON-js/stargazers">2,399</a></span>
           </li>
           <li>
-            <a href="/login?return_to=%2Fdouglascrockford%2FJSON-js" class="minibutton btn-fork js-toggler-target fork-button entice tooltipped leftwards"  title="You must be signed in to fork a repository" rel="nofollow">Fork</a><a href="/douglascrockford/JSON-js/network" class="social-count">460</a>
+            <a href="/login?return_to=%2Fdouglascrockford%2FJSON-js" class="minibutton btn-fork js-toggler-target fork-button entice tooltipped leftwards"  title="You must be signed in to fork a repository" rel="nofollow">Fork</a><a href="/douglascrockford/JSON-js/network" class="social-count">499</a>
           </li>
     </ul>
 
@@ -244,16 +245,14 @@
           
 
 
-
-
 <!-- blob contrib key: blob_contributors:v21:d97bfaf4c67f1472b11f2077b8c2057a -->
 <!-- blob contrib frag key: views10/v8/blob_contributors:v21:d97bfaf4c67f1472b11f2077b8c2057a -->
 
-<!-- block_view_fragment_key: views10/v8/blob:v21:3f4f6b08a221537e12dbde7c4b3a2b68 -->
+<!-- block_view_fragment_key: views10/v8/blob:v21:cbd4f8599f90b947b4ad000debdfc6c9 -->
   <div id="slider">
 
     <div class="breadcrumb" data-path="json2.js/">
-      <b itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/douglascrockford/JSON-js/tree/42c18c621a411c3f39a81bb0a387fc50dcd738d9" class="js-rewrite-sha" itemprop="url"><span itemprop="title">JSON-js</span></a></b> / <strong class="final-path">json2.js</strong> <span class="js-clippy mini-icon mini-icon-clippy " data-clipboard-text="json2.js" data-copied-hint="copied!" data-copy-hint="copy to clipboard"></span>
+      <b itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/douglascrockford/JSON-js/tree/40f3377a631eaedeec877379f9cb338046cac0e0" class="js-rewrite-sha" itemprop="url"><span itemprop="title">JSON-js</span></a></b> / <strong class="final-path">json2.js</strong> <span class="js-clippy mini-icon mini-icon-clippy " data-clipboard-text="json2.js" data-copied-hint="copied!" data-copy-hint="copy to clipboard"></span>
     </div>
 
       
@@ -282,7 +281,7 @@
 
 
     <div class="frames">
-      <div class="frame frame-center" data-path="json2.js/" data-permalink-url="/douglascrockford/JSON-js/blob/42c18c621a411c3f39a81bb0a387fc50dcd738d9/json2.js" data-title="JSON-js/json2.js at master · douglascrockford/JSON-js · GitHub" data-type="blob">
+      <div class="frame frame-center" data-path="json2.js/" data-permalink-url="/douglascrockford/JSON-js/blob/40f3377a631eaedeec877379f9cb338046cac0e0/json2.js" data-title="JSON-js/json2.js at master · douglascrockford/JSON-js · GitHub" data-type="blob">
 
         <div id="files" class="bubble">
           <div class="file">
@@ -295,9 +294,8 @@
               </div>
               <ul class="button-group actions">
                   <li>
-                    <a class="grouped-button file-edit-link minibutton bigger lighter js-rewrite-sha" href="/douglascrockford/JSON-js/edit/42c18c621a411c3f39a81bb0a387fc50dcd738d9/json2.js" data-method="post" rel="nofollow" data-hotkey="e">Edit</a>
+                    <a class="grouped-button file-edit-link minibutton bigger lighter js-rewrite-sha" href="/douglascrockford/JSON-js/edit/40f3377a631eaedeec877379f9cb338046cac0e0/json2.js" data-method="post" rel="nofollow" data-hotkey="e">Edit</a>
                   </li>
-
                 <li>
                   <a href="/douglascrockford/JSON-js/raw/master/json2.js" class="minibutton btn-raw grouped-button bigger lighter" id="raw-url">Raw</a>
                 </li>
@@ -817,7 +815,7 @@
   </div>
 
 <div class="frame frame-loading large-loading-area" style="display:none;" data-tree-list-url="/douglascrockford/JSON-js/tree-list/40f3377a631eaedeec877379f9cb338046cac0e0" data-blob-url-prefix="/douglascrockford/JSON-js/blob/40f3377a631eaedeec877379f9cb338046cac0e0">
-  <img src="https://a248.e.akamai.net/assets.github.com/images/spinners/octocat-spinner-64.gif?1329920549" height="64" width="64">
+  <img src="https://a248.e.akamai.net/assets.github.com/images/spinners/octocat-spinner-64.gif?1334862346" height="64" width="64">
 </div>
 
         </div>
@@ -889,7 +887,7 @@
           <li><a href="https://github.com/security">Security</a></li>
       </ul>
 
-      <p>&copy; 2012 <span title="0.06326s from fe15.rs.github.com">GitHub</span> Inc. All rights reserved.</p>
+      <p>&copy; 2012 <span title="0.06150s from fe13.rs.github.com">GitHub</span> Inc. All rights reserved.</p>
     </div><!-- /#legal or /#legal_ie-->
 
   </div><!-- /.site -->
@@ -1269,10 +1267,10 @@ I think you should use an
 </div>
 
 
-    <div id="ajax-error-message">
+    <div id="ajax-error-message" class="flash flash-error">
       <span class="mini-icon mini-icon-exclamation"></span>
       Something went wrong with that request. Please try again.
-      <a href="#" class="ajax-error-dismiss">Dismiss</a>
+      <a href="#" class="mini-icon mini-icon-remove-close ajax-error-dismiss"></a>
     </div>
 
     <div id="logo-popup">
@@ -1280,12 +1278,12 @@ I think you should use an
       <ul>
         <li>
           <h4>GitHub Logo</h4>
-          <a href="http://github-media-downloads.s3.amazonaws.com/GitHub_Logos.zip"><img alt="Github_logo" src="https://a248.e.akamai.net/assets.github.com/images/modules/about_page/github_logo.png?1329920549" /></a>
+          <a href="http://github-media-downloads.s3.amazonaws.com/GitHub_Logos.zip"><img alt="Github_logo" src="https://a248.e.akamai.net/assets.github.com/images/modules/about_page/github_logo.png?1334862345" /></a>
           <a href="http://github-media-downloads.s3.amazonaws.com/GitHub_Logos.zip" class="minibutton btn-download download">Download</a>
         </li>
         <li>
           <h4>The Octocat</h4>
-          <a href="http://github-media-downloads.s3.amazonaws.com/Octocats.zip"><img alt="Octocat" src="https://a248.e.akamai.net/assets.github.com/images/modules/about_page/octocat.png?1329920549" /></a>
+          <a href="http://github-media-downloads.s3.amazonaws.com/Octocats.zip"><img alt="Octocat" src="https://a248.e.akamai.net/assets.github.com/images/modules/about_page/octocat.png?1334862345" /></a>
           <a href="http://github-media-downloads.s3.amazonaws.com/Octocats.zip" class="minibutton btn-download download">Download</a>
         </li>
       </ul>
@@ -1293,7 +1291,7 @@ I think you should use an
 
     
     
-    <span id='server_response_time' data-time='0.06583' data-host='fe15'></span>
+    <span id='server_response_time' data-time='0.06407' data-host='fe13'></span>
   </body>
 </html>
 
