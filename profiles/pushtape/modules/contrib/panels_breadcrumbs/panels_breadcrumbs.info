@@ -9,5 +9,5 @@ dependencies[] = panels
 ; Information added by drush on 2012-09-01
 version = ""
 project = "panels_breadcrumbs"
-datestamp = "1346503724"
+datestamp = "1346507839"
 

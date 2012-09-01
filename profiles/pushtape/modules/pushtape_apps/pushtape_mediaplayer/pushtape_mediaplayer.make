@@ -2,6 +2,8 @@ api = 2
 core = 7.x
 
 projects[file_entity][subdir] = contrib
+projects[file_entity][version] = 2.x-dev
+
 projects[media][subdir] = contrib
 projects[media_soundcloud][version] = 1.x-dev
 projects[media_soundcloud][subdir] = contrib

@@ -40,5 +40,5 @@ stylesheets[all][] = panopoly_admin.css
 ; Information added by drush on 2012-09-01
 version = ""
 project = "panopoly_admin"
-datestamp = "1346503729"
+datestamp = "1346507843"
 
