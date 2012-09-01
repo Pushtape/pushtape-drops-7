@@ -2,23 +2,20 @@ api = 2
 core = 7.x
 
 projects[file_entity][subdir] = contrib
-projects[file_entity][version] = 2.x-dev
+projects[file_entity][version] = 2.0-unstable6
 
 projects[media][subdir] = contrib
+projects[media][version] = 2.0-unstable6
+
 projects[media_soundcloud][version] = 1.x-dev
 projects[media_soundcloud][subdir] = contrib
-;projects[html5_media][version] = 1.0
 projects[html5_media][subdir] = contrib
-;projects[media_colorbox][version] = 1.0-rc1
 projects[media_colorbox][subdir] = contrib
-;projects[mediaplaylist][version] = 1.0-rc1
 projects[mediaplaylist][subdir] = contrib
 projects[soundmanager2][version] = 2.x-dev
 projects[soundmanager2][subdir] = contrib
 projects[jplayer][subdir] = contrib
 projects[jplayer][type] = module
-;projects[jplayer][version] = 2.0-beta1
-;projects[jplayer][patch][] = http://drupal.org/files/hide-direct-link-1046744-16.patch
 
 libraries[soundmanager2][download][type] = get
 libraries[soundmanager2][download][url] = "http://www.schillmania.com/projects/soundmanager2/download/soundmanagerv297a-20120624.zip"
