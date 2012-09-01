@@ -16,19 +16,14 @@ $tasks = array();
   $panopoly_server = array(
     'machine name' => 'panopoly',
     'default apps' => array(
-
+ 'panopoly_core',
     ),
     'required apps' => array(
-
+     'panopoly_core',
     ),
   );
   $tasks = $tasks + apps_profile_install_tasks($install_state, $panopoly_server);
 
-  //$tasks['apps_profile_apps_select_form_panopoly']['display_name'] = t('Install apps for Panopoly');
-
-  // Rename one of the default apps tasks. In the case of a non-interactive
-  // installation, apps_profile_install_tasks() never defines this task, so we
-  // need to make sure we don't accidentally create it when it doesn't exist.
   if (isset($tasks['apps_profile_apps_select_form_panopoly'])) {
     $tasks['apps_profile_apps_select_form_panopoly']['display_name'] = t('Install apps for Panopoly');
   }
@@ -46,11 +41,6 @@ $tasks = array();
   );
   $tasks = $tasks + apps_profile_install_tasks($install_state, $pushtape_server);
 
-//$tasks['apps_profile_apps_select_form_pushtape']['display_name'] = t('Install apps for Pushtape');
-
-    // Rename one of the default apps tasks. In the case of a non-interactive
-  // installation, apps_profile_install_tasks() never defines this task, so we
-  // need to make sure we don't accidentally create it when it doesn't exist.
   if (isset($tasks['apps_profile_apps_select_form_pushtape'])) {
     $tasks['apps_profile_apps_select_form_pushtape']['display_name'] = t('Install apps for pushtape');
   }
@@ -258,6 +248,5 @@ function pushtape_final_setup(&$install_state) {
 // Allow anonymous and authenticated users to see and search content
 user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access content'));
 user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access content'));
-user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('search content'));
-user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('search content'));
+
 }

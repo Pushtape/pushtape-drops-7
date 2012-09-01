@@ -13,5 +13,5 @@ files[] = tests/wysiwyg.test
 ; Information added by drush on 2012-09-01
 version = ""
 project = "wysiwyg"
-datestamp = "1346523618"
+datestamp = "1346533799"
 

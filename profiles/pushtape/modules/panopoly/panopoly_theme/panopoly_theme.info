@@ -17,5 +17,5 @@ stylesheets[all][] = css/panopoly-featured.css
 ; Information added by drush on 2012-09-01
 version = ""
 project = "panopoly_theme"
-datestamp = "1346523622"
+datestamp = "1346533802"
 
