@@ -122,7 +122,7 @@ function file_entity_menu() {
   $items['file/add'] = array(
     'title' => 'Add file',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('file_entity_add_upload', array()),
+    'page arguments' => array('file_entity_add_upload'),
     'access arguments' => array('administer files'),
     'file' => 'file_entity.pages.inc',
   );
@@ -467,14 +467,9 @@ function file_entity_file_formatter_info() {
 
   // Add a simple file formatter for displaying an image in a chosen style.
   if (module_exists('image')) {
-
     $formatters['file_image'] = array(
       'label' => t('Image'),
-      'default settings' => array(
-        'image_style' => '',
-        'alt' => '',
-        'title' => ''
-      ),
+      'default settings' => array('image_style' => ''),
       'view callback' => 'file_entity_file_formatter_file_image_view',
       'settings callback' => 'file_entity_file_formatter_file_image_settings',
     );
@@ -585,10 +580,6 @@ function file_entity_file_formatter_file_image_view($file, $display, $langcode) 
         '#path' => $file->uri,
         '#width' => $file->image_dimensions['width'],
         '#height' => $file->image_dimensions['height'],
-        '#alt' => token_replace($display['settings']['alt'],
-          array('file' => $file), array('clear' => 1, 'sanitize' => 0)),
-        '#title' => token_replace($display['settings']['title'],
-          array('file' => $file), array('clear' => 1, 'sanitize' => 0)),
       );
     }
     else {
@@ -597,10 +588,6 @@ function file_entity_file_formatter_file_image_view($file, $display, $langcode) 
         '#path' => $file->uri,
         '#width' => $file->image_dimensions['width'],
         '#height' => $file->image_dimensions['height'],
-        '#alt' => token_replace($display['settings']['alt'],
-          array('file' => $file), array('clear' => 1, 'sanitize' => 0)),
-        '#title' => token_replace($display['settings']['title'],
-          array('file' => $file), array('clear' => 1, 'sanitize' => 0)),
       );
     }
     return $element;
@@ -621,32 +608,6 @@ function file_entity_file_formatter_file_image_settings($form, &$form_state, $se
     '#default_value' => $settings['image_style'],
     '#empty_option' => t('None (original image)'),
   );
-
-  // For image files we allow the alt attribute (required in HTML).
-  $element['alt'] = array(
-    '#title' => t('Alt attribute'),
-    '#description' => t('The text to use as value for the <em>img</em> tag <em>alt</em> attribute. Can be left empty. Token replacements are available'),
-    '#type' => 'textfield',
-    '#default_value' => $settings['alt'],
-  );
-
-  // Allow the setting of the title attribute.
-  $element['title'] = array(
-    '#title' => t('Title attribute'),
-    '#description' => t('The text to use as value for the <em>img</em> tag <em>title</em> attribute. Can be left empty. Token replacements are available'),
-    '#type' => 'textfield',
-    '#default_value' => $settings['title'],
-  );
-
-  if (module_exists('token')) {
-    $element['tokens'] = array(
-      '#theme' => 'token_tree',
-      '#token_types' => array('file'),
-      '#global_types' => TRUE,
-      '#click_insert' => TRUE,
-    );
-  }
-
   return $element;
 }
 
@@ -736,13 +697,10 @@ function template_preprocess_file_entity(&$variables) {
   $variables['label']     = check_plain($label);
   $variables['page']      = $view_mode == 'full' && file_is_page($file);
 
-  // Hide the file name from being displayed until we can figure out a better
-  // way to control this. We cannot simply not output the title since
-  // contextual links require $title_suffix to be output in the template.
+  // Disable the file name from being displayed as the title until we can
+  // figure out a better way to control this.
   // @see http://drupal.org/node/1245266
-  if (!$variables['page']) {
-    $variables['title_attributes_array']['class'][] = 'element-invisible';
-  }
+  $variables['page'] = TRUE;
 
   // Flatten the file object's member fields.
   $variables = array_merge((array) $file, $variables);
