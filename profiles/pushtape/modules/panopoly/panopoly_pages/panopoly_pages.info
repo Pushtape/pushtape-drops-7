@@ -47,5 +47,5 @@ stylesheets[all][] = panopoly_pages.css
 ; Information added by drush on 2012-09-01
 version = ""
 project = "panopoly_pages"
-datestamp = "1346521762"
+datestamp = "1346523616"
 
