@@ -11,12 +11,15 @@ dependencies[] = file_entity
 dependencies[] = jplayer
 dependencies[] = libraries
 dependencies[] = media
+dependencies[] = media_internet
+dependencies[] = media_soundcloud
 dependencies[] = mediaplaylist
 dependencies[] = page_manager
 dependencies[] = pushtape_discography
 dependencies[] = soundmanager2
 dependencies[] = strongarm
 dependencies[] = views
+datestamp = 1346533780
 features[ctools][] = file_entity:file_default_displays:1
 features[ctools][] = page_manager:pages_default:1
 features[ctools][] = strongarm:strongarm:1
@@ -32,9 +35,9 @@ files[] = test/pushtape_mediaplayer.test
 project status url = http://apps.rosenstrauch.com/fserver
 
 
-; Information added by drush on 2012-09-01
+; Information added by drush on 2012-09-05
 version = "7.x-1.x-panels-dev"
 core = "7.x"
 project = "pushtape_mediaplayer"
-datestamp = "1346533780"
+datestamp = "1346801706"
 

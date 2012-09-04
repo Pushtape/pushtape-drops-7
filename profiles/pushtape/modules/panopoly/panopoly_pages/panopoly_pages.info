@@ -43,9 +43,9 @@ features[variable][] = panelizer_node:panopoly_page_default
 features[variable][] = save_continue_panopoly_page
 stylesheets[all][] = panopoly_pages.css
 
-
-; Information added by drush on 2012-09-01
-version = ""
+; Information added by drupal.org packaging script on 2012-09-04
+version = "7.x-1.0-beta5+1-dev"
+core = "7.x"
 project = "panopoly_pages"
-datestamp = "1346533797"
+datestamp = "1346762476"
 

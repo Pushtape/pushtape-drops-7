@@ -79,9 +79,9 @@ files[] = test/pushtape_discography.test
 project status url = http://apps.rosenstrauch.com/fserver
 
 
-; Information added by drush on 2012-09-01
+; Information added by drush on 2012-09-05
 version = "7.x-1.x-panels-dev"
 core = "7.x"
 project = "pushtape_discography"
-datestamp = "1346533782"
+datestamp = "1346801709"
 

@@ -8,6 +8,7 @@ dependencies[] = admin
 dependencies[] = apps
 dependencies[] = backports
 dependencies[] = ctools
+dependencies[] = ctools_automodal
 dependencies[] = date_popup_authored
 dependencies[] = features
 dependencies[] = module_filter
@@ -36,9 +37,9 @@ features[views_view][] = panopoly_admin_users
 scripts[] = panopoly_admin.js
 stylesheets[all][] = panopoly_admin.css
 
-
-; Information added by drush on 2012-09-01
-version = ""
+; Information added by drupal.org packaging script on 2012-09-04
+version = "7.x-1.0-beta5+7-dev"
+core = "7.x"
 project = "panopoly_admin"
-datestamp = "1346533798"
+datestamp = "1346719492"
 

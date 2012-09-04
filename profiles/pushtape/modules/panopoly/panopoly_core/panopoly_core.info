@@ -65,9 +65,9 @@ stylesheets[all][] = css/panopoly_fonts.css
 stylesheets[all][] = css/panopoly_modal.css
 stylesheets[all][] = css/panopoly_elements.css
 
-
-; Information added by drush on 2012-09-01
-version = ""
+; Information added by drupal.org packaging script on 2012-09-04
+version = "7.x-1.0-beta5+15-dev"
+core = "7.x"
 project = "panopoly_core"
-datestamp = "1346533787"
+datestamp = "1346762471"
 

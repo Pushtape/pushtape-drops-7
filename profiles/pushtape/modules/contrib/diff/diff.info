@@ -1,0 +1,16 @@
+name = Diff
+description = Show difference between node revisions.
+core = 7.x
+
+files[] = DiffEngine.php
+
+; This would support Module supports if it ever gets ported.
+; The module Field formatter settings enables field formatter alter hooks.
+recommends[] = field_formatter_settings
+
+; Information added by drupal.org packaging script on 2012-07-15
+version = "7.x-3.0-alpha1"
+core = "7.x"
+project = "diff"
+datestamp = "1342343483"
+

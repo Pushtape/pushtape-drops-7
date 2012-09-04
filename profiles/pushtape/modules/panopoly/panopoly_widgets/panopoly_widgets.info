@@ -69,9 +69,9 @@ stylesheets[all][] = css/panopoly_views_slideshow.css
 stylesheets[all][] = css/panopoly_media.css
 stylesheets[all][] = css/panopoly_widgets.css
 
-
-; Information added by drush on 2012-09-01
-version = ""
+; Information added by drupal.org packaging script on 2012-08-31
+version = "7.x-1.0-beta5+2-dev"
+core = "7.x"
 project = "panopoly_widgets"
-datestamp = "1346533798"
+datestamp = "1346417265"
 

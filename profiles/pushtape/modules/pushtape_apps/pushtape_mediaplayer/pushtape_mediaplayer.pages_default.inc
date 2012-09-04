@@ -21,7 +21,7 @@ function pushtape_mediaplayer_default_page_manager_pages() {
   );
   $page->menu = array(
     'type' => 'tab',
-    'title' => 'Tracks',
+    'title' => 'Player',
     'name' => 'navigation',
     'weight' => '6',
     'parent' => array(
