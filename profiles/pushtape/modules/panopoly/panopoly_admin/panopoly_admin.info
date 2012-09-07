@@ -5,6 +5,7 @@ package = Panopoly
 php = 5.2.4
 project = panopoly_admin
 dependencies[] = admin
+dependencies[] = admin_views
 dependencies[] = apps
 dependencies[] = backports
 dependencies[] = ctools
@@ -22,24 +23,20 @@ features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:1
 features[page_manager_handlers][] = node_edit_panel_context
-features[page_manager_pages][] = panopoly_admin_apps
-features[page_manager_pages][] = panopoly_admin_content
-features[page_manager_pages][] = panopoly_admin_dashboard
-features[page_manager_pages][] = panopoly_admin_media
-features[page_manager_pages][] = panopoly_admin_users
+features[page_manager_pages][] = panopoly_admin_layout_library
+features[page_manager_pages][] = panopoly_admin_page_library
+features[page_manager_pages][] = panopoly_admin_pane_library
+features[page_manager_pages][] = panopoly_site_dashboard
 features[user_role][] = administrative user
 features[user_role][] = editorial user
 features[variable][] = admin_toolbar
 features[variable][] = user_admin_role
-features[views_view][] = panopoly_admin_content
-features[views_view][] = panopoly_admin_media
-features[views_view][] = panopoly_admin_users
 scripts[] = panopoly_admin.js
 stylesheets[all][] = panopoly_admin.css
 
-; Information added by drupal.org packaging script on 2012-09-04
-version = "7.x-1.0-beta5+7-dev"
+; Information added by drupal.org packaging script on 2012-09-06
+version = "7.x-1.0-beta5+16-dev"
 core = "7.x"
 project = "panopoly_admin"
-datestamp = "1346719492"
+datestamp = "1346892668"
 

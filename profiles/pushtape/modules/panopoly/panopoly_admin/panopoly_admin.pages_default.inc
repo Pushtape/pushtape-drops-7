@@ -261,17 +261,17 @@ function panopoly_admin_default_page_manager_pages() {
   $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
-  $page->name = 'panopoly_admin_apps';
+  $page->name = 'panopoly_admin_layout_library';
   $page->task = 'page';
-  $page->admin_title = 'Apps Dashboard';
-  $page->admin_description = 'This is the administrative dashboard';
-  $page->path = 'admin/site/apps';
+  $page->admin_title = 'Layout Library';
+  $page->admin_description = 'This is the page library that manages page layouts.';
+  $page->path = 'admin/panopoly/libraries/layouts';
   $page->access = array(
     'plugins' => array(
       1 => array(
         'name' => 'perm',
         'settings' => array(
-          'perm' => 'administer apps',
+          'perm' => 'access administration pages',
         ),
         'context' => 'logged-in-user',
         'not' => FALSE,
@@ -282,13 +282,13 @@ function panopoly_admin_default_page_manager_pages() {
     'settings' => NULL,
   );
   $page->menu = array(
-    'type' => 'tab',
-    'title' => 'Apps',
+    'type' => 'normal',
+    'title' => 'Layout Library',
     'name' => 'management',
-    'weight' => '-90',
+    'weight' => '0',
     'parent' => array(
       'type' => 'normal',
-      'title' => 'Apps',
+      'title' => 'Dashboard',
       'name' => 'management',
       'weight' => '0',
     ),
@@ -301,31 +301,31 @@ function panopoly_admin_default_page_manager_pages() {
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
-  $handler->name = 'page_panopoly_admin_apps_panel_context';
+  $handler->name = 'page_panopoly_admin_layout_library_panel_context';
   $handler->task = 'page';
-  $handler->subtask = 'panopoly_admin_apps';
+  $handler->subtask = 'panopoly_admin_layout_library';
   $handler->handler = 'panel_context';
   $handler->weight = 0;
   $handler->conf = array(
-    'title' => 'Apps Dashboard',
+    'title' => 'Layout Library',
     'no_blocks' => 0,
     'pipeline' => 'standard',
-    'css_id' => 'apps-dashboard',
+    'css_id' => 'layout-library',
     'css' => '',
-    'contexts' => array(),
+    'contexts' => array(
+      0 => array(
+        'identifier' => 'Panopoly Admin',
+        'keyword' => 'panopoly_admin',
+        'name' => 'string',
+        'id' => 1,
+      ),
+    ),
     'relationships' => array(),
     'body_classes_to_remove' => '',
     'body_classes_to_add' => '',
-    'panels_breadcrumbs_state' => 1,
-    'panels_breadcrumbs_titles' => 'Administration
-Dashboard
-Panopoly Apps',
-    'panels_breadcrumbs_paths' => 'admin
-admin/dashboard',
-    'panels_breadcrumbs_home' => 1,
   );
   $display = new panels_display();
-  $display->layout = 'boxton';
+  $display->layout = 'sutro';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
@@ -339,14 +339,14 @@ admin/dashboard',
     ),
   );
   $display->cache = array();
-  $display->title = 'Panopoly Apps';
+  $display->title = 'Layout Library';
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
     $pane->pid = 'new-1';
-    $pane->panel = 'contentmain';
-    $pane->type = 'panopoly_apps_apps';
-    $pane->subtype = 'panopoly_apps_apps';
+    $pane->panel = 'column1';
+    $pane->type = 'panopoly_layouts';
+    $pane->subtype = 'panopoly_layouts';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
@@ -359,27 +359,99 @@ admin/dashboard',
     $pane->position = 0;
     $pane->locks = array();
     $display->content['new-1'] = $pane;
-    $display->panels['contentmain'][0] = 'new-1';
+    $display->panels['column1'][0] = 'new-1';
+    $pane = new stdClass();
+    $pane->pid = 'new-2';
+    $pane->panel = 'column2';
+    $pane->type = 'flexible_layouts';
+    $pane->subtype = 'flexible_layouts';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-2'] = $pane;
+    $display->panels['column2'][0] = 'new-2';
+    $pane = new stdClass();
+    $pane->pid = 'new-3';
+    $pane->panel = 'column2';
+    $pane->type = 'responsive_layouts';
+    $pane->subtype = 'responsive_layouts';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $display->content['new-3'] = $pane;
+    $display->panels['column2'][1] = 'new-3';
+    $pane = new stdClass();
+    $pane->pid = 'new-4';
+    $pane->panel = 'column2';
+    $pane->type = 'panels_layouts';
+    $pane->subtype = 'panels_layouts';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $display->content['new-4'] = $pane;
+    $display->panels['column2'][2] = 'new-4';
+    $pane = new stdClass();
+    $pane->pid = 'new-5';
+    $pane->panel = 'column2';
+    $pane->type = 'custom_layouts';
+    $pane->subtype = 'custom_layouts';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $display->content['new-5'] = $pane;
+    $display->panels['column2'][3] = 'new-5';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
-  $pages['panopoly_admin_apps'] = $page;
+  $pages['panopoly_admin_layout_library'] = $page;
 
   $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
-  $page->name = 'panopoly_admin_content';
+  $page->name = 'panopoly_admin_page_library';
   $page->task = 'page';
-  $page->admin_title = 'Admin Content';
-  $page->admin_description = 'This is the administrative dashboard';
-  $page->path = 'admin/site/content';
+  $page->admin_title = 'Page Library';
+  $page->admin_description = 'This is the page library that manages page templates, landing pages, and overridden pages.';
+  $page->path = 'admin/panopoly/libraries/pages';
   $page->access = array(
     'plugins' => array(
       1 => array(
         'name' => 'perm',
         'settings' => array(
-          'perm' => 'access content overview',
+          'perm' => 'access administration pages',
         ),
         'context' => 'logged-in-user',
         'not' => FALSE,
@@ -390,13 +462,13 @@ admin/dashboard',
     'settings' => NULL,
   );
   $page->menu = array(
-    'type' => 'tab',
-    'title' => 'Content',
+    'type' => 'normal',
+    'title' => 'Page Library',
     'name' => 'management',
-    'weight' => '-75',
+    'weight' => '0',
     'parent' => array(
       'type' => 'normal',
-      'title' => 'Admin Dashboard',
+      'title' => 'Dashboard',
       'name' => 'management',
       'weight' => '0',
     ),
@@ -409,29 +481,31 @@ admin/dashboard',
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
-  $handler->name = 'page_panopoly_admin_content_panel_context';
+  $handler->name = 'page_panopoly_admin_page_library_panel_context';
   $handler->task = 'page';
-  $handler->subtask = 'panopoly_admin_content';
+  $handler->subtask = 'panopoly_admin_page_library';
   $handler->handler = 'panel_context';
   $handler->weight = 0;
   $handler->conf = array(
-    'title' => 'Admin Content',
+    'title' => 'Page Library',
     'no_blocks' => 0,
     'pipeline' => 'standard',
-    'css_id' => 'admin-content',
+    'css_id' => 'page-library',
     'css' => '',
-    'contexts' => array(),
+    'contexts' => array(
+      0 => array(
+        'identifier' => 'Panopoly Admin',
+        'keyword' => 'panopoly_admin',
+        'name' => 'string',
+        'id' => 1,
+      ),
+    ),
     'relationships' => array(),
-    'panels_breadcrumbs_state' => 1,
-    'panels_breadcrumbs_titles' => 'Administration
-Dashboard
-Admin Content',
-    'panels_breadcrumbs_paths' => 'admin
-admin/site',
-    'panels_breadcrumbs_home' => 1,
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
   );
   $display = new panels_display();
-  $display->layout = 'burr_flipped';
+  $display->layout = 'sutro';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
@@ -445,35 +519,14 @@ admin/site',
     ),
   );
   $display->cache = array();
-  $display->title = 'Admin Content';
+  $display->title = 'Page Library';
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-2';
-    $pane->panel = 'contentmain';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'panopoly_admin_content-admin_content';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'view_mode' => NULL,
-      'widget_title' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $display->content['new-2'] = $pane;
-    $display->panels['contentmain'][0] = 'new-2';
-    $pane = new stdClass();
-    $pane->pid = 'new-3';
-    $pane->panel = 'sidebar';
-    $pane->type = 'content';
-    $pane->subtype = 'content';
+    $pane->pid = 'new-6';
+    $pane->panel = 'column1';
+    $pane->type = 'page_templates';
+    $pane->subtype = 'page_templates';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
@@ -485,13 +538,175 @@ admin/site',
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-3'] = $pane;
-    $display->panels['sidebar'][0] = 'new-3';
+    $display->content['new-6'] = $pane;
+    $display->panels['column1'][0] = 'new-6';
     $pane = new stdClass();
-    $pane->pid = 'new-4';
-    $pane->panel = 'sidebar';
-    $pane->type = 'taxonomy';
-    $pane->subtype = 'taxonomy';
+    $pane->pid = 'new-7';
+    $pane->panel = 'column2';
+    $pane->type = 'landing_pages';
+    $pane->subtype = 'landing_pages';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-7'] = $pane;
+    $display->panels['column2'][0] = 'new-7';
+    $pane = new stdClass();
+    $pane->pid = 'new-8';
+    $pane->panel = 'footer';
+    $pane->type = 'overridden_page_templates';
+    $pane->subtype = 'overridden_page_templates';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-8'] = $pane;
+    $display->panels['footer'][0] = 'new-8';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $pages['panopoly_admin_page_library'] = $page;
+
+  $page = new stdClass();
+  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
+  $page->api_version = 1;
+  $page->name = 'panopoly_admin_pane_library';
+  $page->task = 'page';
+  $page->admin_title = 'Pane Library';
+  $page->admin_description = 'This is the pane library for the site. See all of the panes you can add to your pages.';
+  $page->path = 'admin/panopoly/libraries/panes';
+  $page->access = array(
+    'plugins' => array(
+      1 => array(
+        'name' => 'perm',
+        'settings' => array(
+          'perm' => 'access administration pages',
+        ),
+        'context' => 'logged-in-user',
+        'not' => FALSE,
+      ),
+    ),
+    'logic' => 'and',
+    'type' => 'none',
+    'settings' => NULL,
+  );
+  $page->menu = array(
+    'type' => 'normal',
+    'title' => 'Pane Library',
+    'name' => 'management',
+    'weight' => '0',
+    'parent' => array(
+      'type' => 'normal',
+      'title' => 'Dashboard',
+      'name' => 'management',
+      'weight' => '0',
+    ),
+  );
+  $page->arguments = array();
+  $page->conf = array(
+    'admin_paths' => FALSE,
+  );
+  $page->default_handlers = array();
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_panopoly_admin_pane_library_panel_context';
+  $handler->task = 'page';
+  $handler->subtask = 'panopoly_admin_pane_library';
+  $handler->handler = 'panel_context';
+  $handler->weight = 0;
+  $handler->conf = array(
+    'title' => 'Pane Library',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'css_id' => 'pane-library',
+    'css' => '',
+    'contexts' => array(
+      0 => array(
+        'identifier' => 'Panopoly Admin',
+        'keyword' => 'panopoly_admin',
+        'name' => 'string',
+        'id' => 1,
+      ),
+    ),
+    'relationships' => array(),
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+  );
+  $display = new panels_display();
+  $display->layout = 'sutro';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'header' => NULL,
+      'column1' => NULL,
+      'column2' => NULL,
+      'footer' => NULL,
+      'contentmain' => NULL,
+      'sidebar' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = 'Pane Library';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-9';
+    $pane->panel = 'column1';
+    $pane->type = 'general_panes';
+    $pane->subtype = 'general_panes';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-9'] = $pane;
+    $display->panels['column1'][0] = 'new-9';
+    $pane = new stdClass();
+    $pane->pid = 'new-10';
+    $pane->panel = 'column2';
+    $pane->type = 'general_widgets';
+    $pane->subtype = 'general_widgets';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-10'] = $pane;
+    $display->panels['column2'][0] = 'new-10';
+    $pane = new stdClass();
+    $pane->pid = 'new-11';
+    $pane->panel = 'column2';
+    $pane->type = 'reusable_widgets';
+    $pane->subtype = 'reusable_widgets';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
@@ -503,22 +718,22 @@ admin/site',
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $display->content['new-4'] = $pane;
-    $display->panels['sidebar'][1] = 'new-4';
+    $display->content['new-11'] = $pane;
+    $display->panels['column2'][1] = 'new-11';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
-  $pages['panopoly_admin_content'] = $page;
+  $pages['panopoly_admin_pane_library'] = $page;
 
   $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
-  $page->name = 'panopoly_admin_dashboard';
+  $page->name = 'panopoly_site_dashboard';
   $page->task = 'page';
-  $page->admin_title = 'Admin Dashboard';
-  $page->admin_description = 'This is the administrative dashboard';
-  $page->path = 'admin/site/dashboard';
+  $page->admin_title = 'Site Dashboard';
+  $page->admin_description = 'This is the administrative site dashboard';
+  $page->path = 'admin/panopoly/dashboards/site';
   $page->access = array(
     'plugins' => array(
       1 => array(
@@ -535,8 +750,8 @@ admin/site',
     'settings' => NULL,
   );
   $page->menu = array(
-    'type' => 'default tab',
-    'title' => 'Dashboard',
+    'type' => 'normal',
+    'title' => 'Site Dashboard',
     'name' => 'management',
     'weight' => '-100',
     'parent' => array(
@@ -554,22 +769,24 @@ admin/site',
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
-  $handler->name = 'page_panopoly_admin_dashboard_panel_context';
+  $handler->name = 'page_panopoly_site_dashboard_panel_context';
   $handler->task = 'page';
-  $handler->subtask = 'panopoly_admin_dashboard';
+  $handler->subtask = 'panopoly_site_dashboard';
   $handler->handler = 'panel_context';
   $handler->weight = 0;
   $handler->conf = array(
-    'title' => 'Admin Dashboard',
+    'title' => 'Site Dashboard',
     'no_blocks' => 0,
     'pipeline' => 'standard',
-    'css_id' => 'admin-dashboard',
+    'css_id' => 'site-dashboard',
     'css' => '',
     'contexts' => array(),
     'relationships' => array(),
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
   );
   $display = new panels_display();
-  $display->layout = 'moscone';
+  $display->layout = 'burr';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
@@ -583,11 +800,11 @@ admin/site',
     ),
   );
   $display->cache = array();
-  $display->title = 'Admin Dashboard';
+  $display->title = 'Site Dashboard';
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-5';
+    $pane->pid = 'new-12';
     $pane->panel = 'contentmain';
     $pane->type = 'pages';
     $pane->subtype = 'pages';
@@ -602,10 +819,10 @@ admin/site',
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-5'] = $pane;
-    $display->panels['contentmain'][0] = 'new-5';
+    $display->content['new-12'] = $pane;
+    $display->panels['contentmain'][0] = 'new-12';
     $pane = new stdClass();
-    $pane->pid = 'new-6';
+    $pane->pid = 'new-13';
     $pane->panel = 'sidebar';
     $pane->type = 'theme';
     $pane->subtype = 'theme';
@@ -620,10 +837,10 @@ admin/site',
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-6'] = $pane;
-    $display->panels['sidebar'][0] = 'new-6';
+    $display->content['new-13'] = $pane;
+    $display->panels['sidebar'][0] = 'new-13';
     $pane = new stdClass();
-    $pane->pid = 'new-7';
+    $pane->pid = 'new-14';
     $pane->panel = 'sidebar';
     $pane->type = 'menus';
     $pane->subtype = 'menus';
@@ -638,242 +855,13 @@ admin/site',
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $display->content['new-7'] = $pane;
-    $display->panels['sidebar'][1] = 'new-7';
+    $display->content['new-14'] = $pane;
+    $display->panels['sidebar'][1] = 'new-14';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
-  $pages['panopoly_admin_dashboard'] = $page;
-
-  $page = new stdClass();
-  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
-  $page->api_version = 1;
-  $page->name = 'panopoly_admin_media';
-  $page->task = 'page';
-  $page->admin_title = 'Admin Media';
-  $page->admin_description = 'This is the administrative dashboard';
-  $page->path = 'admin/site/media';
-  $page->access = array(
-    'plugins' => array(
-      1 => array(
-        'name' => 'perm',
-        'settings' => array(
-          'perm' => 'access content overview',
-        ),
-        'context' => 'logged-in-user',
-        'not' => FALSE,
-      ),
-    ),
-    'logic' => 'and',
-    'type' => 'none',
-    'settings' => NULL,
-  );
-  $page->menu = array(
-    'type' => 'tab',
-    'title' => 'Media',
-    'name' => 'management',
-    'weight' => '-25',
-    'parent' => array(
-      'type' => 'normal',
-      'title' => 'Admin Dashboard',
-      'name' => 'management',
-      'weight' => '0',
-    ),
-  );
-  $page->arguments = array();
-  $page->conf = array(
-    'admin_paths' => FALSE,
-  );
-  $page->default_handlers = array();
-  $handler = new stdClass();
-  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
-  $handler->api_version = 1;
-  $handler->name = 'page_panopoly_admin_media_panel_context';
-  $handler->task = 'page';
-  $handler->subtask = 'panopoly_admin_media';
-  $handler->handler = 'panel_context';
-  $handler->weight = 0;
-  $handler->conf = array(
-    'title' => 'Admin Media',
-    'no_blocks' => 0,
-    'pipeline' => 'standard',
-    'css_id' => 'admin-media',
-    'css' => '',
-    'contexts' => array(),
-    'relationships' => array(),
-  );
-  $display = new panels_display();
-  $display->layout = 'boxton';
-  $display->layout_settings = array();
-  $display->panel_settings = array(
-    'style_settings' => array(
-      'default' => NULL,
-      'header' => NULL,
-      'column1' => NULL,
-      'column2' => NULL,
-      'footer' => NULL,
-      'contentmain' => NULL,
-    ),
-  );
-  $display->cache = array();
-  $display->title = 'Admin Media';
-  $display->content = array();
-  $display->panels = array();
-    $pane = new stdClass();
-    $pane->pid = 'new-8';
-    $pane->panel = 'contentmain';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'panopoly_admin_media-admin_media';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'view_mode' => NULL,
-      'widget_title' => '',
-      'items_per_page' => NULL,
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $display->content['new-8'] = $pane;
-    $display->panels['contentmain'][0] = 'new-8';
-  $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = '0';
-  $handler->conf['display'] = $display;
-  $page->default_handlers[$handler->name] = $handler;
-  $pages['panopoly_admin_media'] = $page;
-
-  $page = new stdClass();
-  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
-  $page->api_version = 1;
-  $page->name = 'panopoly_admin_users';
-  $page->task = 'page';
-  $page->admin_title = 'Admin Users';
-  $page->admin_description = 'This is the administrative dashboard';
-  $page->path = 'admin/site/users';
-  $page->access = array(
-    'plugins' => array(
-      1 => array(
-        'name' => 'perm',
-        'settings' => array(
-          'perm' => 'access content overview',
-        ),
-        'context' => 'logged-in-user',
-        'not' => FALSE,
-      ),
-    ),
-    'logic' => 'and',
-    'type' => 'none',
-    'settings' => NULL,
-  );
-  $page->menu = array(
-    'type' => 'tab',
-    'title' => 'Users',
-    'name' => 'management',
-    'weight' => '-50',
-    'parent' => array(
-      'type' => 'normal',
-      'title' => 'Admin Dashboard',
-      'name' => 'management',
-      'weight' => '0',
-    ),
-  );
-  $page->arguments = array();
-  $page->conf = array(
-    'admin_paths' => FALSE,
-  );
-  $page->default_handlers = array();
-  $handler = new stdClass();
-  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
-  $handler->api_version = 1;
-  $handler->name = 'page_panopoly_admin_users_panel_context';
-  $handler->task = 'page';
-  $handler->subtask = 'panopoly_admin_users';
-  $handler->handler = 'panel_context';
-  $handler->weight = 0;
-  $handler->conf = array(
-    'title' => 'Admin Content',
-    'no_blocks' => 0,
-    'pipeline' => 'standard',
-    'css_id' => 'admin-users',
-    'css' => '',
-    'contexts' => array(),
-    'relationships' => array(),
-    'panels_breadcrumbs_state' => 1,
-    'panels_breadcrumbs_titles' => 'Administration
-Dashboard
-Admin Users',
-    'panels_breadcrumbs_paths' => 'admin
-admin/site',
-    'panels_breadcrumbs_home' => 1,
-  );
-  $display = new panels_display();
-  $display->layout = 'burr_flipped';
-  $display->layout_settings = array();
-  $display->panel_settings = array(
-    'style_settings' => array(
-      'default' => NULL,
-      'header' => NULL,
-      'column1' => NULL,
-      'column2' => NULL,
-      'footer' => NULL,
-      'contentmain' => NULL,
-      'sidebar' => NULL,
-    ),
-  );
-  $display->cache = array();
-  $display->title = 'Admin Users';
-  $display->content = array();
-  $display->panels = array();
-    $pane = new stdClass();
-    $pane->pid = 'new-9';
-    $pane->panel = 'contentmain';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'panopoly_admin_users-admin_users';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'view_mode' => NULL,
-      'widget_title' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $display->content['new-9'] = $pane;
-    $display->panels['contentmain'][0] = 'new-9';
-    $pane = new stdClass();
-    $pane->pid = 'new-10';
-    $pane->panel = 'sidebar';
-    $pane->type = 'users';
-    $pane->subtype = 'users';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $display->content['new-10'] = $pane;
-    $display->panels['sidebar'][0] = 'new-10';
-  $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = '0';
-  $handler->conf['display'] = $display;
-  $page->default_handlers[$handler->name] = $handler;
-  $pages['panopoly_admin_users'] = $page;
+  $pages['panopoly_site_dashboard'] = $page;
 
   return $pages;
 

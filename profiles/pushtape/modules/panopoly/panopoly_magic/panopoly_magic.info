@@ -16,9 +16,9 @@ files[] = panopoly_magic.module
 scripts[] = panopoly_magic.js
 stylesheets[all][] = panopoly_magic.css
 
-; Information added by drupal.org packaging script on 2012-09-04
-version = "7.x-1.0-beta5+9-dev"
+; Information added by drupal.org packaging script on 2012-09-05
+version = "7.x-1.0-beta5+10-dev"
 core = "7.x"
 project = "panopoly_magic"
-datestamp = "1346762473"
+datestamp = "1346806572"
 

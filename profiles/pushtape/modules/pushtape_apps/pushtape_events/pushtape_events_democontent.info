@@ -15,9 +15,9 @@ features[features_api][] = api:1
 project status url = apps.rosenstrauch.com/fserver
 
 
-; Information added by drush on 2012-09-05
+; Information added by drush on 2012-09-08
 version = "7.x-1.x-panels-dev"
 core = "7.x"
 project = "pushtape_events"
-datestamp = "1346801703"
+datestamp = "1347057322"
 
