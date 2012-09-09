@@ -19,5 +19,5 @@ version = 7.x-2.x-dev
 ; Information added by drush on 2012-09-09
 version = "7.x-2.x-dev"
 project = "file_entity"
-datestamp = "1347185022"
+datestamp = "1347217323"
 

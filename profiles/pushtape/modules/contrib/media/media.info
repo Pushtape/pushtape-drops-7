@@ -22,5 +22,5 @@ configure = admin/config/media/browser
 ; Information added by drush on 2012-09-09
 version = ""
 project = "media"
-datestamp = "1347185028"
+datestamp = "1347217327"
 
