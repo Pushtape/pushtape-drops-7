@@ -32,8 +32,8 @@ regions[footer] = Footer
 settings[shortcut_module_link] = 0
 
 
-; Information added by drush on 2012-09-08
+; Information added by drush on 2012-09-09
 version = ""
 project = "responsive_bartik"
-datestamp = "1347057338"
+datestamp = "1347185023"
 
