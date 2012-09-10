@@ -20,6 +20,7 @@ dependencies[] = panels_breadcrumbs
 dependencies[] = panels_ipe
 dependencies[] = pathauto
 dependencies[] = pm_existing_pages
+dependencies[] = search
 dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = token
