@@ -1,4 +1,7 @@
-/* Drupal 7 Framework - Created by André Griffin
+/*
+Drupal 7 Flux (zirafa)
+Based on Framework (André Griffin)
+
 ------------------------------------------------
 [Table of contents]
 
@@ -14,6 +17,8 @@
  9.Blocks
 10.Footer
 11.CSS Support
+12.Error Messages
+13.Media Queries
 
 Font sizes: 16px base font with 24px line-height
 ------------------------------------------------
@@ -31,6 +36,22 @@ Font sizes: 16px base font with 24px line-height
 
 Equation for font sizing: 
   Desired px ÷ Default (or parent) px = em size
+  
+------------------------------------------------ 
+Fluid width calculations
+  Sidebars and main regions widths are calculated proportionally to the
+  #container width using percentage widths and margins. It is recommended
+  you set #container widths using media queries.
+  
+  DEFAULT VALUES:
+  
+  SB1 = Sidebar First width = 18%
+  SB2 = Sidebar Second width = 18%
+  G = Gutter between main column and sidebars = 2% 
+  
+  If you want to adjust one of the default values above, follow the formulas in
+  the code comments below in the Layout section to adjust all other values.
+  
 ------------------------------------------------*/
 
 /**
@@ -44,10 +65,11 @@ Equation for font sizing:
  */
 
 body {
-  background: #fff;
+  background: #FFF;
   color: #222;
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
   font-size: 87.5%; /* 14px base size*/
+  font-size: 81.25%; /* 13px base size*/
   line-height: 1.5;
   margin: 0;
   padding: 0;
@@ -128,7 +150,10 @@ td, th {
   padding:.3em .6em;
 }
 th {
-  border:solid #C0C0C0 1px;
+  font-size:.85em;
+  text-align:center;
+  text-transform:uppercase;
+  border:solid #9A9A9A 1px;
     background: #f9f9f9; /* Old browsers */
   /* IE9 SVG, needs conditional override of 'filter' to 'none' */
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y5ZjlmOSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNkZGRkZGQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
@@ -140,7 +165,13 @@ th {
   background: linear-gradient(top,  #f9f9f9 0%,#dddddd 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f9f9', endColorstr='#dddddd',GradientType=0 ); /* IE6-8 */
 }
+
 img, object { max-width: 100%; height:auto; }
+
+input:disabled, isindex:disabled, textarea:disabled {
+  color: #7D7D7D;
+}
+
 
 /**
  * 2.LAYOUT
@@ -148,11 +179,31 @@ img, object { max-width: 100%; height:auto; }
 
 #container {
   margin: 0 auto;
-  padding: 0 15px;
+  padding:0;
+  background:#fff;
+  /* Default is fluid width. You *could* set a fixed width here if you need to.
+  But setting the width with media queries will result in more "responsive"
+  behavior. */
+  width:100%;
+}
+
+.container-inner {
+  padding: 0 3%;
+}
+
+/* Top and bottom block regions, they are outside of #container */
+#top, #bottom {
+  width:100%;
+  clear:both;
+}
+#bottom {
+  position:fixed;
+  bottom:0;
 }
 
 /**
  * 3.MAIN
+ * 
  */
 
 /* 1 column: global values*/
@@ -163,12 +214,11 @@ img, object { max-width: 100%; height:auto; }
 }
 
 /* 3 columns */
-
 body.two-sidebars #main {
   float: left;
-  margin: 0 0 0 25.5%;
+  margin: 0 0 0 20%; /* SB1 + G */ 
   padding: 0;
-  width: 48.9%;
+  width: 59.97%; /* 99.97 - (SB1 + G) - (SB2 + G) */
 }
 
 /* 2 columns: sidebar-first */
@@ -177,7 +227,7 @@ body.sidebar-first #main {
   float: right;
   margin: 0;
   padding: 0;
-  width: 74.47%;
+  width: 79.97%; /* 99.97 - (SB1 + G)*/
 }
 
 /* 2 columns: sidebar-second */
@@ -186,7 +236,7 @@ body.sidebar-second #main {
   float: left;
   margin: 0;
   padding: 0;
-  width: 74.47%;
+  width: 79.97%; /* 99.97 - (SB2 + G)*/
 }
 
 /**
@@ -197,9 +247,9 @@ body.sidebar-second #main {
 
 body.two-sidebars #sidebar-first {
   float: left;
-  margin: 0 0 0 -74.47%;
+  margin: 0 0 0 -77.97%; /* (SB1 + G) - 99.97] */
   padding: 0;
-  width: 23.4%;
+  width: 18%; /* SB1 */
 }
 
 /* 3 columns: sidebar-second */
@@ -208,7 +258,7 @@ body.two-sidebars #sidebar-second {
   float: right;
   margin: 0;
   padding: 0;
-  width: 23.4%;
+  width: 18% /* SB2 */;
 }
 
 /* 2 columns: sidebar-first */
@@ -217,7 +267,7 @@ body.sidebar-first #sidebar-first {
   float: left;
   margin: 0;
   padding: 0;
-  width: 23.4%;
+  width: 18%; /* SB1 */
 }
 
 /* 2 columns: sidebar-second */
@@ -226,7 +276,7 @@ body.sidebar-second #sidebar-second {
   float: right;
   margin: 0;
   padding: 0;
-  width: 23.4%;
+  width: 18%;  /* SB2 */
 }
 
 /**
@@ -234,9 +284,10 @@ body.sidebar-second #sidebar-second {
  */
 
 #header {
-  margin: 0;
-  padding: 2.5em 0 0;
+  margin: 0 0 1.5em 0;
+  padding: .5em 0 0;
   position: relative;
+  border-bottom:solid #EEE 1px;
 }
 
 #header #logo {
@@ -246,19 +297,20 @@ body.sidebar-second #sidebar-second {
 
 #header #site-name-slogan {
   float: left;
-  margin: 0 0 1.5em;
+  margin: 0 3em 1.5em 0;
 }
 
 #header #site-name {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 2.6em;
+  font-size: 2.5em;
   font-weight: 700;
   line-height: 1.2;
   margin: 0;
   color:#111111;
+  display:inline-block;
 }
 #header #site-name a {
   color:#111111;
+
 }
 #header #site-name a:hover {
   text-decoration: none;
@@ -270,6 +322,7 @@ body.page-admin #page-title {
   padding-left:40px;
   background:url(images/gears.png) no-repeat center left;
   text-transform:uppercase;
+  
 }
 body.page-admin #header {
   display:none;
@@ -284,9 +337,10 @@ body.page-admin #header {
  */
 
 #navigation {
-  clear: both;
   margin: 0;
   padding: 0;
+  display:inline-block;
+  margin-top:.9em;
 }
 
 #navigation ul#main-menu {
@@ -294,6 +348,7 @@ body.page-admin #header {
   list-style: none;
   margin: 0;
   padding: 0;
+  
 }
 
 #navigation ul#main-menu li {
@@ -304,7 +359,20 @@ body.page-admin #header {
 
 #navigation ul#main-menu li a {
   display: block;
-  padding: 0 2em 0 0;
+  padding: 0;
+  margin:0 1.2em 0 0;
+  font-size:1.25em;
+  color:#888888;
+  text-transform:lowercase;
+  font-weight:normal;
+}
+#navigation ul#main-menu li a:hover {
+  color:#444444;
+}
+#navigation ul#main-menu li a.active {
+  color:#000000;
+  /*border-bottom:solid 2px #5c7698;*/
+  border-bottom:double 2px #CED2DD;
 }
 
 #navigation ul#secondary-menu {
@@ -339,7 +407,7 @@ body.page-admin #header {
   display:inline-block;
   background:url(images/arrow-divider.png) no-repeat right center;
   padding:0 40px 0 20px;
-  line-height:36px;
+  line-height:30px;
   font-size:.857em;
   color:#666666;
   text-transform:uppercase;
@@ -384,36 +452,29 @@ ul.inline li {
 .tabs-wrapper {
   border:none;
   margin: 1em 0;
-  padding:10px;
-  background:#F4F4F4;
-  border:solid #DDD 1px;
-  border-bottom:solid #BBB 1px;
-  border-right:solid #CCC 1px;
-  border-left:solid #CCC 1px;
-  border-radius:5px;
 }
 
 ul.primary {
   border: none;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
 }
 
 ul.primary li a, .node-form .form-submit {
+  margin-right:-1px;
   cursor:pointer;
-  font-size:1em;
-  border-radius:2px;
+  font-size:.9em;
   text-decoration: none;
   background: none;
   border: none;
   display: block;
   float: left;
   line-height: 1.5em;
-  margin:5px;
-  padding: .3em 1em;
+
+  padding: .4em 1em;
   text-transform:uppercase;
   color: #333333;
-  border: 1px solid #8E8E8E;  
+  border: 1px solid #8E8E8E;
   text-shadow: 0em 1px 0em #FFF;
 
   background: #f9f9f9; /* Old browsers */
@@ -426,6 +487,12 @@ ul.primary li a, .node-form .form-submit {
   background: -ms-linear-gradient(top,  #f9f9f9 0%,#dddddd 100%); /* IE10+ */
   background: linear-gradient(top,  #f9f9f9 0%,#dddddd 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f9f9', endColorstr='#dddddd',GradientType=0 ); /* IE6-8 */
+}
+
+.node-form .form-submit {
+  margin-right:5px;
+  float:none;
+  display:inline-block;
 }
 
 ul.primary li a:hover, .node-form .form-submit:hover {
@@ -443,16 +510,21 @@ ul.primary li a:hover, .node-form .form-submit:hover {
   background: -ms-linear-gradient(top,  #f9f9f9 0%,#cccccc 100%); /* IE10+ */
   background: linear-gradient(top,  #f9f9f9 0%,#cccccc 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f9f9', endColorstr='#cccccc',GradientType=0 ); /* IE6-8 */
-
 }
-
-
 
 ul.primary li a.active, ul.primary li.active a, ul.primary li a.active:hover {
   background:#C2C2C2;
   border: 1px solid #AAAAAA;
   border-top:1px solid #888888;
   border-left:1px solid #888888;
+  text-shadow: 0 0 1px #FFF;
+}
+
+ul.primary li:first-child a {
+  border-radius:3px 0 0 3px;
+}
+ul.primary li:last-child a {
+  border-radius:0px 3px 3px 0;
 }
 
 ul.secondary {
@@ -560,8 +632,14 @@ ul.secondary a.active {
  */
 
 .block {
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
+  padding-bottom:1em;
 }
+.sidebar .block {
+  /*border-bottom:solid #DDD 1px;*/
+}
+
+
 
 /**
  * 10.FOOTER
@@ -578,7 +656,9 @@ ul.secondary a.active {
   right: 0;
   top: 1.6667em;
 }
-
+.node footer {
+  float:right;
+}
 /**
  * 11.CSS SUPPORT
  *
@@ -595,9 +675,13 @@ ul.secondary a.active {
 /* display block */
 .display-block { display: block; }
 
+.clearfix:after{
+  font-size:0;
+}
 
 /**
- * Error messages
+ * 12. Error messages
+ * 
  */
 
 div.messages {
@@ -638,35 +722,106 @@ div.warning {
 #main .view-releases .views-row,
 #main .view-albums .views-row,
 #main .view-tracks .views-row {
-  float:left;
-  padding:1%;
+  display:inline-block; /* Use inline-block instead of float to accomodate variable heights. IE fix: zoom:1; *display: inline; _height: 300px; */
+  vertical-align:top;
+  margin-right:1.6%;
+  padding-bottom:1%;
+  margin-bottom:0;
+  width:225px; /* artwork_medium imagecache*/
 }
 
+.view-releases .views-row .views-field-field-artwork img,
+.view-albums .views-row .views-field-field-artwork img,
+.view-tracks .views-row .views-field-field-artwork img {
+  border:solid #000000 2px;
+  display:block;
+}
+
+.view-releases .views-row .views-field-field-artwork img:hover,
+.view-albums .views-row .views-field-field-artwork img:hover,
+.view-tracks .views-row .views-field-field-artwork img:hover {
+  border-color:#606C84;
+  display:block;
+}
+
+.view-releases .views-row .views-field-field-artwork a,
+.view-albums .views-row .views-field-field-artwork a,
+.view-tracks .views-row .views-field-field-artwork a {
+  background:000;
+  display:block;
+}
+
+.view-releases .views-row .views-field-title a,
+.view-albums .views-row .views-field-title a,
+.view-tracks .views-row .views-field-title a {
+  font-size:.9em;
+  display:block;
+  padding:.5em 1em;
+  padding-left:0px;
+  color:#000;
+}
+
+.sidebar .view-releases .views-row,
+.sidebar .view-albums .views-row,
+.sidebar .view-tracks .views-row {
+  margin-bottom:1%;
+}
+
+
+body.node-type-album .field ,
+body.node-type-track .field {
+ margin-bottom:.5em;
+
+}
+body.node-type-album .field-label,
+body.node-type-track .field-label {
+  margin-bottom:.25em;
+}
+body.node-type-album .field-label-inline,
+body.node-type-track .field-label-inline {
+  display:block;
+}
+
+body.node-type-album .field-name-field-artwork,
+body.node-type-track .field-name-field-artwork{
+  float:right;
+  margin:0 1% 2% 3%;
+  border:none;
+}
+
+body.node-type-album.page-node-edit .field-name-field-artwork,
+body.node-type-track.page-node-edit .field-name-field-artwork{
+  float:none;
+  margin:0;
+}
 
 /**
- * Media Queries
+ * 13. Media Queries
+ * 
  */
 
-@media screen and (min-width:1024px)
+@media screen and (min-width:980px)
 {
   /* By default, this template is fluid width */
-  
-	#container { width: 1024px; }
+	#container { width: 980px;}
 }
 
-@media screen and (min-width:2048px)
-{
-  /* Set a larger max width */
-	#container { width: 2048px; }
-}
 
 
 @media screen and (max-width:800px)
 {
-	#container { width: 93%;}
+
   h1, h2 {
     font-size:1.4em;
   }
+  #header #site-name {
+    font-size:1.6em;
+  }
+  #navigation {
+    margin-top:0;
+    font-size:1em;
+  }
+
   .breadcrumb a {
     line-height:20px;
     font-size:.75em;
@@ -682,7 +837,11 @@ div.warning {
     background:url(images/gears-small.png) no-repeat center left;
     text-transform:uppercase;
   }
-
+  /**
+   * Drop all the columns.
+   * 
+   */
+  
   /* 3 columns */
   
   body.two-sidebars #main {
@@ -712,7 +871,7 @@ div.warning {
   }
   
   /**
-   * 4.SIDEBARS
+   * SIDEBARS
    */
   
   /* 3 columns: sidebar-first */
@@ -749,40 +908,29 @@ div.warning {
     width: 100%;
     clear:both;
     margin:0;
-  }  
+  }
+  .sidebar .block, 
   .sidebar {
     border-top:solid #DDD 1px;
+    border-bottom:none;
     clear:both;
   }
   .sidebar .view-releases .views-row,
   .sidebar .view-albums .views-row,
   .sidebar .view-tracks .views-row {
-    float:left;
-    font-size:.9em;
-    padding:1%;    
-    /*border-left:solid #ddd 1px;*/
+     display:inline-block; /*IE fix: zoom:1; *display: inline; _height: 120px; */
+     vertical-align:top;
+     margin-right:1.6%;
+     margin-bottom:1.6%;
+     height:auto;
+     width:100px; /* artwork_small imagecache width*/
   }
-  .sidebar .view-releases .views-row-first,
-  .sidebar .view-albums .views-row-first,
-  .sidebar .view-tracks .views-row-first {
-    /*border-left:none;*/
-  }
-  
 }
 
-#top {
-  margin-bottom:20px;
-  width:100%;
-  clear:both;
-  /*
-   position:fixed;
-  top:0;
-	-webkit-box-shadow: 0 12px 6px -6px rgba(0,0,0,0.4);
-	   -moz-box-shadow: 0 12px 6px -6px rgba(0,0,0,0.4);
-	        box-shadow: 0 12px 6px -6px rgba(0,0,0,0.4);
-	*/
-}
 
+/**
+ * Node admin styles
+ */
 .admin-panel h3 {
   border-bottom:solid 1px #F0f0f0;
   padding-bottom:5px;
@@ -790,10 +938,8 @@ div.warning {
 }
 
 .node-form {
-
-  background:#F5F5F5;
-  border:solid 1px #DDD;
-  border-radius:3px;
+  background:#FAFAFA;
+  border:solid 1px #F2F2F2;
   padding:15px;
   height:auto;
   padding-bottom:50px;
@@ -815,6 +961,13 @@ div.warning {
   width:80%;
 }
 
+.description {
+  font-style:italic;
+  color:#676767;
+  padding:5px 5px 5px 0;
+  font-size:.95em;
+}
+
 /* Animated throbber */
 html.js input.form-autocomplete {
   background-image: url(images/throbber-static.gif);
@@ -825,5 +978,8 @@ html.js input.throbbing {
   background-image: url(images/throbber.gif);
   background-position: 99% 50%; /* LTR */
   background-repeat: no-repeat;
-  
 }
+
+/**
+ * Additional Styles
+ */

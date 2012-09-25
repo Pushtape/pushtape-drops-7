@@ -5,9 +5,9 @@ package = Development
 dependencies[] = features
 dependencies[] = update
 
-; Information added by drupal.org packaging script on 2012-06-05
-version = "7.x-1.x-dev"
+; Information added by drupal.org packaging script on 2012-09-18
+version = "7.x-1.0-alpha2+1-dev"
 core = "7.x"
 project = "app_manifest"
-datestamp = "1338854599"
+datestamp = "1347926803"
 

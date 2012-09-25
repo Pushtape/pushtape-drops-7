@@ -1,8 +1,8 @@
 name = Pushtape Galleries
-description = an attempt at creating galleries (photo and video) for pushatpae_panopoly
+description = an attempt at creating galleries (photo and video) for pushtape_panopoly
 core = 7.x
 package = Pushtape
-version = 7.x-1.0-alpha2
+version = 7.x-1.x-dev
 project = pushtape_galleries
 dependencies[] = features
 dependencies[] = list
@@ -14,9 +14,9 @@ features[ctools][] = views:views_default:3.0
 features[features_api][] = api:1
 
 
-; Information added by drush on 2012-09-10
+; Information added by drush on 2012-09-25
 version = "7.x-1.x-panels-dev"
 core = "7.x"
 project = "pushtape_galleries"
-datestamp = "1347274621"
+datestamp = "1348597699"
 

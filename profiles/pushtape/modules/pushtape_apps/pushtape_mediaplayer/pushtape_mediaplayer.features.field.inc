@@ -48,9 +48,11 @@ function pushtape_mediaplayer_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'mediaplaylist',
-          'settings' => array(),
-          'type' => 'mediaplaylist_links',
+          'module' => 'file_entity',
+          'settings' => array(
+            'file_view_mode' => 'media_small',
+          ),
+          'type' => 'file_rendered',
           'weight' => '10',
         ),
         'featured' => array(
@@ -107,8 +109,8 @@ function pushtape_mediaplayer_field_default_fields() {
             'private' => 'private',
             'public' => 'public',
             'soundcloud' => 'soundcloud',
-            'vimeo' => 'vimeo',
-            'youtube' => 'youtube',
+            'vimeo' => 0,
+            'youtube' => 0,
           ),
           'allowed_types' => array(
             'audio' => 'audio',
@@ -118,8 +120,8 @@ function pushtape_mediaplayer_field_default_fields() {
           ),
           'browser_plugins' => array(
             'library' => 'library',
-            'media_default--media_browser_1' => 'media_default--media_browser_1',
-            'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
+            'media_default--media_browser_1' => 0,
+            'media_default--media_browser_my_files' => 0,
             'media_internet' => 'media_internet',
             'upload' => 'upload',
           ),

@@ -3,7 +3,7 @@ description = Creates album and track content types and views.
 core = 7.x
 package = Pushtape
 php = 5.2.4
-version = 7.x-1.0-alpha3
+version = 7.x-1.x-dev
 project = pushtape_discography
 dependencies[] = block
 dependencies[] = ctools
@@ -20,6 +20,7 @@ dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = views
 apps[server] = http://apps.rosenstrauch.com/apps/query/pushtape
+datestamp = 1347274631
 features[ctools][] = page_manager:pages_default:1
 features[ctools][] = panelizer:panelizer:1
 features[ctools][] = strongarm:strongarm:1
@@ -66,22 +67,15 @@ features[variable][] = node_submitted_album
 features[variable][] = node_submitted_track
 features[variable][] = panelizer_defaults_node_album
 features[variable][] = panelizer_defaults_node_track
-features[variable][] = panelizer_node:album_allowed_layouts
-features[variable][] = panelizer_node:album_allowed_types
-features[variable][] = panelizer_node:album_default
-features[variable][] = panelizer_node:track_allowed_layouts
-features[variable][] = panelizer_node:track_allowed_types
-features[variable][] = panelizer_node:track_default
 features[views_view][] = albums
 features[views_view][] = releases
 features[views_view][] = tracks
 files[] = test/pushtape_discography.test
-project status url = http://apps.rosenstrauch.com/fserver
+project status url = http://apps.pushtape.openlearninglabs.org/content/pushtape-discography
 
-
-; Information added by drush on 2012-09-10
+; Information added by drush on 2012-09-25
 version = "7.x-1.x-panels-dev"
 core = "7.x"
 project = "pushtape_discography"
-datestamp = "1347274631"
+datestamp = "1348597702"
 

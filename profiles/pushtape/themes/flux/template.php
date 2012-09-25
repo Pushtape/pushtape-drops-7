@@ -1,4 +1,6 @@
 <?php
+
+
 /**
  * Implements hook_html_head_alter().
  * We are overwriting the default meta character type tag with HTML5 version.
@@ -17,6 +19,10 @@ function flux_html_head_alter(&$head_elements) {
  * @return a string containing the breadcrumb output.
  */
 function flux_breadcrumb($variables) {
+  // only want breadcrumbs for admin section.
+  if (arg(0) != 'admin') {
+    return;
+  }
   $breadcrumb = $variables['breadcrumb'];
 
   if (!empty($breadcrumb)) {
@@ -104,9 +110,50 @@ function flux_process_block(&$variables, $hook) {
   $variables['title'] = $variables['block']->subject;
 }
 
+
+
+function flux_preprocess_page(&$vars) {
+  $vars['cover_image']  = NULL;
+  if (theme_get_setting('toggle_cover_photo')) {
+    $cover_image = theme_get_setting('cover_photo_path');
+    if (theme_get_setting('default_cover_photo') == TRUE) {
+      $cover_image = path_to_theme() . '/cover.png';
+    }
+    if (is_file($cover_image)) {
+      $vars['cover_image'] =  file_create_url($cover_image);
+    }
+  }
+}
+
 /**
  * Changes the search form to use the "search" input element of HTML5.
  */
 function flux_preprocess_search_block_form(&$vars) {
   $vars['search_form'] = str_replace('type="text"', 'type="search"', $vars['search_form']);
+}
+
+
+/**
+ * Implements theme_field to get rid of colon on labels.
+ */
+function flux_field($variables) {
+  $output = '';
+
+  // Render the label, if it's not hidden.
+  if (!$variables['label_hidden']) {
+    $output .= '<div class="field-label"' . $variables['title_attributes'] . '>' . $variables['label'] . ':&nbsp;&nbsp;</div>';
+  }
+
+  // Render the items.
+  $output .= '<div class="field-items"' . $variables['content_attributes'] . '>';
+  foreach ($variables['items'] as $delta => $item) {
+    $classes = 'field-item ' . ($delta % 2 ? 'odd' : 'even');
+    $output .= '<div class="' . $classes . '"' . $variables['item_attributes'][$delta] . '>' . drupal_render($item) . '</div>';
+  }
+  $output .= '</div>';
+
+  // Render the top-level DIV.
+  $output = '<div class="' . $variables['classes'] . '"' . $variables['attributes'] . '>' . $output . '</div>';
+
+  return $output;
 }

@@ -1,6 +1,6 @@
 name = Pushtape
 description = Music publishing profile.
-core = 7.x; Panopoly - Core
+
 ; Drupal Core
 dependencies[] = menu
 dependencies[] = image
@@ -19,7 +19,7 @@ dependencies[] = update
 
 dependencies[] = pushtape_ui
 dependencies[] = pushtape_discography
-
+dependencies[] = pushtape_front
 
 ; Panopoly Foundation
 dependencies[] = panopoly_core
@@ -30,8 +30,6 @@ dependencies[] = panopoly_widgets
 dependencies[] = panopoly_admin
 dependencies[] = panopoly_users
 dependencies[] = panopoly_pages
-dependencies[] = panopoly_search
-dependencies[] = panopoly_wysiwyg
 
 ; Panopoly - Contrib
 dependencies[] = apps 
@@ -47,9 +45,9 @@ stylesheets[all][] = pushtape.css
 files[] = pushtape.profile
 
 
-; Information added by drush on 2012-09-10
+; Information added by drush on 2012-09-25
 version = "7.x-1.x-panels-dev"
 core = "7.x"
 project = "pushtape"
-datestamp = "1347274608"
+datestamp = "1348597696"
 

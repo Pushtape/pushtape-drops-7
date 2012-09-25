@@ -6,8 +6,8 @@ dependencies[] = ctools
 dependencies[] = page_manager
 dependencies[] = panels
 
-; Information added by drush on 2012-09-10
+; Information added by drush on 2012-09-25
 version = ""
 project = "panels_breadcrumbs"
-datestamp = "1347274638"
+datestamp = "1348597714"
 

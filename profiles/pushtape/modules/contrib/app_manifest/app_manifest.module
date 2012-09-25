@@ -40,7 +40,8 @@ function app_manifest_get_manifest($feature) {
  * Helper function to generate an Open Apps manifest for a feature.
  */
 function app_manifest_export_manifest($name, $info, $make = NULL) {
-  $update_data = update_get_available(TRUE);
+  $available = update_get_available(TRUE);
+  $update_data = update_calculate_project_data($available);
   $projects = update_get_projects();
   $module_data = system_rebuild_module_data();
   $manifest = array();
@@ -83,7 +84,15 @@ function app_manifest_export_manifest($name, $info, $make = NULL) {
     foreach ($projects as $project_name => $data) {
       if (isset($data['includes'][$dependency])) {
         $project = $project_name;
-        $version = $data['info']['version'];
+        // For dev releases, the .info file version may contain information
+        // about a previous stable release. Instead, use the actual installed
+        // dev version string.
+        if (isset($update_data[$project]['install_type']) && $update_data[$project]['install_type'] == 'dev') {
+          $version = $update_data[$project]['dev_version'];
+        }
+        else {
+          $version = $data['info']['version'];
+        }
         break;
       }
     }
@@ -95,13 +104,15 @@ function app_manifest_export_manifest($name, $info, $make = NULL) {
       else {
         // Update data may be missing. Default to the standard link, but add
         // a note to check the link.
-        $manifest['downloadables']["{$project} {$version}"] = "http://ftp.drupal.org/files/projects/{$project}-7.x-{$version}.tar.gz CHECK_LINK";
+        $manifest['downloadables']["{$project} {$version}"] = "http://ftp.drupal.org/files/projects/{$project}-{$version}.tar.gz CHECK_LINK";
       }
+      // Add the downoadable for the primary project.
       if ($dependency == $name) {
         $manifest['downloadable'] = "{$project} {$version}";
       }
+      // It's the project, not the individual dependency, that we need.
       else {
-        $manifest['dependencies'][$dependency] = "{$project} {$version}";
+        $manifest['dependencies'][$project] = "{$project} {$version}";
       }
     }
   }

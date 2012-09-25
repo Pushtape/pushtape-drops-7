@@ -5,8 +5,8 @@ core = 7.x
 dependencies[] = media
 
 
-; Information added by drush on 2012-09-10
+; Information added by drush on 2012-09-25
 version = ""
 project = "media"
-datestamp = "1347274642"
+datestamp = "1348597710"
 

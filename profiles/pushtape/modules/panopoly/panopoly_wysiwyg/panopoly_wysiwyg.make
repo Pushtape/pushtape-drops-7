@@ -11,10 +11,16 @@ projects[wysiwyg][patch][1489096] = http://drupal.org/files/wysiwyg-table-format
 projects[wysiwyg][patch][356480] = http://drupal.org/files/lazy_wysiwyg-356480-150.patch
 projects[wysiwyg][download][type] = git
 projects[wysiwyg][download][revision] = d17bf11
+projects[wysiwyg][download][type] = git
 projects[wysiwyg][download][branch] = 7.x-2.x
 
 projects[wysiwyg_filter][version] = 1.6-rc2
 projects[wysiwyg_filter][subdir] = contrib
+
+; Panopoly - Contrib - LinkIt
+
+projects[linkit][version] = 2.5
+projects[linkit][subdir] = contrib
 
 ; Include our WYSIWYG editors
 

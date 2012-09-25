@@ -2,7 +2,7 @@ name = Pushtape Front
 core = 7.x
 package = Pushtape
 php = 5.2.4
-version = 7.x-1.0-dev
+version = 7.x-1.x-dev
 project = pushtape_front
 dependencies[] = ctools
 dependencies[] = page_manager
@@ -12,9 +12,9 @@ features[features_api][] = api:1
 features[page_manager_pages][] = pushtape_front
 
 
-; Information added by drush on 2012-09-10
+; Information added by drush on 2012-09-25
 version = "7.x-1.x-panels-dev"
 core = "7.x"
 project = "pushtape_front"
-datestamp = "1347274621"
+datestamp = "1348597699"
 

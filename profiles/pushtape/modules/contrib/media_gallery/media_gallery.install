@@ -183,7 +183,7 @@ function _media_gallery_controlled_fields() {
       'field_name' => 'media_gallery_media',
       'cardinality' => FIELD_CARDINALITY_UNLIMITED,
       'locked' => TRUE,
-      'type' => 'file',
+      'type' => 'media',
     ),
     // The gallery description.
     'media_gallery_description' => array(

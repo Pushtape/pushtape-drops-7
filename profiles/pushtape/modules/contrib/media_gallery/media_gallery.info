@@ -5,7 +5,7 @@ package = Media
 
 dependencies[] = list
 dependencies[] = number
-dependencies[] = media
+dependencies[] = media (<1.99)
 dependencies[] = taxonomy
 dependencies[] = multiform
 

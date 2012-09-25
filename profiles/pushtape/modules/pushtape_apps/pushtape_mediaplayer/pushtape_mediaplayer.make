@@ -22,6 +22,6 @@ libraries[soundmanager2][directory_name] = soundmanager2
 libraries[soundmanager2][type] = library
 
 libraries[jplayer][download][type] = get
-libraries[jplayer][download][url] = "http://jplayer.org/latest/jQuery.jPlayer.2.1.0.zip"
+libraries[jplayer][download][url] = "http://jplayer.org/latest/jQuery.jPlayer.2.2.0.zip"
 libraries[jplayer][directory_name] = jplayer
 libraries[jplayer][type] = library

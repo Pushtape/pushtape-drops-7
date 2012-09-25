@@ -44,9 +44,9 @@ features[variable][] = pm_existing_pages_disabled_user_login
 features[variable][] = pm_existing_pages_disabled_user_password
 features[variable][] = pm_existing_pages_disabled_user_register
 
-; Information added by drupal.org packaging script on 2012-08-15
-version = "7.x-1.0-beta4+20-dev"
+; Information added by drupal.org packaging script on 2012-09-22
+version = "7.x-1.0-beta5+2-dev"
 core = "7.x"
 project = "panopoly_users"
-datestamp = "1344991303"
+datestamp = "1348318318"
 

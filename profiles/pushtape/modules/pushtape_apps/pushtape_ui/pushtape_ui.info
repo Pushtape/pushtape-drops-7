@@ -3,7 +3,7 @@ description = A discography publishing platform. Easily publish albums or single
 name = Pushtape UI
 package = Pushtape
 project = pushtape_ui
-version = 7.x-1.0-alpha2
+version = 7.x-1.x-dev
 dependencies[] = entity
 dependencies[] = views
 dependencies[] = features
@@ -16,9 +16,9 @@ files[] = test/pushtape_ui.test
 project status url = http://updates.drupal.org/release-history/pushtape_ui/7.x
 
 
-; Information added by drush on 2012-09-10
+; Information added by drush on 2012-09-25
 version = "7.x-1.x-panels-dev"
 core = "7.x"
 project = "pushtape_ui"
-datestamp = "1347274633"
+datestamp = "1348597702"
 

@@ -20,7 +20,6 @@ dependencies[] = panels_breadcrumbs
 dependencies[] = panels_ipe
 dependencies[] = pathauto
 dependencies[] = pm_existing_pages
-dependencies[] = search
 dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = token
@@ -59,13 +58,13 @@ features[variable][] = panels_page_allowed_types
 features[variable][] = panels_page_default
 features[variable][] = pathauto_taxonomy_term_panopoly_categories_pattern
 features[views_view][] = panopoly_taxonomy
-stylesheets[all][] = css/panopoly_fonts.css
-stylesheets[all][] = css/panopoly_modal.css
-stylesheets[all][] = css/panopoly_elements.css
+stylesheets[all][] = css/panopoly-fonts.css
+stylesheets[all][] = css/panopoly-modal.css
+stylesheets[all][] = css/panopoly-dropbutton.css
 
-; Information added by drupal.org packaging script on 2012-09-06
-version = "7.x-1.0-beta5+23-dev"
+; Information added by drupal.org packaging script on 2012-09-22
+version = "7.x-1.0-beta5+40-dev"
 core = "7.x"
 project = "panopoly_core"
-datestamp = "1346892671"
+datestamp = "1348275204"
 

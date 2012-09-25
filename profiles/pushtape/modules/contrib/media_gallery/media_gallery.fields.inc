@@ -13,7 +13,7 @@ function media_gallery_field_formatter_info() {
   return array(
     'media_gallery' => array(
       'label' => t('Gallery media'),
-      'field types' => array('file'),
+      'field types' => array('media', 'file'),
       'settings' => array('file_view_mode' => 'media_gallery_thumbnail'),
     ),
   );
@@ -88,12 +88,15 @@ function media_gallery_field_formatter_view($entity_type, $entity, $field, $inst
 
   // Prepare the referenced file entities for viewing.
   $files = array();
-    foreach ($items as $delta => &$item) {
+  foreach ($items as $delta => $item) {
     if (empty($item['file'])) {
-      $item['file'] = file_load($item['fid']);
+      // file field
+      $file = file_load($item['fid']);
     }
-    $file = $item['file'];
-
+    else {
+      // media field
+      $file = $item['file'];
+    }
     // Pass along formatter reference field values from the gallery to the file.
     foreach ($formatter_reference_fields as $field_name) {
       if (!isset($file->{$field_name}) && isset($entity->{$field_name})) {
@@ -110,14 +113,13 @@ function media_gallery_field_formatter_view($entity_type, $entity, $field, $inst
 
     $files[$file->fid] = $file;
   }
-  unset($item);
   field_attach_prepare_view('file', $files, $file_view_mode);
   entity_prepare_view('file', $files);
 
   // View each file. We don't use file_view_multiple(), because we need the
   // render array indexed by $delta rather than by file id.
   foreach ($items as $delta => $item) {
-    $element[$delta] = file_view($item['file'], $file_view_mode, $langcode);
+    $element[$delta] = file_view($files[$item['fid']], $file_view_mode, $langcode);
     $element[$delta]['#media_gallery_entity_type'] = $entity_type;
     $element[$delta]['#media_gallery_entity'] = $entity;
     switch ($file_view_mode) {
