@@ -688,7 +688,7 @@ function panels_panel_context_edit_content($form, &$form_state) {
   ctools_include('context');
   ctools_include('context-task-handler');
 
-  $cache = panels_edit_cache_get('panel_context:' . $form_state['task_name'] . ':' . $form_state['handler_id']);
+  $cache = panels_edit_cache_get(panels_panel_context_cache_key($form_state['task_name'], $form_state['handler_id'], array()));
 
   $form_state['renderer'] = panels_get_renderer_handler('editor', $cache->display);
   $form_state['renderer']->cache = &$cache;
@@ -891,7 +891,6 @@ function panels_panel_context_get_addressable($task, $subtask_name, $handler, $a
   $display->args = $arguments;
   $display->css_id = $handler->conf['css_id'];
   $display->cache_key = panels_panel_context_cache_key($task->name, $handler->name, $arguments);
-//  $display->cache_key = 'panel_context:' . $task->name . ':' . $handler->name;
 
   $renderer = panels_get_renderer($handler->conf['pipeline'], $display);
   if ($type == 'content') {

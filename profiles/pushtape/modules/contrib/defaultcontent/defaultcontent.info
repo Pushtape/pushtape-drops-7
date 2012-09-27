@@ -6,8 +6,8 @@ dependencies[] = features
 dependencies[] = ctools
 
 
-; Information added by drush on 2012-09-25
+; Information added by drush on 2012-09-27
 version = ""
 project = "defaultcontent"
-datestamp = "1348597711"
+datestamp = "1348776242"
 

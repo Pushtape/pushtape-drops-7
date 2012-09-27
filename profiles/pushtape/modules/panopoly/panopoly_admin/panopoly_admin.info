@@ -32,9 +32,9 @@ features[variable][] = user_admin_role
 scripts[] = panopoly-admin.js
 stylesheets[all][] = panopoly-admin.css
 
-; Information added by drupal.org packaging script on 2012-09-22
-version = "7.x-1.0-beta5+27-dev"
-core = "7.x"
+
+; Information added by drush on 2012-09-27
+version = ""
 project = "panopoly_admin"
-datestamp = "1348275202"
+datestamp = "1348776234"
 

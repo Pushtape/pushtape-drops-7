@@ -136,7 +136,8 @@ function media_gallery_lightbox_page_deliver($page_content) {
   // iframe results in reduced functionality (you don't get the colorbox
   // plugin's autoresizing behavior).
   print drupal_render($content);
-  drupal_exit();
+  // Perform end-of-request tasks.
+  drupal_page_footer();
 }
 
 /**

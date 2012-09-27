@@ -62,9 +62,9 @@ stylesheets[all][] = css/panopoly-fonts.css
 stylesheets[all][] = css/panopoly-modal.css
 stylesheets[all][] = css/panopoly-dropbutton.css
 
-; Information added by drupal.org packaging script on 2012-09-22
-version = "7.x-1.0-beta5+40-dev"
-core = "7.x"
+
+; Information added by drush on 2012-09-27
+version = "7.x-1.x-dev"
 project = "panopoly_core"
-datestamp = "1348275204"
+datestamp = "1348776239"
 

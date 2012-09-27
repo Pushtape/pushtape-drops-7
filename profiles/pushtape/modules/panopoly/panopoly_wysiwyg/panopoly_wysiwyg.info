@@ -24,9 +24,9 @@ features[wysiwyg][] = panopoly_html_text
 features[wysiwyg][] = panopoly_wysiwyg_text
 stylesheets[all][] = panopoly-wysiwyg.css
 
-; Information added by drupal.org packaging script on 2012-09-21
-version = "7.x-1.0-beta5+9-dev"
+; Information added by drupal.org packaging script on 2012-09-24
+version = "7.x-1.0-beta6"
 core = "7.x"
 project = "panopoly_wysiwyg"
-datestamp = "1348231723"
+datestamp = "1348523094"
 

@@ -9,7 +9,6 @@ projects[media_gallery][version] =  1.x-dev
 projects[media_gallery][subdir] = contrib
 projects[media_gallery][patch][] = http://drupal.org/files/media_gallery-support_file_field-1391332-27_0.patch
 
-projects[plupload][version] = 1.0
 projects[plupload][subdir] = contrib
 
 libraries[plupload][download][type] = get

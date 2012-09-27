@@ -724,7 +724,6 @@ div.warning {
 #main .view-tracks .views-row {
   display:inline-block; /* Use inline-block instead of float to accomodate variable heights. IE fix: zoom:1; *display: inline; _height: 300px; */
   vertical-align:top;
-  margin-right:1.6%;
   padding-bottom:1%;
   margin-bottom:0;
   width:225px; /* artwork_medium imagecache*/

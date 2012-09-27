@@ -57,9 +57,9 @@ files[] = panopoly_widgets.module
 scripts[] = panopoly-widgets.js
 stylesheets[all][] = panopoly-widgets.css
 
-; Information added by drupal.org packaging script on 2012-09-22
-version = "7.x-1.0-beta5+21-dev"
-core = "7.x"
+
+; Information added by drush on 2012-09-27
+version = ""
 project = "panopoly_widgets"
-datestamp = "1348275214"
+datestamp = "1348776234"
 

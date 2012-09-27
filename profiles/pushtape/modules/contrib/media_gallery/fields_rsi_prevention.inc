@@ -21,7 +21,7 @@ class FieldsRSIPreventor {
   
   function __construct($entity) {
     // Prevent this thing from chaining if people accidentally use it twice.
-    if (is_a($entity, 'FieldRSIPreventor')) {
+    if ($entity instanceof FieldRSIPreventor) {
       $entity = $entity->entity;
     }
     $this->entity = $entity;

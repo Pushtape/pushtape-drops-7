@@ -2,21 +2,25 @@ name = Pushtape Galleries
 description = an attempt at creating galleries (photo and video) for pushtape_panopoly
 core = 7.x
 package = Pushtape
+php = 5.2.4
 version = 7.x-1.x-dev
 project = pushtape_galleries
+dependencies[] = ctools
 dependencies[] = features
 dependencies[] = list
 dependencies[] = media_gallery
 dependencies[] = number
+dependencies[] = plupload
 dependencies[] = taxonomy
 dependencies[] = views
+datestamp = 1348717100
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:1
 
 
-; Information added by drush on 2012-09-25
+; Information added by drush on 2012-09-27
 version = "7.x-1.x-panels-dev"
 core = "7.x"
 project = "pushtape_galleries"
-datestamp = "1348597699"
+datestamp = "1348776226"
 
