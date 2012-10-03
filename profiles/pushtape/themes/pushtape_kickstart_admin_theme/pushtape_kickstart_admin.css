@@ -382,7 +382,7 @@ body.in-maintenance #credit {
   width: 180px;
 }
 #credit .logo a {
-  background: transparent url("images/logo-cg2.png") no-repeat 0 0;
+  background: transparent url("images/pushtape_logo.png") no-repeat 0 0;
   clear: right; /* LTR */
   float: right; /* LTR */
   height: 0;
@@ -391,10 +391,10 @@ body.in-maintenance #credit {
   width: 180px;
 }
 body.in-maintenance #credit .logo a {
-  background: transparent url("images/logo-cg.png") no-repeat 0 0;
+  background: transparent url("logo.png") no-repeat 0 0;
 }
 #overlay #overlay-content #credit .logo a {
-  background: transparent url("images/logo-cg.png") no-repeat 0 0;
+  background: transparent url("logo.png") no-repeat 0 0;
 }
 #block-system-main {
   position: relative;

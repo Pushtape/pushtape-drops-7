@@ -16,7 +16,7 @@
  * the JS will respect that when resizing later.
  */
 ?>
-<div class="media-soundcloud-outer-wrapper" id="media-soundcloud-<?php print $id; ?>" style="width: <?php print $width; ?>px;">
+<div class="media-soundcloud-outer-wrapper" id="media-soundcloud-<?php print $id; ?>">
   <div class="media-soundcloud-preview-wrapper" id="<?php print $wrapper_id; ?>">
     <?php print $output; ?>
   </div>

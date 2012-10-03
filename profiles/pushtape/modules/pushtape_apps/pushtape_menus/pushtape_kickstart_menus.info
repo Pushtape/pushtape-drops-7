@@ -3,9 +3,8 @@ description = Custom administrative Toolbar.
 core = 7.x
 package = Pushtape
 php = 5.2.4
-version = 7.x-1.0-alpha2
+version = 7.x-1.0-alpha3
 project = pushtape_kickstart_menus
-dependencies[] = admin
 dependencies[] = advanced_help
 dependencies[] = context
 dependencies[] = delta_blocks
@@ -20,3 +19,10 @@ features[features_api][] = api:1
 features[variable][] = admin_toolbar
 project status url = http://apps.pushtape.com/fserver
 stylesheets[all][] = pushtape_kickstart_menus.css
+
+
+; Information added by drush on 2012-10-03
+version = "master-dev"
+project = "pushtape_menus"
+datestamp = "1349298580"
+

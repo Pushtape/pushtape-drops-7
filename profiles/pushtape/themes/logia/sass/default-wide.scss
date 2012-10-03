@@ -1,0 +1,43 @@
+/* This file will hold styles that are loaded using the same media query as the wide grid. */
+
+/**
+ * Wide Desktop Layout: 1382px.
+ * Gutters: 24px.
+ * Outer margins: 59px.
+ * ------------------------------------------------------------------------------------------------------
+ * cols    1     2      3      4      5      6      7      8      9      10     11     12     13     14
+ * px      68    160    252    344    436    528    620    712    804    896    988    1080   1172   1264
+ */
+@media only screen and (min-width: 1382px) {
+@import "compass";
+  html {
+    background: url("../images/background.png") no-repeat center center fixed;
+    @include background-size(cover);
+  }
+
+#site-slogan {
+@include transform(translateX(20px) translateY(0px) rotate(-9deg) );
+}
+
+.region-sidebar .block {
+  background-color: #FFFFFF;
+  padding-top: 15px;
+  @include background(
+                      linear-gradient(top left, #e5e5e5, #0c0),
+                      radial-gradient(#c00, #e5e5e5 100px));  
+  @include box-shadow(-14px 29px 40px #a8793b);
+  }
+
+#block-system-main-menu ul.menu {
+  li a {
+    @include transform(rotate(-7deg));
+  }
+  .last a {
+    @include transform( rotate(-3deg));
+  }
+}
+
+
+}
+
+

@@ -30,7 +30,6 @@ dependencies[] = ctools
 
 ;Devel
 
-dependencies[] = admin
 dependencies[] = context
 dependencies[] = context_layouts
 dependencies[] = advanced_help
@@ -43,6 +42,11 @@ dependencies[] = omega_tools
 dependencies[] = pushtape_ui
 dependencies[] = pushtape_discography
 
-files[] = pushtape.profile
-files[] = pushtape.install
 project status url = http://updates.drupal.org/release-history/pushtape/7.x
+
+; Information added by drush on 2012-10-03
+version = "7.x-1.x-upstream-dev"
+core = "7.x"
+project = "pushtape"
+datestamp = "1349298567"
+

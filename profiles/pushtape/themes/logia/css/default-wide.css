@@ -1,0 +1,59 @@
+/* This file will hold styles that are loaded using the same media query as the wide grid. */
+/**
+ * Wide Desktop Layout: 1382px.
+ * Gutters: 24px.
+ * Outer margins: 59px.
+ * ------------------------------------------------------------------------------------------------------
+ * cols    1     2      3      4      5      6      7      8      9      10     11     12     13     14
+ * px      68    160    252    344    436    528    620    712    804    896    988    1080   1172   1264
+ */
+@media only screen and (min-width: 1382px) {
+  /* line 13, ../sass/default-wide.scss */
+  html {
+    background: url("../images/background.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  /* line 18, ../sass/default-wide.scss */
+  #site-slogan {
+    -webkit-transform: translateX(20px) translateY(0px) rotate(-9deg);
+    -moz-transform: translateX(20px) translateY(0px) rotate(-9deg);
+    -ms-transform: translateX(20px) translateY(0px) rotate(-9deg);
+    -o-transform: translateX(20px) translateY(0px) rotate(-9deg);
+    transform: translateX(20px) translateY(0px) rotate(-9deg);
+  }
+
+  /* line 22, ../sass/default-wide.scss */
+  .region-sidebar .block {
+    background-color: #FFFFFF;
+    padding-top: 15px;
+    background: -webkit-gradient(linear, 0% 0%, 100% 100%, color-stop(0%, #e5e5e5), color-stop(100%, #00cc00)), -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #cc0000), color-stop(100%, #e5e5e5));
+    background: -webkit-linear-gradient(top left, #e5e5e5, #00cc00), -webkit-radial-gradient(#cc0000, #e5e5e5 100px);
+    background: -moz-linear-gradient(top left, #e5e5e5, #00cc00), -moz-radial-gradient(#cc0000, #e5e5e5 100px);
+    background: -o-linear-gradient(top left, #e5e5e5, #00cc00), -o-radial-gradient(#cc0000, #e5e5e5 100px);
+    background: linear-gradient(top left, #e5e5e5, #00cc00), radial-gradient(#cc0000, #e5e5e5 100px);
+    -webkit-box-shadow: -14px 29px 40px #a8793b;
+    -moz-box-shadow: -14px 29px 40px #a8793b;
+    box-shadow: -14px 29px 40px #a8793b;
+  }
+
+  /* line 32, ../sass/default-wide.scss */
+  #block-system-main-menu ul.menu li a {
+    -webkit-transform: rotate(-7deg);
+    -moz-transform: rotate(-7deg);
+    -ms-transform: rotate(-7deg);
+    -o-transform: rotate(-7deg);
+    transform: rotate(-7deg);
+  }
+  /* line 35, ../sass/default-wide.scss */
+  #block-system-main-menu ul.menu .last a {
+    -webkit-transform: rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+    -ms-transform: rotate(-3deg);
+    -o-transform: rotate(-3deg);
+    transform: rotate(-3deg);
+  }
+}

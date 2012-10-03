@@ -1,0 +1,113 @@
+name = logia
+description = omega subtheme
+screenshot = screenshot.png
+engine = phptemplate
+core = 7.x
+base theme = omega
+
+features[] = logo
+features[] = favicon
+features[] = name
+features[] = slogan
+
+version = 7.x-4.0-alpha1
+
+; REQUIRED CORE REGIONS
+
+regions[page_top] = Page Top
+regions[page_bottom] = Page Bottom
+regions[content] = Content
+
+; ADDITIONAL REGIONS
+
+regions[user_first] = User Bar First
+regions[user_second] = User Bar Second
+regions[banner] = Banner
+regions[search] = Search
+regions[branding] = Branding
+regions[menu] = Menu
+regions[breadcrumb] = Breadcrumb
+
+regions[sidebar_first] = Sidebar First
+regions[sidebar_second] = Sidebar Second
+
+regions[header_first] = Header First
+regions[header_second] = Header Second
+
+regions[preface_first] = Preface First
+regions[preface_second] = Preface Second
+regions[preface_third] = Preface Third
+
+regions[postscript_first] = Postscript First
+regions[postscript_second] = Postscript Second
+regions[postscript_third] = Postscript Third
+
+regions[footer] = Footer
+
+; ZONES
+
+zones[user] = User
+zones[branding] = Branding
+zones[menu] = Menu
+zones[header] = Header
+zones[preface] = Preface
+zones[content] = Content
+zones[postscript] = Postscript
+zones[footer] = Footer
+
+stylesheets[all][] = css/global.css
+stylesheets[all][] = css/logia-text.css
+stylesheets[all][] = css/default-wide.css
+stylesheets[all][] = css/default-normal.css
+
+; OPTIONAL LIBRARIES
+libraries[logia_custom][name] = pushtape kickstart theme JS
+libraries[logia_custom][description] = This file holds all the custom JS.
+libraries[logia_custom][js][0][file] = logia_custom.js
+libraries[logia_custom][js][0][options][weight] = 15
+settings[alpha_libraries][logia_custom] = logia_custom
+
+; SETTINGS
+settings[toggle_logo] = 1
+settings[toggle_name] = 1
+settings[toggle_slogan] = 1
+settings[toggle_favicon] = 1
+settings[omega_toggle_front_page_content] = 0
+settings[default_logo] = 1
+settings[logo_path] =
+settings[logo_upload] =
+settings[default_favicon] = 1
+settings[favicon_path] =
+settings[favicon_upload] =
+settings[omega_rebuild_theme_registry] = 1
+settings[omega_rebuild_aggregates] = 1
+settings[omega_browser_width_indicator] = 1
+settings[omega_dummy_blocks] = 1
+settings[omega_layout] = epiqo
+settings[omega_conditional_classes_html] = 1
+settings[omega_cleartype] = 1
+settings[omega_handheld_friendly] = 1
+settings[omega_mobile_optimized] = 1
+settings[omega_viewport] = 1
+settings[omega_chrome_edge] = 1
+settings[omega_js_footer] = 0
+settings[omega_libraries][selectivizr][status] = 0
+settings[omega_libraries][css3mediaqueries][status] = 0
+settings[omega_libraries][respond][status] = 0
+settings[omega_libraries][css3pie][status] = 0
+settings[omega_libraries][html5shiv][status] = 0
+settings[omega_libraries][messages][status] = 0
+settings[omega_media_queries_inline] = 0
+
+settings[omega_toggle_extension_development] = 1
+settings[omega_toggle_extension_layouts] = 1
+settings[omega_toggle_extension_compatibility] = 1
+settings[omega_toggle_extension_scripts] = 1
+settings[omega_toggle_extension_css] = 1
+
+
+; Information added by drush on 2012-10-03
+version = ""
+project = "logia"
+datestamp = "1349298570"
+

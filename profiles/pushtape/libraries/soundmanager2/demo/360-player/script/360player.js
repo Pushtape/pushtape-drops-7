@@ -102,6 +102,8 @@ function ThreeSixtyPlayer() {
 
     fontSizeMax: null, // set according to CSS
 
+    scaleArcWidth: 1,  // thickness factor of playback progress ring
+
     useFavIcon: false // Experimental (also requires usePeakData: true).. Try to draw a "VU Meter" in the favicon area, if browser supports it (Firefox + Opera as of 2009)
 
   };
@@ -428,7 +430,7 @@ function ThreeSixtyPlayer() {
       } else {
         // different sound
         thisSound.togglePause(); // start playing current
-        sm._writeDebug('sound different than last sound: '+self.lastSound.sID);
+        sm._writeDebug('sound different than last sound: '+self.lastSound.id);
         if (!self.config.allowMultiple && self.lastSound) {
           self.stopSound(self.lastSound);
         }
@@ -560,7 +562,7 @@ function ThreeSixtyPlayer() {
        return false;
      }
      thisSound._360data.animating = 0;
-     soundManager._writeDebug('fanOut: '+thisSound.sID+': '+thisSound._360data.oLink.href);
+     soundManager._writeDebug('fanOut: '+thisSound.id+': '+thisSound._360data.oLink.href);
      thisSound._360data.oAnim.seekTo(1); // play to end
      window.setTimeout(function() {
        // oncomplete hack
@@ -576,7 +578,7 @@ function ThreeSixtyPlayer() {
        return false;
      }
      thisSound._360data.animating = -1;
-     soundManager._writeDebug('fanIn: '+thisSound.sID+': '+thisSound._360data.oLink.href);
+     soundManager._writeDebug('fanIn: '+thisSound.id+': '+thisSound._360data.oLink.href);
      // massive hack
      thisSound._360data.oAnim.seekTo(0); // play to end
      window.setTimeout(function() {
@@ -602,10 +604,10 @@ function ThreeSixtyPlayer() {
 
   this.stopSound = function(oSound) {
 
-    soundManager._writeDebug('stopSound: '+oSound.sID);
-    soundManager.stop(oSound.sID);
+    soundManager._writeDebug('stopSound: '+oSound.id);
+    soundManager.stop(oSound.id);
     if (!isTouchDevice) { // iOS 4.2+ security blocks onfinish() -> playNext() if we set a .src in-between(?)
-      soundManager.unload(oSound.sID);
+      soundManager.unload(oSound.id);
     }
 
   };
@@ -809,6 +811,7 @@ function ThreeSixtyPlayer() {
   this.updatePlaying = function() {
 
     var timeNow = (this._360data.showHMSTime?self.getTime(this.position,true):parseInt(this.position/1000, 10));
+    var ringScaleFactor = self.config.scaleArcWidth;
 
     if (this.bytesLoaded) {
       this._360data.lastValues.bytesLoaded = this.bytesLoaded;
@@ -823,13 +826,15 @@ function ThreeSixtyPlayer() {
       this._360data.lastValues.durationEstimate = this.durationEstimate;
     }
 
-    self.drawSolidArc(this._360data.oCanvas,self.config.backgroundRingColor,this._360data.width,this._360data.radius,self.deg2rad(fullCircle),false);
+    // background ring
+    self.drawSolidArc(this._360data.oCanvas,self.config.backgroundRingColor,this._360data.width,this._360data.radius * ringScaleFactor,self.deg2rad(fullCircle),false);
 
-    self.drawSolidArc(this._360data.oCanvas,(this._360data.metadata?self.config.loadRingColorMetadata:self.config.loadRingColor),this._360data.width,this._360data.radius,self.deg2rad(fullCircle*(this._360data.lastValues.bytesLoaded/this._360data.lastValues.bytesTotal)),0,true);
+    // loaded ring
+    self.drawSolidArc(this._360data.oCanvas,(this._360data.metadata?self.config.loadRingColorMetadata:self.config.loadRingColor),this._360data.width,this._360data.radius * ringScaleFactor,self.deg2rad(fullCircle*(this._360data.lastValues.bytesLoaded/this._360data.lastValues.bytesTotal)),0,true);
 
     // don't draw if 0 (full black circle in Opera)
     if (this._360data.lastValues.position !== 0) {
-      self.drawSolidArc(this._360data.oCanvas,(this._360data.metadata?self.config.playRingColorMetadata:self.config.playRingColor),this._360data.width,this._360data.radius,self.deg2rad((this._360data.didFinish===1?fullCircle:fullCircle*(this._360data.lastValues.position/this._360data.lastValues.durationEstimate))),0,true);
+      self.drawSolidArc(this._360data.oCanvas,(this._360data.metadata?self.config.playRingColorMetadata:self.config.playRingColor),this._360data.width,this._360data.radius * ringScaleFactor,self.deg2rad((this._360data.didFinish===1?fullCircle:fullCircle*(this._360data.lastValues.position/this._360data.lastValues.durationEstimate))),0,true);
     }
 
     // metadata goes here
@@ -902,7 +907,7 @@ function ThreeSixtyPlayer() {
         if (waveData<0 && self.config.waveformDataConstrain) {
           waveData = Math.abs(waveData);
         }
-        self.drawSolidArc(oSound._360data.oCanvas,self.config.waveformDataColor,oSound._360data.width*innerRadius,oSound._360data.radius*scale*1.25*waveData,endAngle,startAngle,true);
+        self.drawSolidArc(oSound._360data.oCanvas,self.config.waveformDataColor,oSound._360data.width*innerRadius*(2-self.config.scaleArcWidth),oSound._360data.radius*scale*1.25*waveData,endAngle,startAngle,true);
       }
     }
 
@@ -1354,17 +1359,19 @@ ThreeSixtyPlayer.prototype.Metadata = function(oSound, oParent) {
 
 if (navigator.userAgent.match(/webkit/i) && navigator.userAgent.match(/mobile/i)) {
   // iPad, iPhone etc.
-  soundManager.useHTML5Audio = true;
+  soundManager.setup({
+    useHTML5Audio: true
+  });
 }
 
-soundManager.html5PollingInterval = 50; // increased framerate for whileplaying() etc.
-soundManager.debugMode = (window.location.href.match(/debug=1/i)); // disable or enable debug output
-soundManager.consoleOnly = true;
-soundManager.flashVersion = 9;
-soundManager.useHighPerformance = true;
-soundManager.useFlashBlock = true;
-
-// soundManager.useFastPolling = true; // for more aggressive, faster UI updates (higher CPU use)
+soundManager.setup({
+  html5PollingInterval: 50, // increased framerate for whileplaying() etc.
+  debugMode: (window.location.href.match(/debug=1/i)), // disable or enable debug output
+  consoleOnly: true,
+  flashVersion: 9,
+  useHighPerformance: true,
+  useFlashBlock: true
+});
 
 // FPS data, testing/debug only
 if (soundManager.debugMode) {

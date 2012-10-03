@@ -11,10 +11,10 @@
 function pushtape_kickstart_inline_help_page_alter(&$vars) {
 
   $path = current_path();
-  // Our patch where we need to inject help.
+  // Our path where we need to inject help.
   switch($path) {
     case 'admin/pushtape/tracks':
-      $help_topic = 'product';
+      $help_topic = 'pushtape';
       break;
     case 'admin/pushtape/tracks/types':
       $help_topic = 'content_type';
@@ -27,7 +27,7 @@ function pushtape_kickstart_inline_help_page_alter(&$vars) {
     // Add libraries.
     drupal_add_library('system', 'drupal.ajax');
     drupal_add_library('system', 'jquery.form');
-    drupal_add_library('pushtape_kickstart_product_ui', 'jquery_expander');
+    drupal_add_library('pushtape_kickstart_track_ui', 'jquery_expander');
     // Add JS and CSS.
     drupal_add_js(drupal_get_path('module', 'pushtape_kickstart_inline_help') . '/pushtape_kickstart_inline_help.js', 'file');
     drupal_add_css(drupal_get_path('module', 'pushtape_kickstart_inline_help') . '/pushtape_kickstart_inline_help.css');

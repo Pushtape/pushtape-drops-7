@@ -1,0 +1,80 @@
+/* line 6, ../sass/default-normal.scss */
+html {
+  background: #ecd3b0 url("../images/background1024.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+/* line 12, ../sass/default-normal.scss */
+.imgteaser a:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+/* line 15, ../sass/default-normal.scss */
+.imgteaser .meta {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=85);
+  opacity: 0.85;
+}
+
+/* line 20, ../sass/default-normal.scss */
+#block-search-form {
+  -webkit-transform: translateX(-10px) translateY(-170px) rotate(-9deg);
+  -moz-transform: translateX(-10px) translateY(-170px) rotate(-9deg);
+  -ms-transform: translateX(-10px) translateY(-170px) rotate(-9deg);
+  -o-transform: translateX(-10px) translateY(-170px) rotate(-9deg);
+  transform: translateX(-10px) translateY(-170px) rotate(-9deg);
+  float: right;
+}
+
+/* line 25, ../sass/default-normal.scss */
+.region-sidebar-second .block h2 {
+  -webkit-transform: translate(-50px, 37px);
+  -moz-transform: translate(-50px, 37px);
+  -ms-transform: translate(-50px, 37px);
+  -o-transform: translate(-50px, 37px);
+  transform: translate(-50px, 37px);
+  z-index: -10;
+}
+
+/* line 31, ../sass/default-normal.scss */
+.region-content, .region-sidebar-first {
+  -webkit-transform: translate(0px, 80px);
+  -moz-transform: translate(0px, 80px);
+  -ms-transform: translate(0px, 80px);
+  -o-transform: translate(0px, 80px);
+  transform: translate(0px, 80px);
+  z-index: 10;
+}
+
+/* line 36, ../sass/default-normal.scss */
+.region-sidebar-second .block {
+  background: -webkit-gradient(linear, 0% 0%, 100% 100%, color-stop(0%, #e5e5e5), color-stop(100%, #00cc00)), -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #cc0000), color-stop(100%, #e5e5e5));
+  background: -webkit-linear-gradient(top left, #e5e5e5, #00cc00), -webkit-radial-gradient(#cc0000, #e5e5e5 100px);
+  background: -moz-linear-gradient(top left, #e5e5e5, #00cc00), -moz-radial-gradient(#cc0000, #e5e5e5 100px);
+  background: -o-linear-gradient(top left, #e5e5e5, #00cc00), -o-radial-gradient(#cc0000, #e5e5e5 100px);
+  background: linear-gradient(top left, #e5e5e5, #00cc00), radial-gradient(#cc0000, #e5e5e5 100px);
+  -webkit-box-shadow: -14px 29px 40px #a8793b;
+  -moz-box-shadow: -14px 29px 40px #a8793b;
+  box-shadow: -14px 29px 40px #a8793b;
+}
+
+/* line 45, ../sass/default-normal.scss */
+.region-sidebar-first .block {
+  background: -webkit-gradient(linear, 0% 0%, 100% 100%, color-stop(0%, #559988), color-stop(100%, #00cc00)), -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #cc0000), color-stop(100%, #559988));
+  background: -webkit-linear-gradient(top left, #559988, #00cc00), -webkit-radial-gradient(#cc0000, #559988 100px);
+  background: -moz-linear-gradient(top left, #559988, #00cc00), -moz-radial-gradient(#cc0000, #559988 100px);
+  background: -o-linear-gradient(top left, #559988, #00cc00), -o-radial-gradient(#cc0000, #559988 100px);
+  background: linear-gradient(top left, #559988, #00cc00), radial-gradient(#cc0000, #559988 100px);
+  -webkit-box-shadow: -14px 29px 40px #a8793b;
+  -moz-box-shadow: -14px 29px 40px #a8793b;
+  box-shadow: -14px 29px 40px #a8793b;
+  color: #fff;
+}
+
+/* line 53, ../sass/default-normal.scss */
+#block-system-main-menu {
+  background: none;
+  box-shadow: none;
+}

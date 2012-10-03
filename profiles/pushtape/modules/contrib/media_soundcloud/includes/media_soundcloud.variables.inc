@@ -103,6 +103,7 @@ function media_soundcloud_variable_default($name = NULL) {
     $defaults = array(
       'width' => "100%",
       'autoplay' => FALSE,
+      'extra_params' => "",
       'preview_uri' => 'soundcloud://u/djandrewz/a/hope-one',
     );
   }

@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>SoundManager 2: Flash blocker handling examples</title>
+<meta name="robots" content="noindex" />
 <meta name="description" content="Demo of SoundManager 2 handling flashblock / &quot;click to flash&quot; blockers gracefully" />
 <meta name="keywords" content="javascript sound, javascript audio, DHTML sound, flashblock, flash blocker, handling flashblock, click to flash" />
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
@@ -15,19 +16,28 @@
 <script type="text/javascript" src="../../../script/soundmanager2.js"></script>
 
 <script type="text/javascript">
-// custom demo options, not for your needs
-soundManager.debugMode = true;
-soundManager.url = '../../../swf/';
 
-// flash version URL switch (for this demo page)
+soundManager.setup({
+  // custom demo options, not for your needs
+  debugMode: true,
+  url: '../../../swf/'
+});
+
 var winLoc = window.location.toString();
+
 if (winLoc.match(/flash9/i)) {
-  soundManager.flashVersion = 9;
+  soundManager.setup({
+    flashVersion: 9
+  });
   if (winLoc.match(/highperformance/i)) {
-	soundManager.useHighPerformance = true;
+    soundManager.setup({
+      useHighPerformance: true
+    });
   }
 } else if (winLoc.match(/flash8/i)) {
-  soundManager.flashVersion = 8;
+  soundManager.setup({
+    flashVersion: 8
+  });
 }
 
 soundManager.onready(function(){

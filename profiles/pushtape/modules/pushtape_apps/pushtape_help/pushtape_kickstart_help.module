@@ -226,24 +226,24 @@ function _getting_started() {
   // Create a track
   $form['track_management']['create_track'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Create a Track') . '<span class="sub-title"> - ' . t('How to create a track, add variations and update attributes.') . '</span>',
+    '#title' => t('Create a Track') . '<span class="sub-title"> - ' . t('How to create a track, add metadata and update settings.') . '</span>',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
   $form['track_management']['create_track']['content'] = array(
     '#type' => 'item',
-    '#markup' => '<p>You can <a href="/admin/pushtape/tracks">create a track</a> by clicking on Tracks in the menu and then selecting Add Track. Variations of a track (for size, color, etc) that affect pricing can be added inline on the New Track page. <a href="http://www.Pushtape.com/faq">Learn More on DC.org</a></p><iframe width="420" height="315" src="http://www.youtube.com/embed/wTqk7V0dkPQ?rel=0" framebalbum="0" allowfullscreen></iframe>',
+    '#markup' => '<p>You can <a href="/admin/pushtape/tracks">create a track</a> by clicking on Tracks in the menu and then selecting Add Track. Details for the track like title artist licnse can be added inline on the New Track page. <a href="http://www.Pushtape.com/faq">Learn More on pushtape.com</a></p><iframe width="420" height="315" src="http://www.youtube.com/embed/wTqk7V0dkPQ?rel=0" framebalbum="0" allowfullscreen></iframe>',
   );
   // Manage track
   $form['track_management']['manage_track'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Manage Tracks') . '<span class="sub-title"> - ' . t('How to bulk update prices, enabled/disabled states and delete.') . '</span>',
+    '#title' => t('Manage Tracks') . '<span class="sub-title"> - ' . t('How to bulk update tracks.') . '</span>',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
   $form['track_management']['manage_track']['content'] = array(
     '#type' => 'item',
-    '#markup' => '<p>The Pushtape Kickstart management screens includes a robust track listing creen that enables you to bulk update many different attributes and change variations (like color or price) right there in the list. The listing also includes advanced filtering for finding that one track in thousands. <a href="http://www.Pushtape.com/faq">Learn More on DC.org</a></p>',
+    '#markup' => '<p>The Pushtape Kickstart management screens includes a robust track listing screen that enables you to bulk update many different attributes and change variations right there in the list. The listing also includes advanced filtering for finding that one track in thousands. <a href="http://www.Pushtape.com/faq">Learn More on pushtape.com</a></p>',
   );
   // Track display
   $form['track_management']['track_display'] = array(
@@ -267,12 +267,12 @@ function _getting_started() {
     '#type' => 'item',
     '#markup' => '<p>Track images can be :
     <ul>
-      <li>1) part of the track variation, if the image changes based on an attribute like color or size</li>
+      <li>1) added seperatly</li>
       <p>or</p>
-      <li>2) part of the track display if the image does not need to change when the user selects a different attribute. Additionally, track images use Drupal’s image style engine to make sure the images are fully optimized and the right size.</li>
+      <li>2) inherited from album (use album art).</li>
     </ul>
     <a href="/admin/config/media/image-styles">Go to Image Styles</a>
-    <a href="http://www.Pushtape.com/faq">Learn More on DC.org</a></p>',
+    <a href="http://www.Pushtape.com/faq">Learn More on Pushtape.com</a></p>',
   );
 
   // Order management
@@ -288,24 +288,24 @@ function _getting_started() {
   // Edit an album
   $form['album_management']['edit_album'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Edit an Order') . '<span class="sub-title"> - ' . t('How to change an album status and view the album history.') . '</span>',
+    '#title' => t('Edit an album') . '<span class="sub-title"> - ' . t('How to change an album status and view the album history.') . '</span>',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
   $form['album_management']['edit_album']['content'] = array(
     '#type' => 'item',
-    '#markup' => '<p>Quick editing an album gives you access to update a status and viewing the album history. But Drupal Pushtape also gives you the ability to fully edit the album by changing the quantity, adding other tracks, changing shipping or billing information, and we even allow you to modify or add a payment. <a href="/admin/pushtape/albums">Go to Order Screen</a></p><iframe width="420" height="315" src="http://www.youtube.com/embed/D4rfkoTaOeI?rel=0" framebalbum="0" allowfullscreen></iframe>',
+    '#markup' => '<p>Pushtape also gives you the ability to fully edit the album by adding other tracks, changing their order, and we even allow you to modify inherit or add a tracks info <a href="/admin/pushtape/albums">Go to Order Screen</a></p><iframe width="420" height="315" src="http://www.youtube.com/embed/D4rfkoTaOeI?rel=0" framebalbum="0" allowfullscreen></iframe>',
   );
   // Manage albums
   $form['album_management']['manage_albums'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Manage Orders') . '<span class="sub-title"> - ' . t('How to bulk update statuses and delete albums.') . '</span>',
+    '#title' => t('Manage Albums') . '<span class="sub-title"> - ' . t('How to bulk update albums and delete albums.') . '</span>',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
   $form['album_management']['manage_albums']['content'] = array(
     '#type' => 'item',
-    '#markup' => '<p>The bulk update and filtering of the album management screen gives you tools to not only find the right album, but also to edit multiple albums at once. For example, you could find all abandoned shopping carts that are three days old and choose to delete them. <a href="/admin/pushtape/albums">Go to Order Screen</a></p>',
+    '#markup' => '<p>The bulk update and filtering of the album management screen gives you tools to not only find the right track, but also to edit multiple tracks at once. For example, you could find all unassigned tracks to assign them. <a href="/admin/pushtape/albums">Go to album management Screen</a></p>',
   );
 
   // site Settings

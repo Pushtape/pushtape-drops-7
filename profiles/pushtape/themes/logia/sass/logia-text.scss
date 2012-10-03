@@ -1,0 +1,130 @@
+body {
+  font: 13px / 1.5 "Trebuchet MS", "Lucida Grande", "Lucida sans", sans-serif;
+  color: #444;
+}
+
+a {
+  &:link, &:visited {
+    color: #439F8F;
+    text-decoration: none;
+  }
+  &:active {
+    color: #439F8F;
+  }
+}
+
+hr {
+  background: none repeat scroll 0 0 #5294C1;
+  border: medium none;
+  height: 1px;
+  margin: 0;
+  padding: 0;
+}
+
+a:hover {
+  color: #439f8f;
+}
+
+@font-face {
+  font-family: LeagueGothic;
+  src: url('../fonts/League_Gothic.ttf');
+}
+
+
+h1, h2, h3, h4, h5 {
+  font-family: 'LeagueGothic';
+  color: #333;
+  font-weight: normal;
+  font-size: 2.1em;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: 36px;
+  &.site-name {
+    font-size: 36px;
+  }
+}
+
+h2 {
+  &.site-name {
+    font-size: 36px;
+  }
+  &.block-title {
+    font-size: 18px;
+    margin: 0;
+  }
+  &.node-title {
+    font-size: 28px;
+  }
+  a {
+    &:link, &:visited {
+      color: #333;
+    }
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+h3 {
+  font-size: 21px;
+}
+
+h4 {
+  font-size: 19px;
+}
+
+h5 {
+  font-size: 17px;
+}
+
+h6 {
+  font-size: 15px;
+}
+
+ol {
+  list-style: decimal outside none;
+}
+
+ul {
+  list-style: disc outside none;
+  ul {
+    padding-top: 0.5em;
+  }
+}
+
+ol ol {
+  padding-top: 0.5em;
+}
+
+.node {
+  ol {
+    padding-left: 1.2em;
+  }
+  ul {
+    padding-left: 1.2em;
+    &.inline {
+      padding-left: 0;
+    }
+  }
+  ol.inline {
+    padding-left: 0;
+  }
+}
+
+p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset {
+  margin-bottom: 20px;
+}
+
+dt, .admin h3 {
+  font-size: 18px;
+  margin: 0;
+}
+
+dd {
+  font-size: 0.9em;
+  font-style: italic;
+  margin-bottom: 20px;
+  padding-left: 10px;
+}

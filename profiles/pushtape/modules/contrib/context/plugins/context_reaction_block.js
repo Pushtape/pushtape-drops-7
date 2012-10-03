@@ -192,7 +192,7 @@ DrupalContextBlockEditor.prototype = {
     context = $('#' + activeId)[0];
 
     this.browser = $('.context-block-browser', context).addClass('active');
-    
+
     //add the filter element to the block browser
     if (!this.browser.has('input.filter').size()) {
       var parent = $('.block-browser-sidebar .filter', this.browser);
@@ -224,7 +224,7 @@ DrupalContextBlockEditor.prototype = {
         $('.category-' + $(this).val(), self.browser).show();
       }
     });
-    
+
     //if we already have the function for a different context, rebind it so we don't get dupes
     if(this.addToRegion) {
       $('.context-block-addable', this.browser).unbind('click.addToRegion')
@@ -241,7 +241,7 @@ DrupalContextBlockEditor.prototype = {
       $(region).after(ui.item);
       self.addBlock(e, ui, this.editor, activeId.replace('context-editable-', ''));
     };
-    
+
     $('.context-block-addable', this.browser).bind('click.addToRegion', this.addToRegion);
   },
   // Update UI to match the current block states.
@@ -309,7 +309,7 @@ DrupalContextBlockEditor.prototype = {
       var blockLoading = $('<div class="context-block-item context-block-loading"><span class="icon"></span></div>');
       ui.item.addClass('context-block-added');
       ui.item.after(blockLoading);
-      
+
 
       $.getJSON(Drupal.settings.contextBlockEditor.path, params, function(data) {
         if (data.status) {
@@ -403,7 +403,7 @@ DrupalContextBlockEditor.prototype = {
     var label = $('#context-editable-trigger-'+context+' .label').text();
     label = Drupal.t('Now Editing: ') + label;
     editor.parent().parent()
-      .prepend('<div class="editing-context-label">'+ label + '</div>');  
+      .prepend('<div class="editing-context-label">'+ label + '</div>');
 
     // First pass, enable sortables on all regions.
     $(this.regions).each(function() {
@@ -443,7 +443,7 @@ DrupalContextBlockEditor.prototype = {
   editFinish : function() {
     this.editor.removeClass('context-editing');
     this.enableTextSelect();
-    
+
     $('.editing-context-label').remove();
 
     // Remove UI elements.

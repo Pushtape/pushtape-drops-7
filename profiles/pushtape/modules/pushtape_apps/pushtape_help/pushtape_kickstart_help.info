@@ -3,3 +3,9 @@ description = Provides in-distribution help for Pushtape Kickstart.
 core = 7.x
 dependencies[] = advanced_help
 dependencies[] = overlay
+
+; Information added by drush on 2012-10-03
+version = "master-dev"
+project = "pushtape_help"
+datestamp = "1349298581"
+

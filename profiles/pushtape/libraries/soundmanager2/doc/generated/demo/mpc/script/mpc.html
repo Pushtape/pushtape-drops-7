@@ -259,8 +259,8 @@ body .il { color: #666666 }                     /* Literal.Number.Integer.Long *
         <p>sound is loading, update bytes received using this.bytesLoaded / this.bytesTotal</p>
       </td>
       <td class=code>
-        <div class='highlight'><pre>    <span class="k">if</span> <span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">_getButton</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">sID</span><span class="p">).</span><span class="nx">className</span> <span class="o">!=</span> <span class="s1">&#39;loading&#39;</span><span class="p">)</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_getButton</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">sID</span><span class="p">).</span><span class="nx">className</span> <span class="o">=</span> <span class="s1">&#39;loading&#39;</span><span class="p">;</span> <span class="c1">// a bit inefficient here..</span>
-    <span class="nx">self</span><span class="p">.</span><span class="nx">_showStatus</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">sID</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">bytesLoaded</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">bytesTotal</span><span class="p">);</span>
+        <div class='highlight'><pre>    <span class="k">if</span> <span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">_getButton</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">).</span><span class="nx">className</span> <span class="o">!=</span> <span class="s1">&#39;loading&#39;</span><span class="p">)</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_getButton</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">).</span><span class="nx">className</span> <span class="o">=</span> <span class="s1">&#39;loading&#39;</span><span class="p">;</span> <span class="c1">// a bit inefficient here..</span>
+    <span class="nx">self</span><span class="p">.</span><span class="nx">_showStatus</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">bytesLoaded</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">bytesTotal</span><span class="p">);</span>
   <span class="p">}</span>
 
   <span class="k">this</span><span class="p">.</span><span class="nx">onid3</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -272,22 +272,22 @@ body .il { color: #666666 }                     /* Literal.Number.Integer.Long *
   <span class="p">}</span>
 
   <span class="k">this</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">sID</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">sID</span><span class="p">;</span>
-    <span class="nx">self</span><span class="p">.</span><span class="nx">_getButton</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">sID</span><span class="p">).</span><span class="nx">className</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
-    <span class="nx">self</span><span class="p">.</span><span class="nx">_getButton</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">sID</span><span class="p">).</span><span class="nx">title</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Sound ID: &#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">sID</span><span class="o">+</span><span class="s1">&#39; (&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">url</span><span class="o">+</span><span class="s1">&#39;)&#39;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">sID</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+    <span class="nx">self</span><span class="p">.</span><span class="nx">_getButton</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">).</span><span class="nx">className</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="nx">self</span><span class="p">.</span><span class="nx">_getButton</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">).</span><span class="nx">title</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Sound ID: &#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="o">+</span><span class="s1">&#39; (&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">url</span><span class="o">+</span><span class="s1">&#39;)&#39;</span><span class="p">);</span>
   <span class="p">}</span>
 
   <span class="k">this</span><span class="p">.</span><span class="nx">onfinish</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">self</span><span class="p">.</span><span class="nx">_getButton</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">sID</span><span class="p">).</span><span class="nx">className</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
-    <span class="nx">self</span><span class="p">.</span><span class="nx">_reset</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">sID</span><span class="p">);</span>
+    <span class="nx">self</span><span class="p">.</span><span class="nx">_getButton</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">).</span><span class="nx">className</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="nx">self</span><span class="p">.</span><span class="nx">_reset</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
   <span class="p">}</span>
 
   <span class="k">this</span><span class="p">.</span><span class="nx">onplay</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">self</span><span class="p">.</span><span class="nx">_getButton</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">sID</span><span class="p">).</span><span class="nx">className</span> <span class="o">=</span> <span class="s1">&#39;active&#39;</span><span class="p">;</span>
+    <span class="nx">self</span><span class="p">.</span><span class="nx">_getButton</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">).</span><span class="nx">className</span> <span class="o">=</span> <span class="s1">&#39;active&#39;</span><span class="p">;</span>
   <span class="p">}</span>
 
   <span class="k">this</span><span class="p">.</span><span class="nx">whileplaying</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">self</span><span class="p">.</span><span class="nx">_showStatus</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">sID</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">position</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">duration</span><span class="p">);</span>
+    <span class="nx">self</span><span class="p">.</span><span class="nx">_showStatus</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">position</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">duration</span><span class="p">);</span>
   <span class="p">}</span>
 
   <span class="k">this</span><span class="p">.</span><span class="nx">_keyHandler</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
@@ -323,14 +323,16 @@ body .il { color: #666666 }                     /* Literal.Number.Integer.Long *
 <span class="nx">soundManager</span><span class="p">.</span><span class="nx">flashVersion</span> <span class="o">=</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">toString</span><span class="p">().</span><span class="nx">match</span><span class="p">(</span><span class="sr">/#flash8/i</span><span class="p">)</span><span class="o">?</span><span class="mi">8</span><span class="o">:</span><span class="mi">9</span><span class="p">);</span>
 <span class="k">if</span> <span class="p">(</span><span class="nx">soundManager</span><span class="p">.</span><span class="nx">flashVersion</span> <span class="o">!=</span> <span class="mi">8</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">soundManager</span><span class="p">.</span><span class="nx">useHighPerformance</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-  <span class="nx">soundManager</span><span class="p">.</span><span class="nx">useFastPolling</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="nx">soundManager</span><span class="p">.</span><span class="nx">url</span> <span class="o">=</span> <span class="s1">&#39;../../swf/&#39;</span><span class="p">;</span> <span class="c1">// path to load SWF from (overriding default)</span>
-<span class="nx">soundManager</span><span class="p">.</span><span class="nx">bgcolor</span> <span class="o">=</span> <span class="s1">&#39;#333333&#39;</span><span class="p">;</span>
-<span class="nx">soundManager</span><span class="p">.</span><span class="nx">wmode</span> <span class="o">=</span> <span class="s1">&#39;transparent&#39;</span><span class="p">;</span>
-<span class="nx">soundManager</span><span class="p">.</span><span class="nx">debugMode</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-<span class="nx">soundManager</span><span class="p">.</span><span class="nx">consoleOnly</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-<span class="nx">soundManager</span><span class="p">.</span><span class="nx">useFlashBlock</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+<span class="nx">soundManager</span><span class="p">.</span><span class="nx">setup</span><span class="p">({</span>
+  <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;../../swf/&#39;</span><span class="p">,</span> <span class="c1">// path to load SWF from (overriding default)</span>
+  <span class="nx">bgColor</span><span class="o">:</span> <span class="s1">&#39;#333333&#39;</span><span class="p">,</span>
+  <span class="nx">wmode</span><span class="o">:</span> <span class="s1">&#39;transparent&#39;</span><span class="p">,</span>
+  <span class="nx">debugMode</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="nx">consoleOnly</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="nx">useFlashBlock</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">});</span>
 
 <span class="nx">soundManager</span><span class="p">.</span><span class="nx">onready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span></pre></div>
       </td>
@@ -354,13 +356,17 @@ body .il { color: #666666 }                     /* Literal.Number.Integer.Long *
         <p>set up some default options / event handlers &ndash; so all sounds created are given these handlers</p>
       </td>
       <td class=code>
-        <div class='highlight'><pre>  <span class="nx">soundManager</span><span class="p">.</span><span class="nx">defaultOptions</span><span class="p">.</span><span class="nx">autoLoad</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-  <span class="nx">soundManager</span><span class="p">.</span><span class="nx">defaultOptions</span><span class="p">.</span><span class="nx">whileloading</span> <span class="o">=</span> <span class="nx">mpc</span><span class="p">.</span><span class="nx">showProgress</span><span class="p">;</span>
-  <span class="nx">soundManager</span><span class="p">.</span><span class="nx">defaultOptions</span><span class="p">.</span><span class="nx">onid3</span> <span class="o">=</span> <span class="nx">mpc</span><span class="p">.</span><span class="nx">onid3</span><span class="p">;</span>
-  <span class="nx">soundManager</span><span class="p">.</span><span class="nx">defaultOptions</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="nx">mpc</span><span class="p">.</span><span class="nx">onload</span><span class="p">;</span>
-  <span class="nx">soundManager</span><span class="p">.</span><span class="nx">defaultOptions</span><span class="p">.</span><span class="nx">onplay</span> <span class="o">=</span> <span class="nx">mpc</span><span class="p">.</span><span class="nx">onplay</span><span class="p">;</span>
-  <span class="nx">soundManager</span><span class="p">.</span><span class="nx">defaultOptions</span><span class="p">.</span><span class="nx">whileplaying</span> <span class="o">=</span> <span class="nx">mpc</span><span class="p">.</span><span class="nx">whileplaying</span><span class="p">;</span>
-  <span class="nx">soundManager</span><span class="p">.</span><span class="nx">defaultOptions</span><span class="p">.</span><span class="nx">onfinish</span> <span class="o">=</span> <span class="nx">mpc</span><span class="p">.</span><span class="nx">onfinish</span><span class="p">;</span>
+        <div class='highlight'><pre>  <span class="nx">soundManager</span><span class="p">.</span><span class="nx">setup</span><span class="p">({</span>
+    <span class="nx">defaultOptions</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">autoLoad</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nx">whileloading</span><span class="o">:</span> <span class="nx">mpc</span><span class="p">.</span><span class="nx">showProgress</span><span class="p">,</span>
+      <span class="nx">onid3</span><span class="o">:</span> <span class="nx">mpc</span><span class="p">.</span><span class="nx">onid3</span><span class="p">,</span>
+      <span class="nx">onload</span><span class="o">:</span> <span class="nx">mpc</span><span class="p">.</span><span class="nx">onload</span><span class="p">,</span>
+      <span class="nx">onplay</span><span class="o">:</span> <span class="nx">mpc</span><span class="p">.</span><span class="nx">onplay</span><span class="p">,</span>
+      <span class="nx">whileplaying</span><span class="o">:</span> <span class="nx">mpc</span><span class="p">.</span><span class="nx">whileplaying</span><span class="p">,</span>
+      <span class="nx">onfinish</span><span class="o">:</span> <span class="nx">mpc</span><span class="p">.</span><span class="nx">onfinish</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
 
   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">soundManager</span><span class="p">.</span><span class="nx">html5</span><span class="p">.</span><span class="nx">needsFlash</span><span class="p">)</span> <span class="p">{</span>
     <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;isHTML5&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;inline&#39;</span><span class="p">;</span>
@@ -387,7 +393,7 @@ body .il { color: #666666 }                     /* Literal.Number.Integer.Long *
  stream: true,
  autoPlay: true,
  multiShot: false,
- whileloading: function() { alert(&lsquo;sound &rsquo;+this.sID+&lsquo;: &rsquo;+this.bytesLoaded+&lsquo; of &rsquo;+this.bytesTotal+&lsquo; bytes loaded.&rsquo;); } // event handler: &ldquo;this&rdquo; is scoped to SMSound() object instance for easy access to methods/properties
+ whileloading: function() { alert(&lsquo;sound &rsquo;+this.id+&lsquo;: &rsquo;+this.bytesLoaded+&lsquo; of &rsquo;+this.bytesTotal+&lsquo; bytes loaded.&rsquo;); } // event handler: &ldquo;this&rdquo; is scoped to SMSound() object instance for easy access to methods/properties
 });</p>
 
 <ul>

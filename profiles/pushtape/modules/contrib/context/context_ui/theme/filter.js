@@ -39,10 +39,10 @@
       //hide ignored items
       if(this.input.val()) {
         $('*', this.list).not(this.type).hide();
-      } 
+      }
 
       var regex = new RegExp(this.input.val(), 'i');
-      
+
       var self = this;
       $(this.type, this.list).each(function(ind, el) {
         var string = self.strip(el.innerHTML);

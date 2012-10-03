@@ -18,9 +18,6 @@ function media_soundcloud_preprocess_media_soundcloud_audio(&$variables) {
   //drupal_set_message(print_r($wrapper,true));
   $url = $wrapper->interpolateUrl();
   //drupal_set_message(print_r($url,true));
-  $embed_data = $wrapper->getOEmbed($url);
-  //drupal_set_message(print_r($embed_data,true));
-  //drupal_set_message(print_r($embed_data,true));
   if(isset($parts['u'])){
     $variables['user_name'] = check_plain($parts['u']);
     $variables['wrapper_id'] = 'media_soundcloud_' . $variables['user_name'] . '_' . $variables['id'];
@@ -40,34 +37,23 @@ function media_soundcloud_preprocess_media_soundcloud_audio(&$variables) {
   
   $variables['width'] = isset($variables['width']) ? $variables['width'] : media_soundcloud_variable_get('width');
   $variables['autoplay'] = isset($variables['autoplay']) ? $variables['autoplay'] : media_soundcloud_variable_get('autoplay');
-  $variables['autoplay'] = $variables['autoplay'] ? 1 : 0;  
+  $variables['autoplay'] = $variables['autoplay'] ? 1 : 0;
+  
+  //Explode the values in extra_params
+  $variables['extra_params'] = isset($variables['extra_params']) ? $variables['extra_params'] : media_soundcloud_variable_get('extra_params');
+  $variables['extra_params_expanded'] = array();
+  if ($variables['extra_params']) {
+    foreach (explode(',', $variables['extra_params']) as $key => $value) {
+      $value_pair = explode(':', $value);
+      if (count($value_pair) == 2) { // some degree of check, though it is largely dependent on site admin to set sensible values
+        $variables['extra_params_expanded'][trim($value_pair[0])] = trim($value_pair[1]);
+      }
+    }
+  }
+  $variables['widget_options'] = array_merge(array('auto_play'=> $variables['autoplay'] ? 'true' : 'false'), $variables['extra_params_expanded']);
+  $embed_data = $wrapper->getOEmbed($url, $variables['widget_options']);
 
   $variables['output'] = str_replace('width="100%"', 'width="'.$variables['width'].'"', $embed_data['html']);
-  //drupal_set_message(print_r($variables,true));
-  
-  // @todo Replace this inline JavaScript with at least calls to
-  //   drupal_add_js()/drupal_get_js(), and ideally, with a behavior. Keep
-  //   in mind that the solution needs to work when inside a colorbox or
-  //   otherwise in an AJAX response, but that should now be possible in D7.
-  $iframe_id = drupal_json_encode($variables['wrapper_id'] .'_iframe');
-  $wrapper_id = drupal_json_encode($variables['wrapper_id']);
-  $JSObject = 'Drupal.settings.media_soundcloud[' . $wrapper_id . ']';
-  $variables['output'] .= <<<OUTPUT
-    <script type="text/javascript">
-      if (Drupal.settings && Drupal.media_soundcloud) {
-        Drupal.settings.media_soundcloud = Drupal.settings.media_soundcloud || {};
-        $JSObject = {};
-        $JSObject.width = {$variables['width']};
-        $JSObject.embed_url = "{$url}";
-        $JSObject.id = $iframe_id;
-        $JSObject.options = { autoplay: {$variables['autoplay']} };
-        Drupal.media_soundcloud.insertEmbed($wrapper_id);
-      }
-    </script>
-OUTPUT;
-  drupal_add_js(drupal_get_path('module', 'media_soundcloud') . '/js/media_soundcloud.js');
-  drupal_add_css(drupal_get_path('module', 'media_soundcloud') . '/css/media_soundcloud.css');
-  drupal_add_js(drupal_get_path('module', 'media_soundcloud') . '/js/flash_detect_min.js'); 
 }
 
 function theme_media_soundcloud_field_formatter_styles($variables) {

@@ -50,3 +50,11 @@ features[variable][] = pathauto_node_pushtape_event_pattern
 features[variable][] = pathauto_taxonomy_term_pushtape_event_type_pattern
 features[views_view][] = pushtape_events
 project status url = http://apps.pushtape.com/fserver
+
+
+; Information added by drush on 2012-10-03
+version = "7.x-1.x-upstream-dev"
+core = "7.x"
+project = "pushtape_events"
+datestamp = "1349298575"
+

@@ -2,8 +2,8 @@ api = 2
 core = 7.15
 
 ; Devel Tools
-projects[admin][version] = 2.0-beta3
-projects[admin][subdir] = contrib
+;projects[admin][version] = 2.0-beta3
+;projects[admin][subdir] = contrib
 
 projects[advanced_help][version] = 1.0
 projects[advanced_help][subdir] = contrib
@@ -15,21 +15,14 @@ projects[examples][version] = 1.x-dev
 projects[examples][subdir] = contrib
 
 projects[context][subdir] = contrib
-projects[context][version] = 7.x-3.x
-projects[context][download][type] = git
-projects[context][download][url] = http://git.drupal.org/project/context.git
-projects[context][download][revision] = 92d0c33bbe931e99b89f3137fd7eccc7143f337b
-projects[context][patch][] = http://drupal.org/files/context-context-ui-revamp-1050724-29.patch
+projects[context][version] = 3.x-dev
 
 projects[boxes][subdir] = contrib
 projects[boxes][version] = 1.0
 
 projects[context_field][subdir] = contrib
-projects[context_field][version] = 7.x-1.x
+projects[context_field][version] = 1.x-dev
 projects[context_field][download][type] = git
-projects[context_field][download][url] = http://git.drupal.org/project/context_field.git
-projects[context_field][download][revision] = 32b86494fb715af627589a075e9c9da7c0f05616
-projects[context_field][patch][] = http://drupal.org/files/1491008_Remove_Context_layout_link_0.patch
 
 projects[views_boxes][subdir] = contrib
 projects[views_boxes][version] = 1.0-beta8
@@ -46,18 +39,19 @@ projects[devel][subdir] = contrib
 projects[coder][version] = 1.x-dev
 projects[coder][subdir] = contrib
 
-projects[omega_tools][version] = 3.0-rc4
+projects[omega_tools][type] = module
 projects[omega_tools][subdir] = contrib
+;projects[omega_tools][download][type] = git
+;projects[omega_tools][download][branch] = 4.x-dev
+;projects[omega_tools][download][url] = http://git.drupal.org/project/omega_tools.git
 
-projects[delta][version] = 3.0-beta11
+projects[delta][version] = 3.x-dev
 projects[delta][subdir] = contrib
 
 projects[simpletest_automator[version] = 1.x-dev
 projects[simpletest_automator][subdir] = contrib
 
-
 ;Pushtape apps
-
 
 ;projects[pushtape_help][location] = http://apps.rosenstrauch.com/fserver
 projects[pushtape_help][type] = module
@@ -137,7 +131,12 @@ projects[pushtape_front][download][url] = git://github.com/Pushtape/pushtape_fro
 projects[pushtape_front][download][branch] = 7.x-1.x-upstream
 projects[pushtape_front][subdir] = pushtape_apps
 
-projects[omega] = 3.1
+projects[omega] = 4.0-alpha1
+
+projects[logia][type] = theme
+projects[logia][download][type] = git
+projects[logia][download][url] = git://github.com/rosenstrauch/logia.git
+projects[logia][download][branch] = 7.x-4.x
 
 ;projects[omega_pushtape][location] = http://apps.rosenstrauch.com/fserver
 projects[omega_pushtape][type] = theme

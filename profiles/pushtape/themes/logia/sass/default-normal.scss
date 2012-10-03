@@ -1,0 +1,56 @@
+// This file will hold styles that are loaded using the same media query as the normal grid. 
+// If you are using the default media queries provided by Omega, these styles will also apply to the widescreen layout unless they are overridden by the widescreen styles. 
+@import "compass";
+
+
+html {
+  background: #ecd3b0 url("../images/background1024.png") no-repeat center center fixed;
+  @include background-size(cover);
+}
+
+.imgteaser {
+  a:hover {
+   @include opacity(1);
+  }
+  .meta {
+   @include opacity( 0.85);
+  }
+}
+
+#block-search-form {
+ @include transform( translateX(-10px) translateY(-170px) rotate(-9deg));
+  float: right;
+}
+
+.region-sidebar-second .block h2 {
+
+  @include transform( translate(-50px, 37px));
+  z-index: -10;
+}
+
+.region-content, .region-sidebar-first {
+  @include transform( translate(0px, 80px));
+  z-index: 10;
+}
+
+.region-sidebar-second .block{
+
+// This yields a linear gradient spanning from top to bottom
+  @include background(
+                      linear-gradient(top left, #e5e5e5, #0c0),
+                      radial-gradient(#c00, #e5e5e5 100px));  
+  @include box-shadow(-14px 29px 40px #a8793b);
+}
+
+.region-sidebar-first .block {
+@include background(
+                      linear-gradient(top left, #559988, #0c0),
+                      radial-gradient(#c00, #559988 100px));  
+  @include box-shadow(-14px 29px 40px #a8793b);
+  color: #fff;
+}
+
+#block-system-main-menu {
+  background: none;
+  box-shadow: none;
+}

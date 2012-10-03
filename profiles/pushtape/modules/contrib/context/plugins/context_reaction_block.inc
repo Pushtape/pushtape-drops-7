@@ -298,8 +298,7 @@ class context_reaction_block extends context_reaction {
    * Add markup for making a block editable.
    */
   protected function editable_block($block) {
-
-    if (!empty($block->content['#markup']) || element_children($block->content)) {
+    if (!empty($block->content)) {
       $block->content = array(
         'content' => $block->content,
         'context' => array('#markup' => "<a id='context-block-{$block->module}-{$block->delta}' class='context-block editable edit-{$block->context}'></a>"),
@@ -310,7 +309,12 @@ class context_reaction_block extends context_reaction {
         unset($block->content['content']['#contextual_links']);
       }
     }
-
+    else {
+      // the block alter in context.module should ensure that blocks are never
+      // empty if the inline editor is present but in the case that they are,
+      // warn that editing the context is likely to cause this block to be dropped
+      drupal_set_message(t('The block with delta @delta from module @module is not compatible with the inline editor and will be dropped from the context containing it if you edit contexts here', array('@delta' => $block->delta, '@module' => $block->module)), 'warning');
+    }
     return $block;
   }
 
@@ -318,7 +322,6 @@ class context_reaction_block extends context_reaction {
    * Add markup for making a region editable.
    */
   protected function editable_region($region, $build) {
-
     if ($this->is_editable_region($region) &&
         (!empty($build) ||
          variable_get('context_reaction_block_all_regions', FALSE) ||

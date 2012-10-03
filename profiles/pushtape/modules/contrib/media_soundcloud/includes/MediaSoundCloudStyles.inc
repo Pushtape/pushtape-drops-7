@@ -7,6 +7,7 @@
 
 class MediaSoundCloudStyles extends FileStyles {
   public $autoplay;
+  public $extra_params;
 
   function getAutoplay() {
       //drupal_set_message("getAutoplay");
@@ -15,6 +16,15 @@ class MediaSoundCloudStyles extends FileStyles {
   function setAutoplay($value) {
       //drupal_set_message("setAutoplay");
     return $this->set('autoplay', $value);
+  }
+
+  function getExtraParams() {
+      //drupal_set_message("getExtraParams");
+    return $this->get('extra_params');
+  }
+  function setExtrasParams($value) {
+      //drupal_set_message("setExtrasParams");
+    return $this->set('extra_params', $value);
   }
 
   function getImageUri() {
@@ -34,6 +44,7 @@ class MediaSoundCloudStyles extends FileStyles {
       'uri' => $this->getUri(),
       'width' => $this->getWidth(),
       'autoplay' => $this->getAutoplay(),
+      'extra_params' => $this->getExtraParams(),
     );
     $this->setOutput(theme('media_soundcloud_audio', $variables));
   }

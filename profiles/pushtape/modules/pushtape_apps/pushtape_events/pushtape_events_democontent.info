@@ -15,3 +15,11 @@ features[content][] = pushtape-events-defaultcontent-5
 features[content][] = pushtape-events-defaultcontent-6
 features[features_api][] = api:1
 project status url = apps.rosenstrauch.com/fserver
+
+
+; Information added by drush on 2012-10-03
+version = "7.x-1.x-upstream-dev"
+core = "7.x"
+project = "pushtape_events"
+datestamp = "1349298575"
+

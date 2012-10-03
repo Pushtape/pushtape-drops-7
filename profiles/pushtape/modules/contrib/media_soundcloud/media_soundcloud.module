@@ -69,7 +69,7 @@ function media_soundcloud_theme($existing, $type, $theme, $path) {
       'path' => $path . '/includes/themes',
     ),
     'media_soundcloud_audio' => array(
-      'variables' => array('uri' => NULL, 'width' => NULL, 'autoplay' => NULL),
+      'variables' => array('uri' => NULL, 'width' => NULL, 'autoplay' => NULL, 'extra_params' => NULL),
       'file' => 'media_soundcloud.theme.inc',
       'path' => $path . '/includes/themes',
       'template' => 'media-soundcloud-audio',

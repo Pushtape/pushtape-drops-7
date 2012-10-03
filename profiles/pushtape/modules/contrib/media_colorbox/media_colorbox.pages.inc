@@ -11,5 +11,8 @@ function media_colorbox_callback($file, $view_mode, $langcode) {
   if (!user_access('administer files') && (file_uri_scheme($file->uri) === 'private')) {
     return MENU_ACCESS_DENIED;
   }
-  print drupal_render(file_view($file, $view_mode, $langcode));
+  
+  $fview = file_view($file, $view_mode, $langcode);
+  $text = drupal_render($fview);
+  print $text;
 }

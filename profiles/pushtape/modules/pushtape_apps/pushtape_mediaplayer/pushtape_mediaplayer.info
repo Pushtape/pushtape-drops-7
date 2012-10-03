@@ -1,28 +1,51 @@
 name = Pushtape Mediaplayer
-description = play media
+description = better implementation
 core = 7.x
 package = Pushtape
 php = 5.2.4
-version = 7.x-1.0-alpha3
+version = 7.x-1.0-alpha4
 project = pushtape_mediaplayer
+dependencies[] = ctools
 dependencies[] = features
+dependencies[] = file
 dependencies[] = file_entity
 dependencies[] = jplayer
 dependencies[] = libraries
 dependencies[] = media
+dependencies[] = media_internet
+dependencies[] = media_soundcloud
 dependencies[] = mediaplaylist
+dependencies[] = page_manager
 dependencies[] = pushtape_discography
 dependencies[] = soundmanager2
 dependencies[] = strongarm
 dependencies[] = views
+apps[server] = http://apps.pushtape.openlearninglabs.org/app/query/pushtape
+datestamp = 1349290368
 features[ctools][] = file_entity:file_default_displays:1
+features[ctools][] = page_manager:pages_default:1
 features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:1
 features[field][] = node-track-field_audio
 features[file_display][] = audio__default__file_field_file_default
 features[file_display][] = audio__default__file_field_file_rendered
+features[file_display][] = audio__default__file_field_soundmanager2_ui360
+features[file_display][] = audio__default__media_soundcloud_audio
+features[file_display][] = audio__media_large__file_field_file_default
+features[file_display][] = audio__media_large__file_field_file_rendered
+features[file_display][] = audio__media_large__file_field_soundmanager2_inline_player
+features[file_display][] = audio__media_small__media_soundcloud_audio
 features[variable][] = jplayer_directory
 features[variable][] = sm2_path
-features[views_view][] = pushtape_player
-project status url = http://apps.rosenstrauch.com/fserver
+features[views_view][] = pushtape_player_track_views
+files[] = test/pushtape_mediaplayer.test
+project status url = http://apps.pushtape.openlearninglabs.org/content/pushtape-mediaplayer
+
+
+; Information added by drush on 2012-10-03
+version = "7.x-1.x-upstream-dev"
+core = "7.x"
+project = "pushtape_mediaplayer"
+datestamp = "1349298576"
+

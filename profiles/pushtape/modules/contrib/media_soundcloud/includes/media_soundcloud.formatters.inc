@@ -14,6 +14,7 @@ function media_soundcloud_file_formatter_info() {
     'default settings' => array(
       'width' => media_soundcloud_variable_get('width'),
       'autoplay' => media_soundcloud_variable_get('autoplay'),
+      'extra_params' => media_soundcloud_variable_get('extra_params'),
     ),
     'view callback' => 'media_soundcloud_file_formatter_audio_view',
     'settings callback' => 'media_soundcloud_file_formatter_audio_settings',
@@ -41,7 +42,7 @@ function media_soundcloud_file_formatter_audio_view($file, $display, $langcode) 
       '#theme' => 'media_soundcloud_audio',
       '#uri' => $file->uri,
     );
-    foreach (array('width', 'autoplay') as $setting) {
+    foreach (array('width', 'autoplay', 'extra_params') as $setting) {
       $element['#' . $setting] = isset($file->override[$setting]) ? $file->override[$setting] : $display['settings'][$setting];
     }
     return $element;
@@ -62,6 +63,12 @@ function media_soundcloud_file_formatter_audio_settings($form, &$form_state, $se
     '#title' => t('Autoplay'),
     '#type' => 'checkbox',
     '#default_value' => $settings['autoplay'],
+  );
+  $element['extra_params'] = array(
+    '#title' => t('Extra parameters'),
+    '#description' => t('Add multiple parameters as comma separated colon separated pairs. Eg. color: 2582fa, show_artwork: false, iframe: true. See http://developers.soundcloud.com/docs/oembed for more parameters.'),
+    '#type' => 'textfield',
+    '#default_value' => $settings['extra_params'],
   );
   return $element;
 }
@@ -118,10 +125,12 @@ function media_soundcloud_file_default_displays() {
     'media_large' => array(
       'width' => 480,
       'autoplay' => FALSE,
+      'extra_params' => media_soundcloud_variable_get('extra_params'),
     ),
     'media_original' => array(
       'width' => "100%",
       'autoplay' => media_soundcloud_variable_get('autoplay'),
+      'extra_params' => media_soundcloud_variable_get('extra_params'),
     ),
   );
   foreach ($default_audio_settings as $view_mode => $settings) {

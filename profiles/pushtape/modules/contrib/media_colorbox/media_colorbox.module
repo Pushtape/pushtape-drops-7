@@ -15,6 +15,7 @@ function media_colorbox_theme() {
         'item_style' => NULL,
         'item_class' => NULL,
         'entity_id' => NULL,
+        'file_id' => NULL,
         'field' => array(),
         'display_settings' => array(),
         'langcode' => NULL,
@@ -61,14 +62,31 @@ function media_colorbox_field_formatter_info() {
   return array(
     'media_colorbox' => array(
       'label' => t('Media Colorbox'),
-      'field types' => array('media', 'file', 'image'),
+      'field types' => array('file', 'image'),
       'settings' => array(
         'file_view_mode' => 'small',
         'colorbox_view_mode' => 'large',
-        'dimensions' => '500x400',
+        'fixed_width' => '',
+        'fixed_height' => '',
         'colorbox_gallery' => 'post',
         'colorbox_gallery_custom' => '',
         'colorbox_caption' => 'title',//for file entity field based caption
+        'audio_playlist' => FALSE,//for file entity field based caption
+      ),
+    ),
+    'colorbox_link' => array(
+      'label' => t('Colorbox Link'),
+      'field types' => array('image', 'text'),
+      'settings' => array(
+        'text_format' => 'text_default',
+        'image_style' => 'thumbnail',
+        'colorbox_view_mode' => 'default',
+        'fixed_width' => '',
+        'fixed_height' => '',
+        'colorbox_gallery' => 'post',
+        'colorbox_gallery_custom' => '',
+        'colorbox_caption' => 'title',//for file entity field based caption
+        'audio_playlist' => FALSE,//for file entity field based caption
       ),
     ),
   );
@@ -83,7 +101,8 @@ function media_colorbox_field_formatter_settings_form($field, $instance, $view_m
   $element = array();
   $file_entity_manage = FALSE;
 
-  if ($display['type'] == 'media_colorbox') {
+  if ($display['type'] == 'media_colorbox' || $display['type'] == 'colorbox_link') {
+    ctools_include('export');
     $entity_info = entity_get_info('file');
     $options = array('default' => t('Default'));
     foreach ($entity_info['view modes'] as $file_view_mode => $file_view_mode_info) {
@@ -95,10 +114,14 @@ function media_colorbox_field_formatter_settings_form($field, $instance, $view_m
     if (!isset($field)) {
       $file_entity_manage = TRUE;
       unset($options[$view_mode]);
-      //also need to unset any view mode already using the media_colorbox formatter
-      foreach ($entity_info['view modes'] as $file_view_mode => $file_view_mode_info) {
-        $display_name = $form['#file_type'] . '__' . $file_view_mode . '__file_field_media_colorbox';
+    }
+    
+    //also need to unset any view mode for any entity type already using the media_colorbox formatter
+    foreach ($entity_info['view modes'] as $file_view_mode => $file_view_mode_info) {
+      foreach ($entity_info['bundles'] as $file_bundle => $file_bundle_info) {
+        $display_name = $file_bundle . '__' . $file_view_mode . '__file_field_media_colorbox';
         $result = ctools_export_load_object('file_display', 'names', array($display_name));
+
         //there will be a record in the file_display table if this view_mode has been configured to use Media Colorbox
         //the status will be 1 if the media_colorbox formatter is active for this view_mode
         if (isset($result[$display_name]) && $result[$display_name]->status == 1) {
@@ -106,13 +129,45 @@ function media_colorbox_field_formatter_settings_form($field, $instance, $view_m
         }
       }
     }
-
-    $element['file_view_mode'] = array(
-      '#title' => t('File view mode'),
-      '#type' => 'select',
-      '#default_value' => $settings['file_view_mode'],
-      '#options' => $options,
-    );
+    
+    //only for media_colorbox, not colorbox_link
+    if ($display['type'] == 'media_colorbox'){
+      $element['file_view_mode'] = array(
+        '#title' => t('File view mode'),
+        '#type' => 'select',
+        '#default_value' => $settings['file_view_mode'],
+        '#options' => $options,
+      );      
+    }
+    
+    if($display['type'] == 'colorbox_link'){
+      //had an issue when using this formatter in a View, results in a Fatal error: undefined function field_ui_formatter_options()
+      if (!function_exists(field_ui_formatter_options)) {
+        module_load_include('inc', 'field_ui', 'field_ui.admin');
+      } 
+      if($field['type'] == 'text'){
+        //formatter for text
+        // Get the list of formatters for this field type, and remove our own.
+        $formatters = field_ui_formatter_options($field['type']);
+        $element['text_format'] = array(
+          '#type' => 'select',
+          '#title' => t('Text Field format'),
+          '#options' => $formatters,
+          '#description'    => t('The format to be used for the text being used as Colorbox link.'),  //helper text
+          '#default_value' => $settings['text_format'],
+        );
+      }elseif($field['type'] == 'image'){
+        $image_styles = image_style_options(FALSE);
+        $element['image_style'] = array(
+          '#title' => t('Image style'),
+          '#type' => 'select',
+          '#description'    => t('The image style to be used for the image being used as Colorbox link.'),  //helper text
+          '#default_value' => $settings['image_style'],
+          '#options' => $image_styles,
+        );
+      }
+    }
+    
     $element['colorbox_view_mode'] = array(
       '#title' => t('Colorbox view mode'),
       '#type' => 'select',
@@ -121,13 +176,24 @@ function media_colorbox_field_formatter_settings_form($field, $instance, $view_m
     );
     //add description for File type manage file dispay form
     if ($file_entity_manage) {
-      $element['file_view_mode']['#description'] = t('Only view modes not already using the Media Colorbox formatter');
+      //only for media_colorbox, not colorbox_link
+      if ($display['type'] == 'media_colorbox'){
+        $element['file_view_mode']['#description'] = t('Only view modes not already using the Media Colorbox formatter');
+      }
       $element['colorbox_view_mode']['#description'] = t('Only view modes not already using the Media Colorbox formatter');
     }
-    $element['dimensions'] = array(
-      '#title' => t('Dimensions'),
+    $element['fixed_width'] = array(
+      '#title' => t('Fixed Width'),
+      '#description' => t('Will set the total fixed width (numeric value) of the Colorbox to include borders and buttons. Ex: 800'),
       '#type' => 'textfield',
-      '#default_value' => $settings['dimensions'],
+      '#default_value' => $settings['fixed_width'],
+      '#size' => 10,
+    );
+    $element['fixed_height'] = array(
+      '#title' => t('Fixed Height'),
+      '#description' => t('Will set the total fixed height (numeric value) of the Colorbox to include borders and buttons. Ex: 600'),
+      '#type' => 'textfield',
+      '#default_value' => $settings['fixed_height'],
       '#size' => 10,
     );
     $gallery = array(
@@ -175,6 +241,13 @@ function media_colorbox_field_formatter_settings_form($field, $instance, $view_m
       '#options' => $caption,
       '#description' => t('Title will use the label of your Media field for this content type<br/>and File Type text field will use the value <br/>of a specified text field for the file type being displayed.'),
     );
+    
+    $element['audio_playlist'] = array(
+      '#title' => t('Enable Audio Playlist'),
+      '#description' => t('Enable this setting for HTML5 audio and Colorbox will automatically load the next audio file that is part of a Colorbox gallery.'),
+      '#type' => 'checkbox',
+      '#default_value' => $settings['audio_playlist'],
+    );
   }
 
   return $element;
@@ -188,18 +261,28 @@ function media_colorbox_field_formatter_settings_summary($field, $instance, $vie
   $settings = $display['settings'];
   $summary = array();
 
-  if ($display['type'] == 'media_colorbox') {
+  if ($display['type'] == 'media_colorbox' || $display['type'] == 'colorbox_link') {
     $entity_info = entity_get_info('file');
     $options = array('default' => t('Default'));
     foreach ($entity_info['view modes'] as $file_view_mode => $file_view_mode_info) {
       $options[$file_view_mode] = $file_view_mode_info['label'];
     }
-
-    if (isset($options[$settings['file_view_mode']])) {
-      $summary[] = t('File view mode: @style', array('@style' => $options[$settings['file_view_mode']]));
+    if ($display['type'] == 'media_colorbox') {
+      if (isset($options[$settings['file_view_mode']])) {
+        $summary[] = t('File view mode: @style', array('@style' => $options[$settings['file_view_mode']]));
+      }
+      else {
+        $summary[] = t('File view mode: none');
+      }
     }
-    else {
-      $summary[] = t('File view mode: none');
+    
+    //settings for colorbox_link
+    if($display['type'] == 'colorbox_link'){
+      if($field['type'] == 'text'){
+        $summary[] = t('Text format: @style', array('@style' => $settings['text_format']));
+      }elseif($field['type'] == 'image'){
+        $summary[] = t('Image style: @style', array('@style' => $settings['image_style']));
+      }
     }
 
     if (isset($options[$settings['colorbox_view_mode']])) {
@@ -209,8 +292,12 @@ function media_colorbox_field_formatter_settings_summary($field, $instance, $vie
       $summary[] = t('Colorbox view mode: none');
     }
 
-    if (isset($settings['dimensions'])) {
-      $summary[] = t('Dimensions: @dimensions', array('@dimensions' => $settings['dimensions']));
+    if (isset($settings['fixed_width'])) {
+      $summary[] = t('Fixed Width: @dimensions', array('@dimensions' => $settings['fixed_width']));
+    }
+
+    if (isset($settings['fixed_height'])) {
+      $summary[] = t('Fixed Height: @dimensions', array('@dimensions' => $settings['fixed_height']));
     }
 
     $gallery = array(
@@ -233,6 +320,7 @@ function media_colorbox_field_formatter_settings_summary($field, $instance, $vie
     if (isset($settings['colorbox_caption'])) {
       $summary[] = t('Colorbox caption: @type', array('@type' => $caption[$settings['colorbox_caption']]));
     }
+    $summary[] = t('Audio Playlist: @value', array('@value' => (isset($settings['audio_playlist']) && $settings['audio_playlist']) ? t('Enabled') : t('Disabled')));
   }
 
   return implode('<br />', $summary);
@@ -243,79 +331,134 @@ function media_colorbox_field_formatter_settings_summary($field, $instance, $vie
  */
 function media_colorbox_field_formatter_view($entity_type, $entity, $field, $instances = NULL, $langcode = NULL, $items = NULL, $display = NULL) {
   $element = array();
+  GLOBAL $nid;
+  $nid=1;
+  if(isset($entity->nid)) {//file embedded in node
+    $nid = $entity->nid;
+  }elseif(isset($entity->fid) && $nid != 1){
+    $nid = $entity->fid;
+  }
+  
+  if($display['type'] == 'colorbox_link'){
 
+    foreach ($items as $delta => $item) {
+      $file_id = NULL;
+      $colorbox_field_caption_value = '';
+      if($entity_type == 'file'){
+        $file_id = $entity->fid;
+        $colorbox_caption_var_name = 'media_colorbox_' . $entity->type . '_caption_field_name';
+        $colorbox_caption_field_name = variable_get($colorbox_caption_var_name);
+        $colorbox_field_caption_value = NULL;
+
+        if (isset($items[0]{$colorbox_caption_field_name})){
+          $colorbox_field_caption_value = isset($items[0]{$colorbox_caption_field_name}['und'][0]) ?
+          $items[0]{$colorbox_caption_field_name}['und'][0]['value'] : NULL;
+        }
+      }
+      $render_array = array();
+      $display['type'] = 'default_formatter';
+      $formatter_type = field_info_formatter_types($display['type']);
+      $display['module'] = $formatter_type['module'];
+
+      $render_array = field_view_field($entity_type, $entity, $field['field_name'], $display, $langcode); 
+      $render_array['#label_display'] = 'hidden';//always set to hidden, label will appear outside of link if set to be visisble
+
+      $element[$delta] = array(
+        '#theme' => 'media_colorbox',
+        '#entity_id' => $nid,
+        '#item' => $render_array,
+        '#field' => $field,
+        '#display_settings' => $display['settings'],
+        '#langcode' => $langcode,
+        '#path' => 'media_colorbox/' . $file_id . '/' . $display['settings']['colorbox_view_mode'] . '/' . $langcode,
+        //this is where Media is being added as the title attribute
+        '#title' => isset($entity->filename) ? strip_tags($entity->filename) : NULL,
+        '#media_colorbox_caption' => $colorbox_field_caption_value,
+      );
+    }
+  }
+  
   //the $field won't be set if being formatted by file_entity_file_formatter_file_field_view
-  if(!isset($field)) {//standalone entity
-    $build = file_view((object) $items[0], $display['settings']['file_view_mode'], 0, $langcode);
-    $colorbox_caption_var_name = 'media_colorbox_' . $build['#bundle'] . '_caption_field_name';
+  if(!isset($field) && ($display['type'] == 'media_colorbox' || $display['type'] == 'colorbox_link')) {//standalone entity
+    $colorbox_caption_var_name = 'media_colorbox_' . $items[0]['type'] . '_caption_field_name';
     $colorbox_caption_field_name = variable_get($colorbox_caption_var_name);
     $colorbox_field_caption_value = NULL;
 
-    if (isset($build['#file']->{$colorbox_caption_field_name})){
-      $colorbox_field_caption_value = isset($build['#file']->{$colorbox_caption_field_name}['und'][0]) ?
-      $build['#file']->{$colorbox_caption_field_name}['und'][0]['value'] : NULL;
+    if (isset($items[0]{$colorbox_caption_field_name})){
+      $colorbox_field_caption_value = isset($items[0]{$colorbox_caption_field_name}['und'][0]) ?
+      $items[0]{$colorbox_caption_field_name}['und'][0]['value'] : NULL;
     }
     //get attributes for item to use on item and wrapping link
     $class = isset($items[0]['override']['class']) ? $items[0]['override']['class'] : NULL;
     $style = isset($items[0]['override']['style']) ? $items[0]['override']['style'] : NULL;
-    $build['file']['#attributes']['class'] = $class;
-    $build['file']['#attributes']['style'] = $style;
     
     //variable array for theme_media_colorbox
     $element[0] = array(
         '#theme' => 'media_colorbox',
-        '#item' => $build['file'],
         '#item_class' => $class,
         '#item_style' => isset($items[0]['override']['style']) ? $items[0]['override']['style'] : NULL,
-        '#entity_id' => $entity->fid,
+        '#entity_id' => $nid,
+        '#file_id' => $entity->fid,
         '#field' => $field,
         '#display_settings' => $display['settings'],
         '#langcode' => $langcode,
         '#path' => 'media_colorbox/' . $entity->fid . '/' . $display['settings']['colorbox_view_mode'] . '/' . $langcode,
-        '#title' => isset($instances['label']) ? $instances['label'] : NULL,
+        '#title' => isset($instances['label']) ? strip_tags($instances['label']) : NULL,
         '#media_colorbox_caption' => $colorbox_field_caption_value,
       );
   }
   elseif ($display['type'] == 'media_colorbox') {//file field on another entity, $field is set
-    list($id, $vid, $bundle) = entity_extract_ids($entity_type, $entity);
-  
-    $files = array();
-    foreach ($items as $delta => $item) {
-      if (isset($item['file'])) {
-        $files[$item['fid']] = $item['file'];
-      }
-      else {
-        $files[$item['fid']] = (object) $item;
-      }
-    }
-    $build = file_view_multiple($files, $display['settings']['file_view_mode'], 0, $langcode);
 
-    foreach (element_children($build) as $fid) {
-      $colorbox_caption_var_name = 'media_colorbox_' . $build[$fid]['#bundle'] . '_caption_field_name';
+    foreach ($items as $delta => $item) {
+      $colorbox_caption_var_name = 'media_colorbox_' . $item['type'] . '_caption_field_name';
       $colorbox_caption_field_name = variable_get($colorbox_caption_var_name);
       $colorbox_field_caption_value = NULL;
       
-      if (isset($build[$fid]['#file']->{$colorbox_caption_field_name})){
-        $colorbox_field_caption_value = isset($build[$fid]['#file']->{$colorbox_caption_field_name}['und'][0]) ?
-        $build[$fid]['#file']->{$colorbox_caption_field_name}['und'][0]['value'] : NULL;
+      if (isset($item{$colorbox_caption_field_name})){
+        $colorbox_field_caption_value = isset($item{$colorbox_caption_field_name}['und'][0]) ?
+        $item{$colorbox_caption_field_name}['und'][0]['value'] : NULL;
       }
-      
-      $element[$fid] = array(
+      $element[$item['fid']] = array(
         '#theme' => 'media_colorbox',
-        '#item' => $build[$fid]['file'],
-        '#entity_id' => $id,
+        '#entity_id' => $nid,
+        '#file_id' => $item['fid'],
         '#field' => $field,
         '#display_settings' => $display['settings'],
         '#langcode' => $langcode,
-        '#path' => 'media_colorbox/' . $fid . '/' . $display['settings']['colorbox_view_mode'] . '/' . $langcode,
+        '#path' => 'media_colorbox/' . $item['fid'] . '/' . $display['settings']['colorbox_view_mode'] . '/' . $langcode,
         //this is where Media is being added as the title attribute
-        '#title' => isset($instances['label']) ? $instances['label'] : NULL,
+        '#title' => isset($instances['label']) ? strip_tags($instances['label']) : NULL,
         '#media_colorbox_caption' => $colorbox_field_caption_value,
       );
     }
   }
   return $element;
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ * Disables the media_colorbox formatter for the default file display
+ */
+function media_colorbox_form_file_entity_file_display_form_alter(&$form, &$form_state) {
+  //disable the colorbox formatter for the default file display view mode
+  if($form['#view_mode'] == 'default') {
+    $form['displays']['status']['file_field_media_colorbox'] = NULL;
+  }
+}  
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ * Removes the Colorbox Link formatter from all entities except file type.
+ */
+function media_colorbox_form_field_ui_display_overview_form_alter(&$form, &$form_state) {
+  if($form['#entity_type'] != 'file'){
+    foreach($form['#fields'] as $field_name){
+      if(isset($form['fields']{$field_name}['format']) && isset($form['fields']{$field_name}['format']['type']['#options']['colorbox_link'])){
+        unset($form['fields']{$field_name}['format']['type']['#options']['colorbox_link']);
+      }
+    }
+  }
+}  
 
 /**
  * Implements hook_form_FORM_ID_alter().
@@ -337,10 +480,13 @@ function media_colorbox_form_field_ui_field_edit_form_alter(&$form, &$form_state
         Note: Selecting this text field as the Colorbox caption field will replace an previously checked field for this file type.'),
       '#tree'   => TRUE,
     );
-
+    
+    //get current caption_field variable if set, use to set default value below
+    $current_media_colorbox_caption_field_name = variable_get('media_colorbox_' . $bundle . '_caption_field_name', $default = '');
     $form['media_colorbox']['caption_field'] = array(
       '#type' => 'checkbox',
       '#title' => t('Use field as Colorbox caption'),
+      '#default_value' => $current_media_colorbox_caption_field_name == $form['#instance']['field_name'] ? TRUE : FALSE,
     );
 
     //check to see if the colorbox file caption field is already set,

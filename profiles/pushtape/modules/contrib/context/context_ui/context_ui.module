@@ -147,9 +147,9 @@ function context_ui_editor($form, &$form_state, $contexts) {
   //add some help text to the top of the form
   $form['help'] = array (
     '#prefix' => '<p class="context-help help">',
-    '#markup' => t('Select which context, or layer of blocks, to edit.  
+    '#markup' => t('Select which context, or layer of blocks, to edit.
                     Each context is configured to appear on different sets of pages so read the description carefully.
-                    When you are done editing click Done and save your changes.  
+                    When you are done editing click Done and save your changes.
                     You may use the Stop Editing Layout link to close the editor.'),
     '#suffix' => '</p>',
     '#weight' => -1,
@@ -162,7 +162,7 @@ function context_ui_editor($form, &$form_state, $contexts) {
     $edit = l(t('Edit'), $_GET['q'], array('fragment' => $context->name, 'attributes' => array('class' => array('edit'))));
     $done = l(t('Done'), $_GET['q'], array('fragment' => $context->name, 'attributes' => array('class' => array('done'))));
     $readable_name = ucwords(str_replace('_', ' ', $context->name));
-    $description = empty($context->description) ? '' : 
+    $description = empty($context->description) ? '' :
                         "<br/><div class='label bottom'>".check_plain($context->description)."</div>";
     $items[] = array(
       'data' => "<div class='label top'>" . $readable_name. "</div><div class='links'>{$edit} {$done}</div>" . $description,
@@ -202,7 +202,7 @@ function context_ui_editor($form, &$form_state, $contexts) {
     '#submit' => array('context_ui_editor_cancel'),
   );
 
-  $form['stop'] = array( 
+  $form['stop'] = array(
     '#markup' => l(t('Stop Editing Layout'), 'context-ui/deactivate', array(
         'query' => array('destination' => request_path()),
         'attributes' => array('class' => array('context_ui_dialog-stop')),
@@ -426,7 +426,7 @@ function context_ui_page_build(&$page) {
 
 /**
  *  Ajax callback to get the list of available blocks
- *  
+ *
  */
 function context_ui_get_available_blocks() {
   drupal_json_output(array('lols' => 'testing'));

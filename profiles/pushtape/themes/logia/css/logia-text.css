@@ -1,0 +1,149 @@
+/* line 1, ../sass/logia-text.scss */
+body {
+  font: 13px/1.5 "Trebuchet MS", "Lucida Grande", "Lucida sans", sans-serif;
+  color: #444;
+}
+
+/* line 7, ../sass/logia-text.scss */
+a:link, a:visited {
+  color: #439F8F;
+  text-decoration: none;
+}
+/* line 11, ../sass/logia-text.scss */
+a:active {
+  color: #439F8F;
+}
+
+/* line 16, ../sass/logia-text.scss */
+hr {
+  background: none repeat scroll 0 0 #5294C1;
+  border: medium none;
+  height: 1px;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 24, ../sass/logia-text.scss */
+a:hover {
+  color: #439f8f;
+}
+
+@font-face {
+  font-family: LeagueGothic;
+  src: url("../fonts/League_Gothic.ttf");
+}
+
+/* line 34, ../sass/logia-text.scss */
+h1, h2, h3, h4, h5 {
+  font-family: 'LeagueGothic';
+  color: #333;
+  font-weight: normal;
+  font-size: 2.1em;
+  text-transform: uppercase;
+}
+
+/* line 42, ../sass/logia-text.scss */
+h1 {
+  font-size: 36px;
+}
+/* line 44, ../sass/logia-text.scss */
+h1.site-name {
+  font-size: 36px;
+}
+
+/* line 50, ../sass/logia-text.scss */
+h2.site-name {
+  font-size: 36px;
+}
+/* line 53, ../sass/logia-text.scss */
+h2.block-title {
+  font-size: 18px;
+  margin: 0;
+}
+/* line 57, ../sass/logia-text.scss */
+h2.node-title {
+  font-size: 28px;
+}
+/* line 61, ../sass/logia-text.scss */
+h2 a:link, h2 a:visited {
+  color: #333;
+}
+/* line 64, ../sass/logia-text.scss */
+h2 a:hover {
+  color: #fff;
+}
+
+/* line 70, ../sass/logia-text.scss */
+h3 {
+  font-size: 21px;
+}
+
+/* line 74, ../sass/logia-text.scss */
+h4 {
+  font-size: 19px;
+}
+
+/* line 78, ../sass/logia-text.scss */
+h5 {
+  font-size: 17px;
+}
+
+/* line 82, ../sass/logia-text.scss */
+h6 {
+  font-size: 15px;
+}
+
+/* line 86, ../sass/logia-text.scss */
+ol {
+  list-style: decimal outside none;
+}
+
+/* line 90, ../sass/logia-text.scss */
+ul {
+  list-style: disc outside none;
+}
+/* line 92, ../sass/logia-text.scss */
+ul ul {
+  padding-top: 0.5em;
+}
+
+/* line 97, ../sass/logia-text.scss */
+ol ol {
+  padding-top: 0.5em;
+}
+
+/* line 102, ../sass/logia-text.scss */
+.node ol {
+  padding-left: 1.2em;
+}
+/* line 105, ../sass/logia-text.scss */
+.node ul {
+  padding-left: 1.2em;
+}
+/* line 107, ../sass/logia-text.scss */
+.node ul.inline {
+  padding-left: 0;
+}
+/* line 111, ../sass/logia-text.scss */
+.node ol.inline {
+  padding-left: 0;
+}
+
+/* line 116, ../sass/logia-text.scss */
+p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset {
+  margin-bottom: 20px;
+}
+
+/* line 120, ../sass/logia-text.scss */
+dt, .admin h3 {
+  font-size: 18px;
+  margin: 0;
+}
+
+/* line 125, ../sass/logia-text.scss */
+dd {
+  font-size: 0.9em;
+  font-style: italic;
+  margin-bottom: 20px;
+  padding-left: 10px;
+}

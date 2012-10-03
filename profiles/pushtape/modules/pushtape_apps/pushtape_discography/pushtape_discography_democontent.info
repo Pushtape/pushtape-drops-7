@@ -17,3 +17,11 @@ features[content][] = pushtape-discography-defaultcontent-4
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:1
 features[variable][] = node_content_enabled
+
+
+; Information added by drush on 2012-10-03
+version = "7.x-1.x-upstream-dev"
+core = "7.x"
+project = "pushtape_discography"
+datestamp = "1349298577"
+

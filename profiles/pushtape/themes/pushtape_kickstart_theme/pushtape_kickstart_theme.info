@@ -424,3 +424,10 @@ core = "7.x"
 project = "pushtape_kickstart"
 datestamp = "1342812389"
 
+
+
+; Information added by drush on 2012-10-03
+version = "master-dev"
+project = "pushtape_kickstart_theme"
+datestamp = "1349298571"
+

@@ -74,18 +74,24 @@ class MediaSoundCloudStreamWrapper extends MediaReadOnlyStreamWrapper {
     return $local_path;
   }
   
-  public function getOEmbed($url) {
+  public function getOEmbed($url, $options = array()) {
     //drupal_set_message("MediaSoundCloudStreamWrapper::getOEmbed");
-    $oembed_url = url('http://soundcloud.com/oembed', array('query' => array('url' => $url, 'format' => 'json')));
+    $oembed_parameters = array_merge(array('url' => $url, 'format' => 'json'), $options);
+    $oembed_url = url('http://soundcloud.com/oembed', array('query' => $oembed_parameters));
     //drupal_set_message(print_r($oembed_url,true));
     $response = drupal_http_request($oembed_url);
     //drupal_set_message(print_r($response,true)); 
     if (!isset($response->error)) {
       return drupal_json_decode($response->data);
     }else{
-        drupal_set_message("Error Embeding SoundCloud Media code(".$response->code.") : " . $response->status_message);
-        drupal_set_message('Please check sharing permissions');
-        //drupal_set_message(print_r($response,true));
+      $error_msg = t("Error Embeding SoundCloud Media '@file'. Error code(@code) : !message", array('@file' => $url, '@code' => $response->code, '!message' => $response->status_message));
+      // Output error to watchdog
+      watchdog('Media Soundcloud', $error_msg, NULL, WATCHDOG_WARNING);
+      // Output error to admin
+      if (user_access('edit media')) {
+        drupal_set_message($error_msg, "error", FALSE);
+        drupal_set_message(t('Please check sharing permissions'), 'error', FALSE);
+      }
     }
   }
 }
